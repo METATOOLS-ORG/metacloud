@@ -29,7 +29,7 @@
             width="16px"
             aria-hidden="true"
         />
-        <img src="/assets/testlogo.png" class="logo" alt="metacloud"/>
+        <img src="/assets/testlogo.png" class="navbar-logo-text" alt="metacloud"/>
     </a>
     <nav class="navbar-left" aria-label="Main navigation">
         <ul>
@@ -107,5 +107,10 @@
 
     .navbar-right ul :global(.navbar-item:last-child) {
         border-right: none;
+    }
+
+    .navbar-logo-text {
+        image-rendering: pixelated;
+        height: 17px;
     }
 </style>
