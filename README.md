@@ -1,12 +1,24 @@
+<img width="500" alt="a banner saying metacloud" src="https://github.com/user-attachments/assets/11db99a6-2e2c-4a82-b5d4-3b5806e5d94e" />
+
+
 # metacloud
-WELCOME TO THE METACLOUD
+a more open alternative to soundcloud?
 
 metacloud is a work in progress experimental music and wip sharing site, written in sveltekit and prisma
 
-a more open alternative to soundcloud?
-
 **this is not production ready yet, don't actually use this**
 
+<img width="800" alt="chrome_sNSPYFjcnp" src="https://github.com/user-attachments/assets/e5d89085-ea57-4bee-b32d-cf6bd668a725" />
+
+## code structure
+- /.env - server and client config (copy from .env.example)
+- /src/routes - all the pages in sveltekit structure
+- /src/routes/api - the code for the api routes
+- /src/components - the svelte components
+- /src/lib - various common code
+- /src/lib/server - some server side code like s3
+- /static - static public assets
+  
 ## what you need
 - node.js - https://nodejs.org/
 - git - https://git-scm.com/downloads
@@ -31,14 +43,14 @@ now that you've set up the config you can start metacloud at any time by doing
 pnpm run dev
 ```
 
-now you can ctrl+click the localhost link in the console to open metacloud!
+ctrl+click the localhost link in the console to open metacloud!
 
 keep in mind this server is running in development mode and is not production ready, do not host it publicly, i would tell you how to enable production mode but there is no production mode yet
 
 note: on macOS if you get an error about xcodebuild, run `sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer` in a terminal
 
 
-# updating database
+## updating database
 run the following command after changing database schemes to apply the changes
 
 if asked to name the migration, type in what you changed (like "added assets field to user"), please commit the migration as well
@@ -47,6 +59,5 @@ if asked to name the migration, type in what you changed (like "added assets fie
 pnpm run migrate
 ```
 
-# code structure
-
-todo
+## license
+there is no license yet but there will be soon, keep in mind if you contribute at the moment you accept your code being relicensed later on once a license has been chosen
