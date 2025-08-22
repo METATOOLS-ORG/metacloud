@@ -13,7 +13,6 @@
         let newTime = parseFloat(sliderElem.value);
         if (!globalAudioState.audio) return;
         globalAudioState.audio.currentTime = newTime;
-        // @todo: no seeking support yet
     }
 </script>
 

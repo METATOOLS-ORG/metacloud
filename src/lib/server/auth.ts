@@ -6,7 +6,7 @@ import { getUserById } from "./database";
 
 /** Generate a signed user login token using HMAC */
 export function generateToken(userId: string): string {
-    // @TODO: Generate the secret key in RAM in prod
+    // @todo: generate the secret key in RAM in prod
     const hmac = createHmac("sha256", "DEV_TEMPHMAC_KEY");
     hmac.update(userId);
     return userId + "$$" + hmac.digest("hex");

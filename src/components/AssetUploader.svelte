@@ -19,7 +19,7 @@
         center = imageMode,
         presetFile = null,
         presetAssetId = null,
-        // @TODO: Give these types
+        // @todo: give these types
         onFileDragged = null,
         onAssetUploaded = null
     } = $props();
@@ -54,7 +54,7 @@
 
     $effect(() => {
         if (file) {
-            // @TODO: Do checks here to see if the file is eligible to be uploaded
+            // @todo: do checks here to see if the file is eligible to be uploaded
 
             const xhr = new XMLHttpRequest();
 
@@ -81,7 +81,7 @@
                         assetId = resp.id;
                         if (onAssetUploaded) onAssetUploaded(resp.id);
                     } else {
-                        // @TODO: error indicator
+                        // @todo: error indicator
                         console.log('Upload failed:', xhr.responseText);
                     }
                     isUploading = false;

@@ -14,7 +14,7 @@
 
 {#if !data.user}
     <!-- @todo: bring this banner back but better!! -->
-    <!-- @TODO: Create some form of "dismissable banner" component that only shows one at a time and can be dimsissed
+    <!-- @todo: create some form of "dismissable banner" component that only shows one at a time and can be dimsissed
          which is then saved in localStorage to not show it again -->
     <!-- <FancyBanner icon="logo.png" ariaLabel="Welcome Banner">
         <h2>welcome to the metacloud</h2>

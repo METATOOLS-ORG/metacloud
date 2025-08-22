@@ -16,7 +16,6 @@
         if (!globalAudioState.audio) return;
         globalAudioState.audio.currentTime = newTime;
         globalAudioState.currentTime = newTime;
-        // @todo: no seeking support yet
     }
     function sliderMouseDown(e: Event) {
         globalAudioState.seeking = true;
@@ -62,7 +61,7 @@
                     </button>
                 </div>
 
-                <!-- @TODO: store song duration in database using asset relation -->
+                <!-- @todo: store song duration in database using asset relation -->
                 <span class="miniplayer-time position">
                     0:00 / 0:00
                 </span>

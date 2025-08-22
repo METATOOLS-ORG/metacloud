@@ -4,6 +4,7 @@
     import { getAssetUrl } from '$lib/assets';
     import { globalAudioState } from '$lib/state/audioState.svelte';
 	import { formatSongTime } from '$lib/time';
+	import { todo } from 'node:test';
     import HeartIcon from './icons/HeartIcon.svelte';
     import PauseIcon from './icons/PauseIcon.svelte';
     import PlayIcon from './icons/PlayIcon.svelte';
@@ -17,7 +18,6 @@
         let newTime = parseFloat(sliderElem.value);
         if (!globalAudioState.audio) return;
         globalAudioState.audio.currentTime = newTime;
-        // @todo: no seeking support yet
     }
 </script>
 
@@ -50,12 +50,13 @@
             {:else}
                 <!-- Nonfunctional mini player that only shows the song metadata -->
                 <div class="miniplayer-controls">
+                    <!-- @todo: fix typescript type error-->
                     <button onclick={ () => { globalAudioState.playUnpublishedAudioAsset(songAssetId, user) } }>
                         <PlayIcon/>
                     </button>
                 </div>
 
-                <!-- @TODO: store song duration in database using asset relation -->
+                <!-- @todo: store song duration in database using asset relation -->
                 <span class="miniplayer-time position">
                     0:00 / 0:00
                 </span>

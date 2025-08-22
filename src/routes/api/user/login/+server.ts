@@ -29,7 +29,7 @@ export const POST: RequestHandler = async (req) => {
     }
 
     let token = generateToken(user.id);
-    // @todo: security?
+    // @todo: can we make this more secure without breaking dev? httpsOnly in prod?
     req.cookies.set('token', token, { path: '/', httpOnly: false, secure: false, sameSite: "lax" });
     return json({ id: user.id, token: token });
 };
