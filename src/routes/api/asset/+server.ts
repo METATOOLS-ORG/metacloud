@@ -20,7 +20,6 @@ export const POST: RequestHandler = async (req) => {
     const user = await getAuthedUser(req);
     const data = await req.request.formData();
     const file = data.get("asset") as File;
-    console.log(file);
 
     if (!file) error(422, {message: "No asset file given", code: "NO_ASSET_FIELD_IN_FORMDATA"});
     if (file.size > MbToBytes(30)) error(413, {message: "File is too big, max 30 MB", code: "FILE_ABOVE_SIZE_LIMIT"})

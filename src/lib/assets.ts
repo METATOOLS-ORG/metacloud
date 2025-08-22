@@ -6,7 +6,6 @@ export function getAssetUrl(assetId: string) {
 }
 
 export function getAvatarAssetUrl(assetId?: string | null) {
-    console.log("getting avatar asset with id", assetId);
     if (!assetId || assetId == null) return "/assets/default/avatar.png";
     return getAssetUrl(assetId);
 }

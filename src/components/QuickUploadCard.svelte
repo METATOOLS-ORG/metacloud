@@ -71,7 +71,6 @@
             tagFeedback: formData.get('tag-feedback') === 'on'
         })
         .then((resp) => {
-            console.log(resp);
             invalidate('/api/song');
             resetUpload();
             // location.href = "/@" + resp.username;

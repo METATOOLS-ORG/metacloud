@@ -19,11 +19,9 @@
         // @todo: no seeking support yet
     }
     function sliderMouseDown(e: Event) {
-        console.log("MOUSE DOWN");
         globalAudioState.seeking = true;
     }
     function sliderMouseUp(e: Event) {
-        console.log("MOUSE UP");
         globalAudioState.seeking = false;
     }
 </script>

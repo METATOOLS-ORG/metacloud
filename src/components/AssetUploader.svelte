@@ -54,8 +54,6 @@
 
     $effect(() => {
         if (file) {
-            console.log('YAY FILE CHANGED', file);
-
             // @TODO: Do checks here to see if the file is eligible to be uploaded
 
             const xhr = new XMLHttpRequest();

@@ -7,7 +7,6 @@
 	import SongCard from "$components/SongCard.svelte";
 
     const { data } = $props();
-    console.log(data);
 </script>
 <svelte:head>
 	<title>metacloud</title>
