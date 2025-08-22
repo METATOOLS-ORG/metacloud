@@ -4,7 +4,6 @@
     import { getAssetUrl } from '$lib/assets';
     import { globalAudioState } from '$lib/state/audioState.svelte';
 	import { formatSongTime } from '$lib/time';
-	import { todo } from 'node:test';
     import HeartIcon from './icons/HeartIcon.svelte';
     import PauseIcon from './icons/PauseIcon.svelte';
     import PlayIcon from './icons/PlayIcon.svelte';
