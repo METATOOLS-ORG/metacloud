@@ -1,0 +1,38 @@
+node_modules
+pnpm-lock
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+
+# Personal
+/src_priv
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Database
+*.db
+
+# Temporary
+.prettierrc
+desktop.ini
+icon.ico

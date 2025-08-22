@@ -1,0 +1,21 @@
+model Song {
+    id              String  @id @default(ulid())
+    date            DateTime @default(now())
+    title           String
+    url             String
+    desc            String
+    genre           String
+
+    audioAsset      Asset   @relation("AudioAsset", fields: [audioAssetId], references: [id])
+    audioAssetId    String
+
+    coverAsset      Asset?  @relation("CoverAsset", fields: [coverAssetId], references: [id])
+    coverAssetId    String?
+
+    author          User    @relation("SongAuthor", fields: [authorId], references: [id])
+    authorId        String
+
+    tagPin          Boolean
+    tagWip          Boolean
+    tagFeedback     Boolean
+}

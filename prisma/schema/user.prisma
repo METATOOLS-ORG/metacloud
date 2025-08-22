@@ -1,0 +1,14 @@
+model User {
+    id              String      @id @default(ulid())
+    username        String      @unique
+    email           String
+    passwordHash    String
+    displayName     String
+    date            DateTime    @default(now())
+    avatarAsset     Asset?      @relation("UserAvatarAsset", fields: [avatarAssetId], references: [id])
+    avatarAssetId   String?
+    bio             String?
+
+    assets          Asset[]     @relation("AssetAuthor")
+    songs           Song[]      @relation("SongAuthor")
+}

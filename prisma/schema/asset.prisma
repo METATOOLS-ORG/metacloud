@@ -1,0 +1,39 @@
+enum AssetPurpose {
+    OTHER
+    AUDIO
+    PROFILE_PICTURE
+    PROFILE_BANNER
+    COVER_ART
+    THEME_BACKGROUND
+    THEME_ASSET
+    PROJECT_FILE_BASIC
+    PROJECT_FILE_FULL
+}
+
+enum AssetType {
+    OTHER
+    AUDIO
+    IMAGE
+    PROJECT_FILE
+}
+
+model Asset {
+    id              String  @id @default(ulid())
+    date            DateTime @default(now())
+    type            AssetType
+    purpose         AssetPurpose
+
+    author          User? @relation("AssetAuthor", fields: [authorId], references: [id])
+    authorId        String?
+
+    filename        String
+    metatype        String
+    size            Int
+
+    usedBySongs     Song[] @relation("AudioAsset")
+    usedByCovers    Song[] @relation("CoverAsset")
+    usedByUsers     User[] @relation("UserAvatarAsset")
+
+    system          Boolean @default(false)
+    temp            Boolean // Asset uploaded but not used yet, will auto-delete if not used
+}

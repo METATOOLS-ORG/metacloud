@@ -1,0 +1,297 @@
+:root {
+    /* Global css variables */
+    --font: "Segoe UI", sans-serif;
+    --font-size: 9pt;
+    --text-color: #fdfdfd;
+    --text-color-info: rgba(255, 255, 255, .76);
+    --text-color-highlight: white; /* @todo: ??? */
+    --accent-color: #c299db;
+    --background: url("/assets/bg5.png");
+    --page-background: var(--primary-background);
+    --banner-background: linear-gradient(178deg, #ff86fa, #ffc6a8); /* @todo */
+    --primary-background: hsl(235, 12%, 17%);
+    --page-head-background: #ffffff0f;
+    --scrollbar-color: #2f303c;
+    --scrollbar-background: #202027;
+    --icon-color: var(--accent-color);
+    --player-background: hsl(228, 12%, 17%);
+    --navbar-background: hsl(239, 12%, 16%);
+    --error-background: var(--accent-color); /* @todo: unfitting color? */
+    --button-background: #ffffff17;
+    --button-down-background: #ffffff23;
+    --accent-text-color: black;
+    --accent-border-color: #0000002b;
+    --input-background: rgba(0, 0, 0, .2);
+    --footer-background: hsl(235, 12%, 20%);
+    --sidebar-background: hsl(235, 11%, 23%);
+    --progress-bar-background: #B2B2B2;
+    /*--button-text-color: #d5d5d5; */
+    --button-text-color: var(--text-color);
+    --file-background: var(--input-background);
+    --file-hover-background: hsl(240, 12%, 13%);
+    /* --border-color: rgba(255, 255, 255, .15); */
+    --border-color: #4b4b55;
+    --input-border-color: #404146;
+    --border: 1px solid var(--border-color);
+    /* --page-border: 1px solid rgba(255, 255, 255, .12); */
+    --required-star-color: var(--accent-color);
+}
+
+.toggle-button.checked, button.accent, input[type="submit"].accent {
+    background: var(--accent-color);
+    color: var(--accent-text-color);
+    /* border: 1px solid var(--accent-border-color); */
+}
+
+.toggle-button.checked .flat-icon, button.accent .flat-icon {
+    color: black;
+}
+html {
+    font-family: var(--font);
+    font-size: var(--font-size);
+    color: var(--text-color);
+    accent-color: var(--accent-color);
+}
+
+
+
+::selection {
+    background: var(--accent-color);
+    color: var(--text-color-highlight);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a.noblue {
+    color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+}
+
+/* h1, h2, h3, h4, h5, h6, */ p {
+    margin-bottom: 9px;
+}
+
+.info {
+    color: var(--text-color-info);
+}
+hr {
+    color: var(--border-color);
+    border-style: solid;
+    border-top: none;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
+/* Make inputs actually use the font we set for the page */
+input, button, select, textarea, optgroup, option {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+textarea {
+    resize: none;
+}
+/* Centered page layout */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+html {
+    height: 100vh;
+}
+body {
+    height: 100vh;
+}
+.background {
+    height: 100vh;
+    overflow-y: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: var(--background);
+    image-rendering: pixelated;
+}
+
+.main {
+    width: 100%;
+    max-width: 800px;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-grow: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--page-background);
+    /* border-left: var(--page-border);
+    border-right: var(--page-border); */
+    image-rendering: auto;
+}
+
+.main-top {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.page-content {
+    padding: 12px;
+}
+
+/* Icon helpers */
+.icon-sm {
+    width: 16px;
+    height: 16px;
+    image-rendering: pixelated;
+}
+
+.icon-lg {
+    width: 32px;
+    height: 32px;
+    image-rendering: pixelated;
+}
+
+/* Text helpers */
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+p label {
+    margin-right: 3px;
+}
+
+input[type="text"], input[type="password"], input[type="email"], textarea {
+    background: var(--input-background);
+    /* border: 1px solid var(--input-border-color); */
+    border: none;
+    padding: 5px 9px;
+    color: var(--text-color);
+}
+
+textarea {
+    padding: 6px;
+}
+
+.label-required-star {
+    color: var(--required-star-color);
+}
+
+/* Autofill fix @todo: this is a huge hack */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px var(--input-background);
+    font-size: var(--font-size);
+}
+
+
+/* Button styling */
+button, input[type="submit"], a.button {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    padding: 5px 8px;
+    /* border: var(--border); */
+    border: none;
+    background: var(--button-background);
+    color: var(--button-text-color);
+    cursor: default;
+}
+button:active, input[type="submit"]:active, a.button:active, button:focus-visible, input[type="submit"]:focus-visible, a.button:focus-visible {
+    /* border: var(--border); */
+    outline: none;
+    background: var(--button-down-background);
+}
+a.button {
+    padding: 7px 8px;
+}
+/* Range Inputs (Webkit) */
+/* @todo: check other browsers */
+input[type=range]::-webkit-slider-runnable-track {
+    height: 6px;
+    background: #1a1b20; /* @todo: css variables don't work? */
+    /* border: 1px solid var(--border-color); */
+    border-radius: 20px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    margin-top: -5px;
+}
+
+/* Footer */
+.footer {
+    color: var(--text-color-info);
+    background: var(--footer-background);
+    padding: 11px;
+    /* border-top: var(--border); */
+}
+
+/* Audio */
+audio {
+    height: 32px;
+}
+
+audio::-webkit-media-controls-enclosure {
+    border-radius: 0px;
+}
+
+audio::-webkit-media-controls-panel {
+    background: var(--player-background);
+}
+
+/* Sidebar */
+.sidebar {
+    /* border-left: var(--border); */
+    background: var(--sidebar-background);
+    flex: 1;
+    max-width: 230px;
+}
+.page-split {
+    display: flex;
+    flex: 1;
+    overflow-y: auto;
+}
+.content {
+    flex: 1;
+}
+
+/* Recolorable flat icons */
+.flat-icon {
+    color: var(--icon-color);
+}
+
+/* Scroll bars */
+body {
+    scrollbar-color: var(--scrollbar-color) var(--scrollbar-background);
+}

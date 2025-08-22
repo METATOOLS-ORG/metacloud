@@ -1,0 +1,12 @@
+{
+  "short_name": "metacloud",
+  "name": "metacloud",
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "background_color": "#1e1f2e",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3A3B45",
+  "description": "music posting and streaming website",
+  "display_override": ["window-controls-overlay"]
+}
