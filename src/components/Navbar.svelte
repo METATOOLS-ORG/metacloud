@@ -22,15 +22,14 @@
 
 <header class="navbar">
     <a class="navbar-logo noblue" href="/">
-        <!-- <img
+        <img
             class="navbar-logo-icon icon-sm"
             src="/favicon.png"
             alt="Logo icon"
             width="16px"
             aria-hidden="true"
-        /> -->
-        <LogoIcon/>
-        <span class="navbar-logo-text">metacloud</span>
+        />
+        <img src="/assets/testlogo.png" class="logo" alt="metacloud"/>
     </a>
     <nav class="navbar-left" aria-label="Main navigation">
         <ul>

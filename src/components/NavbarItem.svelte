@@ -21,7 +21,7 @@
         {:else}
             <!-- @todo -->
             {#if IconComponent}
-            <IconComponent/>
+                <IconComponent/>
             {/if}
         {/if}
         <span>{title}</span>
