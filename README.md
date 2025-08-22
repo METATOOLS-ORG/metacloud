@@ -1,4 +1,4 @@
-<img width="500" alt="a banner saying metacloud" src="https://github.com/user-attachments/assets/11db99a6-2e2c-4a82-b5d4-3b5806e5d94e" />
+<img width="600" alt="metacloud-banner-v5" src="https://github.com/user-attachments/assets/d0096650-5636-4eb2-8086-79c6932fe288" />
 
 
 # metacloud
