@@ -8,7 +8,7 @@ metacloud is a work in progress experimental music and wip sharing site, written
 
 **this is not production ready yet, don't actually use this**
 
-<img width="800" alt="chrome_sNSPYFjcnp" src="https://github.com/user-attachments/assets/e5d89085-ea57-4bee-b32d-cf6bd668a725" />
+<img width="800" alt="a screenshot of metacloud" src="https://github.com/user-attachments/assets/eaf76d09-d4d9-4606-bd4a-9211292573ad" />
 
 ## code structure
 - /.env - server and client config (copy from .env.example)
