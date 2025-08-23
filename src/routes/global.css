@@ -122,7 +122,7 @@ body {
 
 .main {
     width: 100%;
-    max-width: 800px;
+    max-width: 820px;
     height: 100vh;
     overflow-y: auto;
     display: flex;
@@ -275,7 +275,7 @@ audio::-webkit-media-controls-panel {
     /* border-left: var(--border); */
     background: var(--sidebar-background);
     flex: 1;
-    max-width: 230px;
+    max-width: 250px;
 }
 .page-split {
     display: flex;
