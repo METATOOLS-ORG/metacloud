@@ -22,6 +22,7 @@
                 && globalAudioState.playingSong
                 && globalAudioState.song
                 && document.activeElement?.nodeName != "INPUT"
+                && document.activeElement?.nodeName != "TEXTAREA"
             ) {
                 e.preventDefault();
                 globalAudioState.togglePlayback();
