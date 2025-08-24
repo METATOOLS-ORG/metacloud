@@ -2,7 +2,7 @@ import type { User } from "@prisma/client";
 import type { GetPayloadResult } from "@prisma/client/runtime/library";
 import { error, type Cookies, type RequestEvent } from "@sveltejs/kit";
 import { createHmac } from "node:crypto";
-import { getUserById } from "./database";
+import { getUserById, prisma } from "./database";
 
 /** Generate a signed user login token using HMAC */
 export function generateToken(userId: string): string {
@@ -36,7 +36,18 @@ export function checkAuth(req: RequestEvent): string {
 
 export async function getAuthedUser(req: RequestEvent): Promise<GetPayloadResult<User, {}>> {
     let uid = checkAuth(req);
-    let user = await getUserById(uid);
+    let user = await prisma.user.findUnique({
+            where: {
+                id: uid
+            },
+            include: {
+                likes: {
+                    select: {
+                        postId: true
+                    }
+                }
+            }
+    });
     if (!user) error(401, {
         message: "Given token is valid but the user associated with the token was not found",
         code: "INVALID_TOKEN_NO_USER"

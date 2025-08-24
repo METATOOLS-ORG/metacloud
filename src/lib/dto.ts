@@ -2,7 +2,8 @@ export interface UserSelfDTO {
 	id: string,
 	username: string,
 	displayName: string,
-	avatarAssetId?: string | null
+	avatarAssetId?: string | null,
+    likes: String[]
 }
 
 export interface UserProfileDTO {
@@ -32,7 +33,8 @@ export interface SongMiniDTO {
         displayName: string,
         username: string,
         avatarAssetId?: string | null,
-    }
+    },
+    likes: String[]
 }
 
 export interface AssetUploadRespDTO {

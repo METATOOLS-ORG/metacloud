@@ -228,7 +228,7 @@ button, input[type="submit"], a.button {
     color: var(--button-text-color);
     cursor: default;
 }
-button:active, input[type="submit"]:active, a.button:active, button:focus-visible, input[type="submit"]:focus-visible, a.button:focus-visible {
+button:active:not(.accent), input[type="submit"]:active, a.button:active, button:focus-visible, input[type="submit"]:focus-visible, a.button:focus-visible {
     /* border: var(--border); */
     outline: none;
     background: var(--button-down-background);

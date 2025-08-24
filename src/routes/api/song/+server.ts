@@ -58,9 +58,14 @@ export const GET: RequestHandler = async (req) => {
                     waveformJSON: true,
                     duration: true
                 }
+            },
+            likes: {
+                select: {
+                    userId: true
+                }
             }
         }
-    })
+    });
     const dtoSongs = songs.map((song) => {
         return {
             id: song.id,
@@ -77,7 +82,8 @@ export const GET: RequestHandler = async (req) => {
                 displayName: song.author.displayName,
                 username: song.author.username,
                 avatarAssetId: song.author.avatarAssetId,
-            }
+            },
+            likes: song.likes.map((like: {userId: string}) => like.userId)
         } satisfies SongMiniDTO;
     })
     return json(dtoSongs);

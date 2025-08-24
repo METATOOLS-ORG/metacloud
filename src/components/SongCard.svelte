@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { post } from "$lib/api";
 	import { getAvatarAssetUrl, getCoverAssetUrl } from "$lib/assets";
 	import { globalAudioState } from "$lib/state/audioState.svelte";
 	import HeartIcon from "./icons/HeartIcon.svelte";
@@ -8,6 +9,26 @@
 	import WavesurferPlayer from "./WavesurferPlayer.svelte";
     let playing = $state(false);
     const { song, user } = $props();
+
+    let liked = $state(user.likes.includes(song.id));
+    let likedOriginally = $state(user.likes.includes(song.id));
+
+    let fakeLikeOffset = $state(0);
+
+    function likeButton(e: MouseEvent) {
+        // Immediately like client side to avoid api latency being visible
+        if (liked) {
+            liked = false;
+            fakeLikeOffset = likedOriginally ? -1 : 0;
+        } else {
+            liked = true;
+            fakeLikeOffset = likedOriginally ? 0 : 1;
+        }
+        let apiRoute = liked ? "song/unlike" : "song/like";
+        post(apiRoute, {
+            "songId": song.id
+        })
+    }
 </script>
 
 <article class="songcard">
@@ -38,9 +59,9 @@
         </div>
         <div class="songcard-bottom">
             <div class="songcard-bottom-left">
-                <button class="songcard-action">
+                <button class="songcard-action songcard-like-btn" class:accent={liked} onclick={likeButton}>
                     <HeartIcon/>
-                    <span>32</span>
+                    <span>{song.likes.length + fakeLikeOffset}</span>
                 </button>
                 <button class="songcard-action">
                     <PlayIcon/>

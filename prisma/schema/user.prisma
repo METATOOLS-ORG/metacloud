@@ -11,4 +11,5 @@ model User {
 
     assets          Asset[]     @relation("AssetAuthor")
     songs           Song[]      @relation("SongAuthor")
+    likes           SongLike[]  @relation("UserLikes")
 }
