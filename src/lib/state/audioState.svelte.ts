@@ -36,7 +36,7 @@ const playSong = (song: SongMiniDTO) => {
     globalAudioState.currentTime = 0;
     globalAudioState.audio.play();
     if (!audioUpdateIntervalSet) {
-        setInterval(globalAudioUpdate, 250);
+        setInterval(globalAudioUpdate, 25);
         audioUpdateIntervalSet = true;
     }
 }

@@ -4,6 +4,7 @@
 	import HeartIcon from "./icons/HeartIcon.svelte";
 	import PlayIcon from "./icons/PlayIcon.svelte";
 	import MiniGlobalPlayer from "./MiniGlobalPlayer.svelte";
+	import WavesurferPlayer from "./WavesurferPlayer.svelte";
     let playing = $state(false);
     const { song, user } = $props();
 </script>
@@ -27,7 +28,8 @@
             </div>
         </div>
         <div class="songcard-player">
-            <MiniGlobalPlayer {song} {user}/>
+            <!-- <MiniGlobalPlayer {song} {user}/> -->
+            <WavesurferPlayer {song} {user}/>
         </div>
         <div class="songcard-bottom">
             <div class="songcard-bottom-left">

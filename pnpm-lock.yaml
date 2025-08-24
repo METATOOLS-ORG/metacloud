@@ -29,6 +29,9 @@ importers:
       uuid:
         specifier: ^11.1.0
         version: 11.1.0
+      wavesurfer.js:
+        specifier: ^7.10.1
+        version: 7.10.1
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^4.0.0
@@ -1136,6 +1139,9 @@ packages:
     peerDependenciesMeta:
       vite:
         optional: true
+
+  wavesurfer.js@7.10.1:
+    resolution: {integrity: sha512-tF1ptFCAi8SAqKbM1e7705zouLC3z4ulXCg15kSP5dQ7VDV30Q3x/xFRcuVIYTT5+jB/PdkhiBRCfsMshZG1Ug==}
 
   zimmerframe@1.1.2:
     resolution: {integrity: sha512-rAbqEGa8ovJy4pyBxZM70hg4pE6gDgaQ0Sl9M3enG3I0d6H4XSAM3GeNGLKnsBpuijUow064sf7ww1nutC5/3w==}
@@ -2510,6 +2516,8 @@ snapshots:
   vitefu@1.0.6(vite@6.3.3(@types/node@22.14.1)):
     optionalDependencies:
       vite: 6.3.3(@types/node@22.14.1)
+
+  wavesurfer.js@7.10.1: {}
 
   zimmerframe@1.1.2: {}
 
