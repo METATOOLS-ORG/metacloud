@@ -9,7 +9,19 @@ export const GET: RequestHandler = async (req) => {
             username: req.params.username
         },
         include: {
-            songs: true
+            songs: {
+                orderBy: {
+                    id: "desc"
+                },
+                include: {
+                    audioAsset: {
+                        select: {
+                            waveformJSON: true,
+                            duration: true
+                        }
+                    }
+                }
+            }
         }
     })
     if (!user) error(404, {message: "User not found", code: "USER_NOT_FOUND"});
@@ -22,6 +34,8 @@ export const GET: RequestHandler = async (req) => {
             genre: song.genre,
             audioAssetId: song.audioAssetId,
             coverAssetId: song.coverAssetId,
+            waveformJSON: song.audioAsset.waveformJSON,
+            duration: song.audioAsset.duration,
             author: {
                 id: user.id,
                 displayName: user.displayName,
