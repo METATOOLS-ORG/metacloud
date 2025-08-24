@@ -26,7 +26,6 @@
 
         // Parse waveform JSON
         let waveformData = JSON.parse(song.waveformJSON).data;
-        console.log("waveform data", waveformData);
 
         wavesurfer = WaveSurfer.create({
             container: '.wavesurfer-' + uid,
@@ -51,7 +50,6 @@
                 }),
             ],
         })
-        console.log(wavesurfer);
 
         // Register events
         wavesurfer.on("dragstart", (_) => {
@@ -67,7 +65,6 @@
         });
 
         wavesurfer.on('interaction', (currentTime) => {
-            console.log("wavesurfer interact", currentTime);
             if (!isPlaying) {
                 playThisSong();
                 return

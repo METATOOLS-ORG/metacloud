@@ -20,7 +20,6 @@ export const globalAudioUpdate = () => {
     globalAudioState.duration = globalAudioState.audio?.duration || 0;
     globalAudioState.currentTime = globalAudioState.audio?.currentTime || 0;
     globalAudioState.paused = globalAudioState.audio?.paused || false;
-    console.log(globalAudioState.currentTime);
 };
 
 let audioUpdateIntervalSet = false;
