@@ -2,18 +2,32 @@
     import { getAssetUrl, getAvatarAssetUrl, getCoverAssetUrl } from '$lib/assets';
     import { globalAudioState } from '$lib/state/audioState.svelte';
 	import { formatSongTime } from '$lib/time';
+	import { onMount } from 'svelte';
     import HeartIcon from './icons/HeartIcon.svelte';
     import PauseIcon from './icons/PauseIcon.svelte';
     import PlayIcon from './icons/PlayIcon.svelte';
 
-
-    function sliderChanged(e: InputEvent) {
+    function sliderChanged(e: Event) {
         let sliderElem = e.currentTarget as HTMLInputElement;
         if (!sliderElem) return;
         let newTime = parseFloat(sliderElem.value);
         if (!globalAudioState.audio) return;
         globalAudioState.audio.currentTime = newTime;
     }
+    onMount(() => {
+        document.addEventListener("keydown", (e: KeyboardEvent) => {
+            // @todo: is using document.activeElement for this in svelte a hack?
+            if (
+                e.code == "Space"
+                && globalAudioState.playingSong
+                && globalAudioState.song
+                && document.activeElement?.nodeName != "INPUT"
+            ) {
+                e.preventDefault();
+                globalAudioState.togglePlayback();
+            }
+        })
+    });
 </script>
 
 {#if globalAudioState.playingSong && globalAudioState.song}
@@ -22,8 +36,8 @@
             <img
                 class="globalplayer-cover"
                 src={getCoverAssetUrl(globalAudioState.song.coverAssetId)}
-                width="64px"
-                height="64px"
+                width="68px"
+                height="68px"
                 alt="song cover art"
             />
             <div class="globalplayer-songinfo">
@@ -52,9 +66,9 @@
                 </button>
             </div>
             <div class="globalplayer-timeline">
-                <span class="globalplayer-time position"
-                    >{formatSongTime(globalAudioState.currentTime)}</span
-                >
+                <span class="globalplayer-time position">
+                    {formatSongTime(globalAudioState.currentTime)}
+                </span>
                 <input
                     type="range"
                     class="globalplayer-slider"
@@ -64,9 +78,9 @@
                     step="0.25"
                     onchange={sliderChanged}
                 />
-                <span class="globalplayer-time total"
-                    >{formatSongTime(globalAudioState.duration)}</span
-                >
+                <span class="globalplayer-time total">
+                    {formatSongTime(globalAudioState.duration)}
+                </span>
             </div>
         </div>
         <div class="globalplayer-right">
