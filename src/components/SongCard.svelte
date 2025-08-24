@@ -3,6 +3,7 @@
 	import { globalAudioState } from "$lib/state/audioState.svelte";
 	import HeartIcon from "./icons/HeartIcon.svelte";
 	import PlayIcon from "./icons/PlayIcon.svelte";
+	import VerifiedIcon from "./icons/VerifiedIcon.svelte";
 	import MiniGlobalPlayer from "./MiniGlobalPlayer.svelte";
 	import WavesurferPlayer from "./WavesurferPlayer.svelte";
     let playing = $state(false);
@@ -15,8 +16,12 @@
         <div class="songcard-top">
             <div class="songcard-head">
                 <div class="songcard-author">
-                    <img src={getAvatarAssetUrl(song.author.avatarAssetId)} height="18px" alt="author avatar"/>
+                    <img src={getAvatarAssetUrl(song.author.avatarAssetId)} height="20px" alt="author avatar"/>
                     <span>{song.author.displayName}</span>
+                    <!-- @todo: user database verified field -->
+                    <a class="songcard-author-checkmark" href="#test">
+                        <VerifiedIcon/>
+                    </a>
                 </div>
                 <span class="songcard-time">3 hours ago</span>
             </div>
@@ -79,7 +84,7 @@
     .songcard-top {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 5px;
     }
     .songcard-head {
         display: flex;
@@ -93,6 +98,10 @@
         display: flex;
         align-items: center;
         gap: 6px;
+    }
+    .songcard-author-checkmark {
+        /* visual offset */
+        padding-top: 3px;
     }
     .songcard-title {
         display: flex;
