@@ -57,29 +57,31 @@ export const POST: RequestHandler = async (req) => {
 
     const assetId = ulid();
 
-    let audioExt;
-    try {
-        audioExt = mapMimeTypeToFormat(file.type);
-    } catch (err) {
-        error(500, {
-            message: "Unsupported audio format (allowed: wav, mp3, flac, ogg, opus)",
-            code: "UNSUPPORTED_AUDIO_MIMETYPE"
-        })
-    }
-
-    const tempPath = `./ugc_temp/${assetId}.${audioExt}`;
-    try {
-        await writeFile(tempPath, fileData);
-    } catch (err) {
-        error(500, {
-            message: "Failed to temporarily write file to server (server is out of disk space?)",
-            code: "TEMP_FILE_WRITE_FAILED"
-        });
-    }
-
     let waveformJSON = null;
     let duration = null;
+
     if (file.type.startsWith("audio/")) {
+        // Calculate audio duration and waveform
+        let audioExt;
+        try {
+            audioExt = mapMimeTypeToFormat(file.type);
+        } catch (err) {
+            error(500, {
+                message: "Unsupported audio format (allowed: wav, mp3, flac, ogg, opus)",
+                code: "UNSUPPORTED_AUDIO_MIMETYPE"
+            })
+        }
+
+        const tempPath = `./ugc_temp/${assetId}.${audioExt}`;
+        try {
+            await writeFile(tempPath, fileData);
+        } catch (err) {
+            error(500, {
+                message: "Failed to temporarily write file to server (server is out of disk space?)",
+                code: "TEMP_FILE_WRITE_FAILED"
+            });
+        }
+
         // Precalculate audio duration using ffprobe
         // @todo: custom ffprobe path in config and docs
         duration = await getAudioDurationInSeconds(tempPath);
@@ -133,5 +135,6 @@ export const POST: RequestHandler = async (req) => {
             duration: duration
         }
     });
+    // todo: get rid of url because it is always undefined
     return json({id: assetId, url: uploadResult.url} satisfies AssetUploadRespDTO);
 }
