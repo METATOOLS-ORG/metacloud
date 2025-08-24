@@ -33,8 +33,7 @@ function mapMimeTypeToFormat(mimeType: string) {
       return "opus";
 
     default:
-      //throw new Error(`Unsupported MIME type: ${mimeType}`);
-        return "wav";
+      throw new Error(`Unsupported MIME type: ${mimeType}`);
   }
 }
 
@@ -57,7 +56,17 @@ export const POST: RequestHandler = async (req) => {
     const fileData = new Uint8Array(await file.arrayBuffer());
 
     const assetId = ulid();
-    const audioExt = mapMimeTypeToFormat(file.type);
+
+    let audioExt;
+    try {
+        audioExt = mapMimeTypeToFormat(file.type);
+    } catch (err) {
+        error(500, {
+            message: "Unsupported audio format (allowed: wav, mp3, flac, ogg, opus)",
+            code: "UNSUPPORTED_AUDIO_MIMETYPE"
+        })
+    }
+
     const tempPath = `./ugc_temp/${assetId}.${audioExt}`;
     try {
         await writeFile(tempPath, fileData);
