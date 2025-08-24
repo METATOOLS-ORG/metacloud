@@ -17,6 +17,8 @@
 
     function likeButton(e: MouseEvent) {
         // Immediately like client side to avoid api latency being visible
+        // @todo: this code could probably be better
+        let apiRoute = liked ? "song/unlike" : "song/like";
         if (liked) {
             liked = false;
             fakeLikeOffset = likedOriginally ? -1 : 0;
@@ -24,7 +26,6 @@
             liked = true;
             fakeLikeOffset = likedOriginally ? 0 : 1;
         }
-        let apiRoute = liked ? "song/unlike" : "song/like";
         post(apiRoute, {
             "songId": song.id
         })
