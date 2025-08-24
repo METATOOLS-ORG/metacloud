@@ -39,7 +39,6 @@
     </section>
     <aside class="sidebar">
         <PageHead text="My songs" icon={SearchIcon}/>
-
     </aside>
 </div>
 

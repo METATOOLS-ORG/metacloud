@@ -36,3 +36,4 @@ vite.config.ts.timestamp-*
 .prettierrc
 desktop.ini
 icon.ico
+/ugc_temp

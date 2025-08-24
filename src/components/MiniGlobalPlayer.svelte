@@ -9,7 +9,7 @@
     const { song, user } = $props();
     let isPlaying = $derived(globalAudioState.playingSong && globalAudioState?.song?.id == song.id);
 
-    function sliderChanged(e: InputEvent) {
+    function sliderChanged(e: Event) {
         let sliderElem = e.currentTarget as HTMLInputElement;
         if (!sliderElem) return;
         let newTime = parseFloat(sliderElem.value);

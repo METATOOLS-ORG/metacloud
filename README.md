@@ -22,6 +22,8 @@ metacloud is a work in progress experimental music and wip sharing site, written
 ## what you need
 - node.js - https://nodejs.org/
 - git - https://git-scm.com/downloads
+- audiowaveform binary in path - https://github.com/bbc/audiowaveform
+- ffprobe binary in path
 - a key to something s3 compatible (more info in .env.example)
 
 ## installing and running

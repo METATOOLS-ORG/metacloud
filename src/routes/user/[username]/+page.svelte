@@ -104,8 +104,9 @@
     .profile-content {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 11px;
         padding: 18px;
+        padding-bottom: 20px;
     }
     .profile-avatar {
         position: absolute;

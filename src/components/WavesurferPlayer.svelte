@@ -23,6 +23,11 @@
     }
     onMount(() => {
         if (!browser) return;
+
+        // Parse waveform JSON
+        let waveformData = JSON.parse(song.waveformJSON).data;
+        console.log("waveform data", waveformData);
+
         wavesurfer = WaveSurfer.create({
             container: '.wavesurfer-' + uid,
             waveColor: '#939398',
@@ -32,7 +37,9 @@
             barWidth: 1,
             height: 36,
             normalize: true,
-            url: getAssetUrl(song.audioAssetId),
+            // url: getAssetUrl(song.audioAssetId),
+            peaks: waveformData,
+            duration: song.duration,
             plugins: [
                 Hover.create({
                   lineColor: '#ffffff',
@@ -91,7 +98,7 @@
 <div class="player" >
     <div class="wavesurfer wavesurfer-{uid}" role="button" tabindex="0">
         <div class="player-time">{isPlaying ? formatSongTime(globalAudioState.currentTime) : "0:00"}</div>
-        <div class="player-duration">{formatSongTime(globalAudioState.duration)}</div>
+        <div class="player-duration">{formatSongTime(song.duration)}</div>
 
     </div>
     <div class="player-bottom">

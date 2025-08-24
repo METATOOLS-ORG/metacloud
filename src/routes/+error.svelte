@@ -6,7 +6,9 @@
 
 <PageHead icon={HeartIcon} text="Error"/>
 <section class="page-content">
-    <h1><p>{page.status}</p></h1>
+    <h1>
+        <p>{page.status}</p>
+    </h1>
     <p>{page.error?.message}</p>
     {#if page.status != 404}
         <p class="info">If this error doesn't go away, please let us know about it.</p>

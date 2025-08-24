@@ -52,7 +52,13 @@ export const GET: RequestHandler = async (req) => {
             id: "desc"
         },
         include: {
-            author: true
+            author: true,
+            audioAsset: {
+                select: {
+                    waveformJSON: true,
+                    duration: true
+                }
+            }
         }
     })
     const dtoSongs = songs.map((song) => {
@@ -64,6 +70,8 @@ export const GET: RequestHandler = async (req) => {
             genre: song.genre,
             audioAssetId: song.audioAssetId,
             coverAssetId: song.coverAssetId,
+            waveformJSON: song.audioAsset.waveformJSON,
+            duration: song.audioAsset.duration,
             author: {
                 id: song.author.id,
                 displayName: song.author.displayName,

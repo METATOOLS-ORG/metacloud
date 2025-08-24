@@ -36,4 +36,7 @@ model Asset {
 
     system          Boolean @default(false)
     temp            Boolean // Asset uploaded but not used yet, will auto-delete if not used
+
+    waveformJSON    String?
+    duration        Float?
 }
