@@ -1,10 +1,10 @@
 <script lang="ts">
-	import AssetUploader from "$components/AssetUploader.svelte";
     import FancyBanner from "$components/FancyBanner.svelte";
 	import SearchIcon from "$components/icons/SearchIcon.svelte";
 	import PageHead from "$components/PageHead.svelte";
 	import QuickUploadCard from "$components/QuickUploadCard.svelte";
-	import SongCard from "$components/SongCard.svelte";
+    import SongCard from "$components/SongCard.svelte";
+    import SongPostCard from "$components/SongPostCard.svelte";
 
     const { data } = $props();
 </script>
