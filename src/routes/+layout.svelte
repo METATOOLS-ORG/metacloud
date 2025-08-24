@@ -23,7 +23,7 @@
         <div class="main-bottom" role="presentation">
             <footer class="footer">
                 <!-- @todo: placeholder -->
-                <span>&copy; metacloud 2025 - terms of service - impressum - contact - report dmca</span>
+                <span>&copy; metacloud 2025 - terms of services - contact - report dmca</span>
             </footer>
             <GlobalPlayer/>
         </div>
