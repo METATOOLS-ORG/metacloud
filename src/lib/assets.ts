@@ -11,6 +11,6 @@ export function getAvatarAssetUrl(assetId?: string | null) {
 }
 
 export function getCoverAssetUrl(assetId?: string | null) {
-    if (!assetId || assetId == null) return "/assets/default/cover.png";
+    if (!assetId || assetId == null) return "/assets/default/cover.svg";
     return getAssetUrl(assetId);
 }

@@ -11,7 +11,7 @@ export const POST: RequestHandler = async (req) => {
 
     // @todo: add these length and style limits to the upload page
     const data = await validate(req, {
-        coverAssetId: z.string(),
+        coverAssetId: z.string().nullish(),
         audioAssetId: z.string(),
         title: z.string().trim().max(24),
         desc: z.string().trim().max(4000),
