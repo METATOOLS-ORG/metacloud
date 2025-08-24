@@ -21,7 +21,8 @@
         presetAssetId = null,
         // @todo: give these types
         onFileDragged = null,
-        onAssetUploaded = null
+        onAssetUploaded = null,
+        onError = null
     } = $props();
 
     if (!caption) caption = imageMode ? 'Drag to upload image' : 'Drag to upload file';
@@ -79,10 +80,14 @@
                         let resp = JSON.parse(xhr.responseText) as AssetUploadRespDTO;
                         console.log('Upload successful:', resp);
                         assetId = resp.id;
+
+                        // Reset error message
+                        onError("");
+
                         if (onAssetUploaded) onAssetUploaded(resp.id);
                     } else {
-                        // @todo: error indicator
                         console.log('Upload failed:', xhr.responseText);
+                        onError(JSON.parse(xhr.responseText).message);
                     }
                     isUploading = false;
                 }

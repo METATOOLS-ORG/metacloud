@@ -87,7 +87,7 @@
 
 {#key unique}
     <form onsubmit={onSubmit} class="quickupload-card">
-    <ErrorMessage {error} />
+        <ErrorMessage {error} />
         <AssetUploader
             height="48px"
             icon="speaker"
@@ -104,6 +104,9 @@
             hidden={fileUploaded && !forceShowUploader}
             bind:this={assetUploader}
             name="audioAssetId"
+            onError={(err: string) => {
+                error = err;
+            }}
         />
         {#if fileUploaded}
             <section class="quickupload-split">
