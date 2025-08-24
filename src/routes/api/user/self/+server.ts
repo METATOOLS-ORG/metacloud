@@ -10,7 +10,6 @@ export const GET: RequestHandler = async (req) => {
         id: user.id,
         displayName: user.displayName,
         username: user.username,
-        /* @todo: fix typescript type here (string | null) */
         avatarAssetId: user.avatarAssetId
     } satisfies UserSelfDTO);
 };

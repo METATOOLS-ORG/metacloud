@@ -2,7 +2,7 @@ export interface UserSelfDTO {
 	id: string,
 	username: string,
 	displayName: string,
-	avatarAssetId?: string
+	avatarAssetId?: string | null
 }
 
 export interface UserProfileDTO {
