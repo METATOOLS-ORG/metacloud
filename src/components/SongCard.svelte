@@ -10,15 +10,22 @@
     let playing = $state(false);
     const { song, user } = $props();
 
-    let liked = $state(user.likes.includes(song.id));
-    let likedOriginally = $state(user.likes.includes(song.id));
-
+    let liked = $state(false);
+    let likedOriginally = $state(false);
+    if (user) {
+        liked = user.likes.includes(song.id);
+        likedOriginally = user.likes.includes(song.id);
+    }
     let fakeLikeOffset = $state(0);
 
     function likeButton(e: MouseEvent) {
         // Immediately like client side to avoid api latency being visible
-        // @todo: this code could probably be better
+        if (!user) {
+            location.href = "/login"
+            return;
+        }
         let apiRoute = liked ? "song/unlike" : "song/like";
+        // @todo: this code could probably be better
         if (liked) {
             liked = false;
             fakeLikeOffset = likedOriginally ? -1 : 0;
