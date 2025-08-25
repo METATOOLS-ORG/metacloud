@@ -58,9 +58,16 @@
             </div>
             <div class="songcard-title">
                 <h1>{song.title}</h1>
-                <span class="songcard-title-tag">
-                    wip
-                </span>
+                {#if song.tagWip}
+                    <span class="songcard-title-tag wip">
+                        wip
+                    </span>
+                {/if}
+                {#if song.tagFeedback}
+                    <span class="songcard-title-tag feedback">
+                        feedback
+                    </span>
+                {/if}
             </div>
         </div>
         <div class="songcard-player">
@@ -138,6 +145,7 @@
         display: flex;
         gap: 6px;
         align-items: center;
+        min-height: 20px;
     }
     .songcard-title-tag {
         padding: 4px 6px;
