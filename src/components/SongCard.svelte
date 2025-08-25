@@ -4,6 +4,7 @@
 	import { globalAudioState } from "$lib/state/audioState.svelte";
 	import HeartIcon from "./icons/HeartIcon.svelte";
 	import PlayIcon from "./icons/PlayIcon.svelte";
+	import RepostIcon from "./icons/RepostIcon.svelte";
 	import VerifiedIcon from "./icons/VerifiedIcon.svelte";
 	import MiniGlobalPlayer from "./MiniGlobalPlayer.svelte";
 	import WavesurferPlayer from "./WavesurferPlayer.svelte";
@@ -80,7 +81,7 @@
                     <span>{song.likes.length + fakeLikeOffset}</span>
                 </button>
                 <button class="songcard-action">
-                    <PlayIcon/>
+                    <RepostIcon/>
                     <span>12</span>
                 </button>
             </div>
