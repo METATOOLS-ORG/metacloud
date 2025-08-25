@@ -6,7 +6,7 @@
     --text-color-info: rgba(255, 255, 255, .76);
     --text-color-highlight: white; /* @todo: ??? */
     --accent-color: #df8fbd;
-    --background: url("/assets/bg7.png");
+    --background: url("/assets/background.png");
     --page-background: var(--primary-background);
     --banner-background: linear-gradient(178deg, #ff86fa, #ffc6a8); /* @todo */
     --primary-background: hsl(235, 12%, 17%);
