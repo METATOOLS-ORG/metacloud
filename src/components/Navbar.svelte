@@ -4,7 +4,6 @@
 	import type { Component } from 'svelte';
 	import LogoIcon from './icons/LogoIcon.svelte';
 	import SearchIcon from './icons/SearchIcon.svelte';
-	import IconSmall from './IconSmall.svelte';
     import NavbarItem from './NavbarItem.svelte';
 	import AddIcon from './icons/AddIcon.svelte';
 	import HeartIcon from './icons/HeartIcon.svelte';

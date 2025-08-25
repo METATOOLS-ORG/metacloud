@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Component } from 'svelte';
 	import HeartIcon from './icons/HeartIcon.svelte';
-	import IconSmall from './IconSmall.svelte';
 
 	const { text = null, icon = null, children = null, height = "30px" } = $props();
     let IconComponent = icon as Component;
