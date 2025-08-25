@@ -3,6 +3,7 @@
 </script>
 
 <section class="banner" aria-label={ariaLabel}>
+    <!-- @todo: icons no longer work like this -->
     <img
         class="icon-lg"
         src="/assets/icons/x32/{icon}"
