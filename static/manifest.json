@@ -7,6 +7,5 @@
   "display": "standalone",
   "scope": "/",
   "theme_color": "#3A3B45",
-  "description": "music posting and streaming website",
-  "display_override": ["window-controls-overlay"]
+  "description": "music posting and streaming website"
 }
