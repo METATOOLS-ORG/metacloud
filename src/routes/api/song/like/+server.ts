@@ -28,7 +28,7 @@ export const POST: RequestHandler = async (req) => {
         }
     });
 
-    if (songLike) error(400, {"message": "Song already liked by this user", code: "SONG_ALREADY_LIKED"});
+    if (songLike) return json({});
 
     await prisma.songLike.create({
         data: {

@@ -20,7 +20,7 @@ export const POST: RequestHandler = async (req) => {
         }
     });
 
-    if (!songLike) error(400, {"message": "Song is not liked", code: "SONG_ALREADY_UNLIKED"});
+    if (!songLike) return json({});
 
     await prisma.songLike.delete({
         where: {
