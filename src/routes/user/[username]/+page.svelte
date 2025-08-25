@@ -7,6 +7,7 @@
 	import { getAvatarAssetUrl } from '$lib/assets';
 	import SearchIcon from '$components/icons/SearchIcon.svelte';
 	import SongCard from '$components/SongCard.svelte';
+	import VerifiedIcon from '$components/icons/VerifiedIcon.svelte';
     const { data } = $props();
 	const username = page.params.username;
     let isOwnProfile = $derived(page.params.username == data.user?.username);
@@ -28,11 +29,12 @@
                             alt="avatar"
                         />
                         <div class="profile-top-right">
-                            <button>Follow</button>
+                            <button><AddIcon/>Follow</button>
                         </div>
                     </div>
                     <div class="profile-name-split">
                         <h1 class="profile-name">{data.profile.displayName}</h1>
+                        <VerifiedIcon/>
                         <span class="profile-tag info">@{data.profile.username}</span>
                     </div>
                     <span class="profile-bio info">I'm new to metacloud!</span>
@@ -85,6 +87,7 @@
     .profile-name-split {
         display: flex;
         gap: 6px;
+        align-items: center;
     }
     .profile-banner {
         background-image: url("/assets/testbanner.png");
