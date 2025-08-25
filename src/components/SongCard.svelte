@@ -45,8 +45,10 @@
         <div class="songcard-top">
             <div class="songcard-head">
                 <div class="songcard-author">
-                    <img src={getAvatarAssetUrl(song.author.avatarAssetId)} height="20px" alt="author avatar"/>
-                    <span>{song.author.displayName}</span>
+                    <a class="songcard-author-link" href="/@{song.author.username}">
+                        <img src={getAvatarAssetUrl(song.author.avatarAssetId)} height="20px" alt="author avatar"/>
+                        <span>{song.author.displayName}</span>
+                    </a>
                     <!-- @todo: user database verified field -->
                     <a class="songcard-author-checkmark" href="#test">
                         <VerifiedIcon/>
@@ -177,18 +179,17 @@
         align-items: center;
         gap: 10px;
     }
-    .songcard-like-count {
-        display: flex;
-        align-items: center;
-        gap: 7px;
-    }
-    .songcard-player-comment input {
-        flex: 1;
-    }
+
     .songcard-genre-tag {
         padding: 6px 8px;
         color: var(--text-color-info);
         /* @todo: css variable? will be weird on light themes */
         background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* @todo: move to global and make a nolink class? */
+    a {
+        display: contents;
+        color: var(--text-color);
     }
 </style>
