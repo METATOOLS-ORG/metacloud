@@ -122,7 +122,7 @@
     .songcard-top {
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 4px;
     }
     .songcard-head {
         display: flex;
@@ -139,7 +139,8 @@
     }
     .songcard-author-checkmark {
         /* visual offset */
-        padding-top: 3px;
+        display: flex;
+        padding-top: 2px;
     }
     .songcard-title {
         display: flex;
