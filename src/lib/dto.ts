@@ -26,6 +26,8 @@ export interface SongMiniDTO {
     audioAssetId: string,
     coverAssetId?: string | null,
     waveformJSON?: string | null,
+    tagWip: boolean,
+    tagFeedback: boolean,
     // @todo: should duration be optional?
     duration?: number | null,
     author: {

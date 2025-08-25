@@ -77,6 +77,8 @@ export const GET: RequestHandler = async (req) => {
             coverAssetId: song.coverAssetId,
             waveformJSON: song.audioAsset.waveformJSON,
             duration: song.audioAsset.duration,
+            tagWip: song.tagWip,
+            tagFeedback: song.tagFeedback,
             author: {
                 id: song.author.id,
                 displayName: song.author.displayName,

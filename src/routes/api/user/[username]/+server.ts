@@ -14,17 +14,25 @@ export const GET: RequestHandler = async (req) => {
                     id: "desc"
                 },
                 include: {
+                    author: true,
                     audioAsset: {
                         select: {
                             waveformJSON: true,
                             duration: true
+                        }
+                    },
+                    likes: {
+                        select: {
+                            userId: true
                         }
                     }
                 }
             }
         }
     })
+
     if (!user) error(404, {message: "User not found", code: "USER_NOT_FOUND"});
+
     const dtoSongs = user.songs.map((song) => {
         return {
             id: song.id,
@@ -36,14 +44,17 @@ export const GET: RequestHandler = async (req) => {
             coverAssetId: song.coverAssetId,
             waveformJSON: song.audioAsset.waveformJSON,
             duration: song.audioAsset.duration,
+            tagWip: song.tagWip,
+            tagFeedback: song.tagFeedback,
             author: {
-                id: user.id,
-                displayName: user.displayName,
-                username: user.username,
-                avatarAssetId: user.avatarAssetId,
-            }
+                id: song.author.id,
+                displayName: song.author.displayName,
+                username: song.author.username,
+                avatarAssetId: song.author.avatarAssetId,
+            },
+            likes: song.likes.map((like: {userId: string}) => like.userId)
         } satisfies SongMiniDTO;
-    })
+    });
 
     return json({
         id: user.id,
