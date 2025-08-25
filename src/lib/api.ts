@@ -20,7 +20,7 @@ export async function get(url: string) {
 }
 
 
-export async function post(url: string, data: object) {
+export async function post(url: string, data?: object) {
     const headers: Record<string, string> = {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -28,7 +28,7 @@ export async function post(url: string, data: object) {
     const response = await fetch(`${ENDPOINT}/${url}`, {
         method: "POST",
         headers: headers,
-        body: JSON.stringify(data)
+        body: data ? JSON.stringify(data) : undefined
     })
     if (!response.ok) {
         let responseText = await response.json();
@@ -36,3 +36,38 @@ export async function post(url: string, data: object) {
     }
     return response.json();
 }
+
+export async function put(url: string, data?: object) {
+    const headers: Record<string, string> = {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    }
+    const response = await fetch(`${ENDPOINT}/${url}`, {
+        method: "PUT",
+        headers: headers,
+        body: data ? JSON.stringify(data) : undefined
+    })
+    if (!response.ok) {
+        let responseText = await response.json();
+        throw responseText;
+    }
+    return response.json();
+}
+
+export async function apiDelete(url: string, data?: object) {
+    const headers: Record<string, string> = {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    }
+    const response = await fetch(`${ENDPOINT}/${url}`, {
+        method: "DELETE",
+        headers: headers,
+        body: data ? JSON.stringify(data) : undefined
+    })
+    if (!response.ok) {
+        let responseText = await response.json();
+        throw responseText;
+    }
+    return response.json();
+}
+
