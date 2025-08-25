@@ -11,7 +11,10 @@
 	import PauseIcon from './icons/PauseIcon.svelte';
 
     const { song, user } = $props();
+
     let isPlaying = $derived(globalAudioState.playingSong && globalAudioState?.song?.id == song.id);
+    let isPaused = $derived(globalAudioState.paused);
+
     let wavesurfer: WaveSurfer | null = null;
     let tempPauseForSeek = false;
 
@@ -99,8 +102,8 @@
 
     </div>
     <div class="player-bottom">
-            <button class="player-play" onclick={playButton}>
-                {#if !isPlaying || globalAudioState.paused}
+            <button class="player-play" onclick={playButton} class:accent={isPlaying && !isPaused}>
+                {#if !isPlaying || isPaused}
                     <PlayIcon/>
                 {:else}
                     <PauseIcon/>
