@@ -54,7 +54,10 @@ const playUnpublishedAudioAsset = (audioAssetId: string, user: UserSelfDTO) => {
             displayName: user.displayName,
             username: user.username,
             avatarAssetId: user.avatarAssetId
-        }
+        },
+        tagWip: false,
+        tagFeedback: false,
+        likes: []
     }
     globalAudioState.playSong(songMetadata);
 }
