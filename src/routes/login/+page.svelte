@@ -4,15 +4,15 @@
     import Meta from '$components/Meta.svelte';
     import PageHead from '$components/PageHead.svelte';
     import TextField from '$components/TextField.svelte';
+	import api from '$lib/api';
 
-    import { api_POST } from '$lib/api';
     import { getFormData } from '$lib/forms';
 
     let error = $state('');
 
     function onSubmit(e: SubmitEvent) {
         const formData = getFormData(e);
-        api_POST('user/login', {
+        api.post('user/login', {
             username: formData.get('username'),
             password: formData.get('password')
         }).then(() => {

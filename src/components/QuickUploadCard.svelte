@@ -5,7 +5,6 @@
     import CheckboxField from './CheckboxField.svelte';
     import TextField from './TextField.svelte';
     import { getFormData } from '$lib/forms';
-    import { api_POST } from '$lib/api';
     import ErrorMessage from './ErrorMessage.svelte';
 	import DiceIcon from './icons/DiceIcon.svelte';
 	import ExportIcon from './icons/ExportIcon.svelte';
@@ -13,6 +12,7 @@
 	import { invalidate } from '$app/navigation';
 	import AddIcon from './icons/AddIcon.svelte';
 	import ToggleField from './ToggleField.svelte';
+	import api from '$lib/api';
 
     let fileUploaded = $state(false);
     let file = $state<File | null>(null);
@@ -59,7 +59,7 @@
             tagClip: z.boolean()
         });
         */
-        api_POST('song', {
+        api.post('song', {
             coverAssetId: formData.get('coverAssetId'),
             audioAssetId: formData.get('audioAssetId'),
             title: formData.get('title'),

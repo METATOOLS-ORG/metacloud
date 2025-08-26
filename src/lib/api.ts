@@ -1,6 +1,6 @@
 export const ENDPOINT = '/api';
 
-export async function api_GET(url: string) {
+async function get(url: string) {
     const headers: Record<string, string> = {
         "Accept": "application/json"
     }
@@ -20,7 +20,7 @@ export async function api_GET(url: string) {
 }
 
 
-export async function api_POST(url: string, data?: object) {
+async function post(url: string, data?: object) {
     const headers: Record<string, string> = {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -38,7 +38,7 @@ export async function api_POST(url: string, data?: object) {
     return response.json();
 }
 
-export async function api_PUT(url: string, data?: object) {
+async function put(url: string, data?: object) {
     const headers: Record<string, string> = {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -56,7 +56,7 @@ export async function api_PUT(url: string, data?: object) {
     return response.json();
 }
 
-export async function api_DELETE(url: string, data?: object) {
+async function delete_req(url: string, data?: object) {
     const headers: Record<string, string> = {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -74,3 +74,4 @@ export async function api_DELETE(url: string, data?: object) {
     return response.json();
 }
 
+export default { get, post, put, delete: delete_req }
