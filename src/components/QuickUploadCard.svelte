@@ -5,7 +5,7 @@
     import CheckboxField from './CheckboxField.svelte';
     import TextField from './TextField.svelte';
     import { getFormData } from '$lib/forms';
-    import { post } from '$lib/api';
+    import { api_POST } from '$lib/api';
     import ErrorMessage from './ErrorMessage.svelte';
 	import DiceIcon from './icons/DiceIcon.svelte';
 	import ExportIcon from './icons/ExportIcon.svelte';
@@ -59,7 +59,7 @@
             tagClip: z.boolean()
         });
         */
-        post('song', {
+        api_POST('song', {
             coverAssetId: formData.get('coverAssetId'),
             audioAssetId: formData.get('audioAssetId'),
             title: formData.get('title'),

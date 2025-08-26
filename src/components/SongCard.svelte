@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { apiDelete, post, put } from "$lib/api";
+	import { api_DELETE, api_POST, api_PUT } from "$lib/api";
 	import { getAvatarAssetUrl, getCoverAssetUrl } from "$lib/assets";
 	import { globalAudioState } from "$lib/state/audioState.svelte";
 	import HeartIcon from "./icons/HeartIcon.svelte";
@@ -28,11 +28,11 @@
 
         // @todo: this code could probably be better
         if (liked) {
-            apiDelete("song/like", {"songId": song.id});
+            api_DELETE("song/like", {"songId": song.id});
             liked = false;
             fakeLikeOffset = likedOriginally ? -1 : 0;
         } else {
-            put("song/like", {"songId": song.id});
+            api_PUT("song/like", {"songId": song.id});
             liked = true;
             fakeLikeOffset = likedOriginally ? 0 : 1;
         }

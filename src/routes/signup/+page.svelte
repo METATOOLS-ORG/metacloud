@@ -6,14 +6,14 @@
     import Meta from '$components/Meta.svelte';
     import PageHead from '$components/PageHead.svelte';
     import TextField from '$components/TextField.svelte';
-    import { post } from '$lib/api';
+    import { api_POST } from '$lib/api';
     import { getFormData } from '$lib/forms';
 
     let error = $state('');
 
     function onSubmit(e: SubmitEvent) {
         const formData = getFormData(e);
-        post('user', {
+        api_POST('user', {
             email: formData.get('email'),
             displayName: formData.get('displayName'),
             username: formData.get('username'),

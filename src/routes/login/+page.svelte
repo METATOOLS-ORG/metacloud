@@ -5,14 +5,14 @@
     import PageHead from '$components/PageHead.svelte';
     import TextField from '$components/TextField.svelte';
 
-    import { post } from '$lib/api';
+    import { api_POST } from '$lib/api';
     import { getFormData } from '$lib/forms';
 
     let error = $state('');
 
     function onSubmit(e: SubmitEvent) {
         const formData = getFormData(e);
-        post('user/login', {
+        api_POST('user/login', {
             username: formData.get('username'),
             password: formData.get('password')
         }).then(() => {
