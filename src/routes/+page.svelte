@@ -5,11 +5,13 @@
 	import QuickUploadCard from "$components/QuickUploadCard.svelte";
     import SongCard from "$components/SongCard.svelte";
     import SongPostCard from "$components/SongPostCard.svelte";
+	import { PUBLIC_WEBSITE_NAME } from "$env/static/public";
 
     const { data } = $props();
 </script>
 <svelte:head>
-	<title>metacloud</title>
+    <!-- manually set the title so that it's not "metacloud - metacloud" -->
+	<title>{PUBLIC_WEBSITE_NAME}</title>
 </svelte:head>
 
 {#if !data.user}

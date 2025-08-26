@@ -1,8 +1,8 @@
 <script lang="ts">
-	// move to config
-	export let title = 'metacloud';
+	import { PUBLIC_WEBSITE_NAME } from "$env/static/public";
+    let { title } = $props();
 </script>
 
 <svelte:head>
-	<title>{title} - metacloud</title>
+    <title>{title} - {PUBLIC_WEBSITE_NAME}</title>
 </svelte:head>
