@@ -1,8 +1,9 @@
+import { PUBLIC_S3_BUCKET_URL_PREFIX } from "$env/static/public";
 
 export function getAssetUrl(assetId: string) {
     // @todo: get the url from env somehow? idk how lol?????
     // @todo: this is an important one to fix
-    return `https://pub-9acb5031bcdc486cae445ccd4fe22aa3.r2.dev/${assetId}`
+    return `${PUBLIC_S3_BUCKET_URL_PREFIX}${assetId}`
 }
 
 export function getAvatarAssetUrl(assetId?: string | null) {
