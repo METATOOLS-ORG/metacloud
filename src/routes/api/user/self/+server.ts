@@ -5,7 +5,7 @@ import { getUserById } from '$lib/server/database';
 import { CreateUserSelfDTO, type UserSelfDTO } from '$lib/dto';
 
 export const GET: RequestHandler = async (req) => {
-    // @todo: get rid of the any
+    // @todo: get rid of the any (mysterious errors appear?)
     const user: any = await getAuthedUser(req);
     return json(CreateUserSelfDTO(user));
 };
