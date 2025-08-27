@@ -4,7 +4,7 @@ import type { RequestHandler } from "./$types";
 import { validate } from "$lib/server/validation";
 import { z } from "zod";
 import { prisma } from "$lib/server/database";
-import type { SongMiniDTO } from "$lib/dto";
+import { SongIncludes, type SongMiniDTO, CreateSongMiniDTO } from "$lib/dto";
 
 export const POST: RequestHandler = async (req) => {
     const user = await getAuthedUser(req);
@@ -51,42 +51,7 @@ export const GET: RequestHandler = async (req) => {
         orderBy: {
             id: "desc"
         },
-        include: {
-            author: true,
-            audioAsset: {
-                select: {
-                    waveformJSON: true,
-                    duration: true
-                }
-            },
-            likes: {
-                select: {
-                    userId: true
-                }
-            }
-        }
+        include: SongIncludes
     });
-    const dtoSongs = songs.map((song) => {
-        return {
-            id: song.id,
-            date: song.date,
-            title: song.title,
-            url: song.url,
-            genre: song.genre,
-            audioAssetId: song.audioAssetId,
-            coverAssetId: song.coverAssetId,
-            waveformJSON: song.audioAsset.waveformJSON,
-            duration: song.audioAsset.duration,
-            tagWip: song.tagWip,
-            tagFeedback: song.tagFeedback,
-            author: {
-                id: song.author.id,
-                displayName: song.author.displayName,
-                username: song.author.username,
-                avatarAssetId: song.author.avatarAssetId,
-            },
-            likes: song.likes.map((like: {userId: string}) => like.userId)
-        } satisfies SongMiniDTO;
-    })
-    return json(dtoSongs);
+    return json(songs.map((song) => CreateSongMiniDTO(song)));
 }

@@ -1,4 +1,4 @@
-import type { User } from "@prisma/client";
+import type { Prisma, User } from "@prisma/client";
 import type { GetPayloadResult } from "@prisma/client/runtime/library";
 import { error, type Cookies, type RequestEvent } from "@sveltejs/kit";
 import { createHmac } from "node:crypto";
@@ -34,19 +34,20 @@ export function checkAuth(req: RequestEvent): string {
     error(401, { message: "Invalid auth token", code: "INVALID_TOKEN" });
 }
 
-export async function getAuthedUser(req: RequestEvent): Promise<GetPayloadResult<User, {}>> {
+export const AuthedUserIncludes = {
+    likes: true,
+    songs: true
+}
+
+export type AuthedUserPayload = Prisma.UserGetPayload<{include: typeof AuthedUserIncludes}>;
+
+export async function getAuthedUser(req: RequestEvent): Promise<AuthedUserPayload> {
     let uid = checkAuth(req);
     let user = await prisma.user.findUnique({
-            where: {
-                id: uid
-            },
-            include: {
-                likes: {
-                    select: {
-                        postId: true
-                    }
-                }
-            }
+        where: {
+            id: uid
+        },
+        include: AuthedUserIncludes
     });
     if (!user) error(401, {
         message: "Given token is valid but the user associated with the token was not found",
