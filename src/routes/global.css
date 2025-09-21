@@ -11,6 +11,7 @@
     --banner-background: linear-gradient(178deg, #ff86fa, #ffc6a8); /* @todo */
     --primary-background: hsl(235, 12%, 17%);
     --page-head-background: #ffffff0f;
+    --globalplayer-background: hsl(235, 14%, 20%);
     --scrollbar-color: #2f303c;
     --scrollbar-background: #202027;
     --icon-color: var(--accent-color);
@@ -122,7 +123,7 @@ body {
 
 .main {
     width: 100%;
-    max-width: 820px;
+    max-width: 790px;
     height: 100vh;
     overflow-y: auto;
     display: flex;
@@ -274,9 +275,14 @@ audio::-webkit-media-controls-panel {
 .sidebar {
     /* border-left: var(--border); */
     background: var(--sidebar-background);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    justify-content: space-between;
     flex: 1;
-    max-width: 250px;
+    max-width: 235px;
 }
+
 .page-split {
     display: flex;
     flex: 1;
