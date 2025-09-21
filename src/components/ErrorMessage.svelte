@@ -14,11 +14,10 @@
 <style>
     .error {
         display: flex;
-        padding: 6px 10px;
-        gap: 5px;
+        padding: 8px 12px;
+        gap: 8px;
         align-items: center;
         background: var(--error-background);
-        border-bottom: 1px solid var(--accent-border-color);
         color: var(--accent-text-color);
     }
     :global(.error .flat-icon) {
