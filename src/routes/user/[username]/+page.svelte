@@ -8,6 +8,7 @@
 	import SearchIcon from '$components/icons/SearchIcon.svelte';
 	import SongCard from '$components/SongCard.svelte';
 	import VerifiedIcon from '$components/icons/VerifiedIcon.svelte';
+	import SidebarFooter from '$components/SidebarFooter.svelte';
     const { data } = $props();
 	const username = page.params.username;
     let isOwnProfile = $derived(page.params.username == data.user?.username);
@@ -71,6 +72,7 @@
                 </a>
             {/if}
         </PageHead>
+        <SidebarFooter/>
     </aside>
 </div>
 
