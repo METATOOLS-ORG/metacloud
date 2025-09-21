@@ -51,17 +51,19 @@
                     <section class="sidebar-song">
                         <img width="36px" height="36px" alt="song cover" src={getCoverAssetUrl(song.coverAssetId)}/>
                         <div class="sidebar-song-split">
-                            <span>{song.title}</span>
-                            <div class="sidebar-song-stats">
-                                <div class="sidebar-song-stat">
-                                    <HeartIcon/>
-                                    <span>{song.likes.length}</span>
+                            <a class="noblue" href="#todo">
+                                <span>{song.title}</span>
+                                <div class="sidebar-song-stats">
+                                    <div class="sidebar-song-stat">
+                                        <HeartIcon/>
+                                        <span>{song.likes.length}</span>
+                                    </div>
+                                    <div class="sidebar-song-stat">
+                                        <RepostIcon/>
+                                        <span>12</span>
+                                    </div>
                                 </div>
-                                <div class="sidebar-song-stat">
-                                    <RepostIcon/>
-                                    <span>12</span>
-                                </div>
-                            </div>
+                            </a>
                         </div>
                     </section>
                 {/each}
@@ -96,6 +98,10 @@
     .sidebar-song {
         display: flex;
         gap: 10px;
+    }
+
+    .sidebar-song a {
+        display: contents;
     }
 
     :global(.sidebar-songs .flat-icon) {
