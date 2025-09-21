@@ -102,7 +102,7 @@
         display: flex;
         justify-content: space-between;
         /* border-top: var(--border); */
-        background: var(--primary-background);
+        background: var(--globalplayer-background);
     }
     .globalplayer-left {
         display: flex;

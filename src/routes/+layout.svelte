@@ -21,10 +21,9 @@
             </section>
         </div>
         <div class="main-bottom" role="presentation">
-            <footer class="footer">
-                <!-- @todo: placeholder -->
+            <!-- <footer class="footer">
                 <span>&copy; metacloud 2025 - terms of services - contact - report dmca</span>
-            </footer>
+            </footer> -->
             <GlobalPlayer/>
         </div>
     </main>
