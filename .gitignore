@@ -38,3 +38,4 @@ desktop.ini
 icon.ico
 /ugc_temp/*
 !/ugc_temp/.gitkeep
+*.db-journal
