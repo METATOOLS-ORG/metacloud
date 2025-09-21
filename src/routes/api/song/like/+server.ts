@@ -4,7 +4,7 @@ import type { RequestHandler } from "./$types";
 import { validate } from "$lib/server/validation";
 import { z } from "zod";
 import { prisma } from "$lib/server/database";
-import type { SongMiniDTO } from "$lib/dto";
+import type { SongDTO } from "$lib/dto";
 
 // @todo: move to another file?
 function noContent() {

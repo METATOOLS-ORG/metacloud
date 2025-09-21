@@ -1,42 +1,19 @@
 import type { Prisma } from "@prisma/client"
 
-function simplifyLikesForDTO(likes: SongLikePayload[]) : String[] {
-    return likes.map((like: SongLikePayload) => like.postId)
+// -----------------------
+// LikesDTO
+// -----------------------
+export type LikesDTO = String[];
+type LikesDTO_Payload = Prisma.SongLikeGetPayload<{}>;
+function CreateLikesDTO(likes: LikesDTO_Payload[]) : String[] {
+    return likes.map((like: LikesDTO_Payload) => like.postId)
 }
 
 // -----------------------
-
-export interface UserSelfDTO {
-	id: string,
-	username: string,
-	displayName: string,
-	avatarAssetId?: string | null,
-    likes: String[]
-}
-
-export const UserSelfIncludes: any = {
-    likes: true,
-    songs: true
-}
-
-type SongLikePayload = Prisma.SongLikeGetPayload<{}>;
-type UserSelfPayload = Prisma.UserGetPayload<{ include: typeof UserSelfIncludes }>
-
-export function CreateUserSelfDTO(user: UserSelfPayload): UserSelfDTO {
-    console.log(user.likes);
-    return {
-        id: user.id,
-        username: user.username,
-        displayName: user.displayName,
-        avatarAssetId: user.avatarAssetId,
-        likes: simplifyLikesForDTO(user.likes as SongLikePayload[])
-    };
-}
-
+// SongDTO
 // -----------------------
-
 // @todo: do we need the ? if we do | null
-export interface SongMiniDTO {
+export interface SongDTO {
     id: string,
     date: Date,
     title: string,
@@ -57,7 +34,7 @@ export interface SongMiniDTO {
     likes: String[]
 }
 
-export const SongIncludes: Prisma.SongInclude = {
+export const SongDTO_Includes: Prisma.SongInclude = {
     author: {
         select: {
             id: true,
@@ -79,9 +56,9 @@ export const SongIncludes: Prisma.SongInclude = {
     }
 }
 
-type SongPayload = Prisma.SongGetPayload<{ include: typeof SongIncludes }>
+type SongDTO_Payload = Prisma.SongGetPayload<{ include: typeof SongDTO_Includes }>
 
-export function CreateSongMiniDTO(song: SongPayload): SongMiniDTO {
+export function CreateSongDTO(song: SongDTO_Payload): SongDTO {
     return {
         id: song.id,
         date: song.date,
@@ -100,12 +77,47 @@ export function CreateSongMiniDTO(song: SongPayload): SongMiniDTO {
             username: song.author.username,
             avatarAssetId: song.author.avatarAssetId,
         },
-        likes: simplifyLikesForDTO(song.likes)
+        likes: CreateLikesDTO(song.likes)
     }
 }
 
 // -----------------------
+// UserSelfDTO
+// -----------------------
+export interface UserSelfDTO {
+    id: string,
+    username: string,
+    displayName: string,
+    avatarAssetId?: string | null,
+    likes: String[],
+    songs: SongDTO[]
+}
 
+export const UserSelfDTO_Includes: any = {
+    likes: true,
+    songs: {
+        orderBy: { date: "desc" },
+        include: SongDTO_Includes
+    }
+}
+
+export type UserSelfDTO_Payload = Prisma.UserGetPayload<{ include: typeof UserSelfDTO_Includes }>
+
+export function CreateUserSelfDTO(user: UserSelfDTO_Payload): UserSelfDTO {
+    console.log(user.likes);
+    return {
+        id: user.id,
+        username: user.username,
+        displayName: user.displayName,
+        avatarAssetId: user.avatarAssetId,
+        likes: CreateLikesDTO(user.likes as LikesDTO_Payload[]),
+        songs: user.songs.map((song) => CreateSongDTO(song as SongDTO_Payload))
+    };
+}
+
+// -----------------------
+// UserProfileDTO
+// -----------------------
 export interface UserProfileDTO {
     id: string,
     username: string,
@@ -113,19 +125,21 @@ export interface UserProfileDTO {
     avatarAssetId?: string | null,
     date: Date,
     bio: string | null,
-    songs: SongMiniDTO[]
+    songs: SongDTO[]
 }
 
-export const UserProfileIncludes: Prisma.UserInclude = {
+export const UserProfileDTO_Includes: Prisma.UserInclude = {
     songs: {
         orderBy: {
             id: "desc"
         },
-        include: SongIncludes
+        include: SongDTO_Includes
     }
 }
 
-export function CreateUserProfileDTO(user: Prisma.UserGetPayload<{include: typeof UserProfileIncludes}>): UserProfileDTO {
+type UserProfileDTO_Payload = Prisma.UserGetPayload<{include: typeof UserProfileDTO_Includes}>;
+
+export function CreateUserProfileDTO(user: UserProfileDTO_Payload): UserProfileDTO {
     return {
         id: user.id,
         username: user.username,
@@ -133,12 +147,13 @@ export function CreateUserProfileDTO(user: Prisma.UserGetPayload<{include: typeo
         avatarAssetId: user.avatarAssetId,
         date: user.date,
         bio: user.bio,
-        songs: user.songs.map((song) => CreateSongMiniDTO(song as SongPayload))
+        songs: user.songs.map((song) => CreateSongDTO(song as SongDTO_Payload))
     };
 }
 
 // -----------------------
-
+// AssetUploadRespDTO
+// -----------------------
 export interface AssetUploadRespDTO {
     id: string,
     url: string

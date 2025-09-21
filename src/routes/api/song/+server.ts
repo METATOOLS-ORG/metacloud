@@ -4,7 +4,7 @@ import type { RequestHandler } from "./$types";
 import { validate } from "$lib/server/validation";
 import { z } from "zod";
 import { prisma } from "$lib/server/database";
-import { SongIncludes, type SongMiniDTO, CreateSongMiniDTO } from "$lib/dto";
+import { SongDTO_Includes, type SongDTO, CreateSongDTO } from "$lib/dto";
 
 export const POST: RequestHandler = async (req) => {
     const user = await getAuthedUser(req);
@@ -48,10 +48,8 @@ export const POST: RequestHandler = async (req) => {
 
 export const GET: RequestHandler = async (req) => {
     const songs = await prisma.song.findMany({
-        orderBy: {
-            id: "desc"
-        },
-        include: SongIncludes
+        orderBy: { id: "desc" },
+        include: SongDTO_Includes
     });
-    return json(songs.map((song) => CreateSongMiniDTO(song)));
+    return json(songs.map((song) => CreateSongDTO(song)));
 }

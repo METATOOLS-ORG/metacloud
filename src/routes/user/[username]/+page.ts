@@ -1,4 +1,4 @@
-import type { SongMiniDTO, UserProfileDTO } from '$lib/dto';
+import type { SongDTO, UserProfileDTO } from '$lib/dto';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ fetch, params }) => {

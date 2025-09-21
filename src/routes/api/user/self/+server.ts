@@ -1,11 +1,17 @@
 import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { checkAuth, getAuthedUser } from '$lib/server/auth';
-import { getUserById } from '$lib/server/database';
-import { CreateUserSelfDTO, type UserSelfDTO } from '$lib/dto';
+import { getUserById, prisma } from '$lib/server/database';
+import { CreateUserSelfDTO, type UserSelfDTO, UserSelfDTO_Includes, type UserSelfDTO_Payload } from '$lib/dto';
 
 export const GET: RequestHandler = async (req) => {
-    // @todo: get rid of the any (mysterious errors appear?)
-    const user: any = await getAuthedUser(req);
+    let uid = checkAuth(req);
+
+    let user = await prisma.user.findUnique({
+        where: { id: uid },
+        include: UserSelfDTO_Includes
+    }) as UserSelfDTO_Payload;
+
+    // const user: any = await getAuthedUser(req);
     return json(CreateUserSelfDTO(user));
 };

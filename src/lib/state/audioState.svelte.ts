@@ -1,16 +1,16 @@
 import { getAssetUrl } from "$lib/assets";
-import type { SongMiniDTO, UserSelfDTO } from "$lib/dto";
+import type { SongDTO, UserSelfDTO } from "$lib/dto";
 import { browser } from '$app/environment';
 
 interface GlobalAudioState {
     playingSong: boolean,
-    song?: SongMiniDTO,
+    song?: SongDTO,
     audio?: HTMLAudioElement,
     duration: number,
     currentTime: number,
     paused: boolean,
     seeking: boolean,
-    playSong: (song: SongMiniDTO) => void,
+    playSong: (song: SongDTO) => void,
     togglePlayback: () => void
 }
 
@@ -24,7 +24,7 @@ export const globalAudioUpdate = () => {
 
 let audioUpdateIntervalSet = false;
 
-const playSong = (song: SongMiniDTO) => {
+const playSong = (song: SongDTO) => {
     if (!browser) return;
     if (!globalAudioState.audio) {
         globalAudioState.audio = new Audio();
@@ -41,8 +41,8 @@ const playSong = (song: SongMiniDTO) => {
 }
 
 const playUnpublishedAudioAsset = (audioAssetId: string, user: UserSelfDTO) => {
-    // @todo: turn SongMiniDTO into something like SongMetadata which the the dto contains
-    let songMetadata: SongMiniDTO = {
+    // @todo: turn SongDTO into something like SongMetadata which the the dto contains
+    let songMetadata: SongDTO = {
         id: "",
         date: new Date(),
         title: "Song preview",
