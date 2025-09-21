@@ -54,12 +54,12 @@
                             <span>{song.title}</span>
                             <div class="sidebar-song-stats">
                                 <div class="sidebar-song-stat">
-                                    <span>12</span>
                                     <HeartIcon/>
+                                    <span>{song.likes.length}</span>
                                 </div>
                                 <div class="sidebar-song-stat">
-                                    <span>12</span>
                                     <RepostIcon/>
+                                    <span>12</span>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
         display: flex;
         flex-direction: column;
         padding: 10px;
-        gap: 14px;
+        gap: 16px;
     }
 
     .sidebar-song {
@@ -112,11 +112,12 @@
 
     .sidebar-song-stats {
         display: flex;
-        gap: 8px;
+        gap: 10px;
     }
     .sidebar-song-stat {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 4px;
+        color: var(--text-color-info);
     }
 </style>
