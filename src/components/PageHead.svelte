@@ -2,11 +2,11 @@
 	import type { Component } from 'svelte';
 	import HeartIcon from './icons/HeartIcon.svelte';
 
-	const { text = null, icon = null, children = null, height = "30px" } = $props();
+	const { text = null, icon = null, children = null, width = null, stretch = false, sidebar = false, height = "30px" } = $props();
     let IconComponent = icon as Component;
 </script>
 
-<h1 class="head" style:height={height}>
+<h1 class="head" style:height={height} style:width={width} class:sidebar-head={sidebar}>
     <div class="head-left">
     {#if icon}
     		<!-- <IconSmall {icon} /> -->
@@ -37,7 +37,15 @@
         background: var(--page-head-background);
         height: 34px;
         flex-shrink: 0;
+        position: sticky;
+        top: 32px;
+        z-index: 8;
     }
+
+    .head.sidebar-head {
+        background: var(--sidebar-head-background);
+    }
+
     .head-left {
         padding: 0px 14px;
         display: flex;

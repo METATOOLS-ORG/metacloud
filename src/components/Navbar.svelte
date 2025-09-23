@@ -80,6 +80,9 @@
         background: var(--navbar-background);
         /* pwa */
         -webkit-app-region: drag;
+        position: sticky;
+        top: 0;
+        z-index: 10;
     }
 
     .navbar-logo {

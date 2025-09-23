@@ -134,7 +134,7 @@
         background: rgba(5, 5, 5, 0.6);
         font-size: 10px;
         padding: 2px;
-        z-index: 999;
+        z-index: 4;
         pointer-events: none;
         user-select: none;
         top: 22px;

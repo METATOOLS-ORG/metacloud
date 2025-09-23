@@ -10,7 +10,8 @@
     --page-background: var(--primary-background);
     --banner-background: linear-gradient(178deg, #ff86fa, #ffc6a8); /* @todo */
     --primary-background: hsl(235, 12%, 17%);
-    --page-head-background: #ffffff0f;
+    --page-head-background: #33343d;
+    --sidebar-head-background: #40414c;
     --globalplayer-background: hsl(235, 14%, 20%);
     --scrollbar-color: #2f303c;
     --scrollbar-background: #202027;
@@ -21,6 +22,7 @@
     --button-background: #ffffff17;
     --button-down-background: #ffffff23;
     --accent-text-color: black;
+    --accent-icon-color: hsl(0, 0%, 12%);
     --accent-border-color: #0000002b;
     --input-background: rgba(0, 0, 0, .25);
     --footer-background: hsl(235, 12%, 20%);
@@ -45,7 +47,7 @@
 }
 
 .toggle-button.checked .flat-icon, button.accent .flat-icon {
-    color: black;
+    color: var(--accent-icon-color);
 }
 html {
     font-family: var(--font);
@@ -113,7 +115,7 @@ body {
 }
 .background {
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: scroll;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -125,7 +127,7 @@ body {
     width: 100%;
     max-width: 790px;
     height: 100vh;
-    overflow-y: auto;
+    /*overflow-y: auto; */
     display: flex;
     flex-grow: 0;
     flex-direction: column;
@@ -140,14 +142,22 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    /* overflow-y: auto; */
 }
 
 .page {
     display: flex;
     flex-direction: column;
     flex: 1;
-    overflow-y: auto;
+    /* overflow-y: auto; */
+}
+
+.page.page-player-margin {
+    /* The player overlay is visible, add bottom spacing so
+       it doesn't cover up the page */
+    padding-bottom: 68px;
 }
 
 .page-content {
@@ -277,8 +287,7 @@ audio::-webkit-media-controls-panel {
     background: var(--sidebar-background);
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    justify-content: space-between;
+    /* overflow-y: auto; */
     flex: 1;
     max-width: 235px;
 }
@@ -286,7 +295,7 @@ audio::-webkit-media-controls-panel {
 .page-split {
     display: flex;
     flex: 1;
-    overflow-y: auto;
+    /* overflow-y: auto; */
 }
 .content {
     flex: 1;

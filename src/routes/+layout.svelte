@@ -14,17 +14,10 @@
 
 <div class="background">
     <main class="main">
-        <div class="main-top" role="presentation">
-            <Navbar user={data.user} authLoaded={data.authLoaded} />
-            <section class="page">
-                {@render children()}
-            </section>
-        </div>
-        <div class="main-bottom" role="presentation">
-            <!-- <footer class="footer">
-                <span>&copy; metacloud 2025 - terms of services - contact - report dmca</span>
-            </footer> -->
-            <GlobalPlayer/>
-        </div>
+        <Navbar user={data.user} authLoaded={data.authLoaded} />
+        <section class="page" class:page-player-margin={globalAudioState.playingSong}>
+            {@render children()}
+        </section>
+        <GlobalPlayer/>
     </main>
 </div>

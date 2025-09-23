@@ -103,6 +103,10 @@
         justify-content: space-between;
         /* border-top: var(--border); */
         background: var(--globalplayer-background);
+        position: fixed;
+        bottom: 0;
+        width: 790px;
+        z-index: 7;
     }
     .globalplayer-left {
         display: flex;

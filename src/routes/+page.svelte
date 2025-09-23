@@ -1,10 +1,12 @@
 <script lang="ts">
     import FancyBanner from "$components/FancyBanner.svelte";
+	import DiskIcon from "$components/icons/DiskIcon.svelte";
 	import HeartIcon from "$components/icons/HeartIcon.svelte";
 	import RepostIcon from "$components/icons/RepostIcon.svelte";
 	import SearchIcon from "$components/icons/SearchIcon.svelte";
 	import PageHead from "$components/PageHead.svelte";
 	import QuickUploadCard from "$components/QuickUploadCard.svelte";
+	import QuickUploadCardv2 from "$components/QuickUploadCardv2.svelte";
 	import SidebarFooter from "$components/SidebarFooter.svelte";
     import SongCard from "$components/SongCard.svelte";
     import SongPostCard from "$components/SongPostCard.svelte";
@@ -36,7 +38,7 @@
         <PageHead text="Recent songs" icon={SearchIcon}/>
         <section class="songs">
             {#if data.user}
-                <QuickUploadCard user={data?.user}/>
+                <QuickUploadCardv2 user={data?.user}/>
             {/if}
             {#each data.songs as song}
                 <SongCard {song} user={data.user}/>
@@ -44,42 +46,42 @@
         </section>
     </section>
     <aside class="sidebar">
-        <PageHead text="My releases" icon={HeartIcon}/>
-        {#if data.user}
-            <section class="sidebar-songs">
-                {#each data.user.songs as song}
-                    <section class="sidebar-song">
-                        <img width="36px" height="36px" alt="song cover" src={getCoverAssetUrl(song.coverAssetId)}/>
-                        <div class="sidebar-song-split">
-                            <a class="noblue" href="#todo">
-                                <span>{song.title}</span>
-                                <div class="sidebar-song-stats">
-                                    <div class="sidebar-song-stat">
-                                        <HeartIcon/>
-                                        <span>{song.likes.length}</span>
+        <PageHead sidebar text="My songs" icon={DiskIcon}/>
+        <div class="sidebar-content">
+            {#if data.user}
+                <section class="sidebar-songs">
+                    {#each data.user.songs as song}
+                        <section class="sidebar-song">
+                            <img width="36px" height="36px" alt="song cover" src={getCoverAssetUrl(song.coverAssetId)}/>
+                            <div class="sidebar-song-split">
+                                <a class="noblue" href="#todo">
+                                    <span>{song.title}</span>
+                                    <div class="sidebar-song-stats">
+                                        <div class="sidebar-song-stat">
+                                            <HeartIcon/>
+                                            <span>{song.likes.length}</span>
+                                        </div>
+                                        <div class="sidebar-song-stat">
+                                            <RepostIcon/>
+                                            <span>12</span>
+                                        </div>
                                     </div>
-                                    <div class="sidebar-song-stat">
-                                        <RepostIcon/>
-                                        <span>12</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </section>
-                {/each}
-            </section>
-        {/if}
-        <SidebarFooter/>
+                                </a>
+                            </div>
+                        </section>
+                    {/each}
+                </section>
+            {/if}
+            <SidebarFooter/>
+        </div>
     </aside>
 </div>
 
 <style>
-
     .content {
         display: flex;
         flex-direction: column;
         flex: 1;
-        overflow-y: auto;
     }
 
     .songs {
@@ -87,8 +89,13 @@
         scrollbar-width: thin;
     }
 
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        position: sticky;
+        top: 64px;
+    }
     .sidebar-songs {
-        flex: 1;
         display: flex;
         flex-direction: column;
         padding: 10px;
@@ -120,6 +127,7 @@
         display: flex;
         gap: 10px;
     }
+
     .sidebar-song-stat {
         display: flex;
         align-items: center;
