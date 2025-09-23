@@ -95,7 +95,7 @@ export const POST: RequestHandler = async (req) => {
         // @todo: prenormalize waveform data for performance https://wavesurfer.xyz/faq/
         try {
             const { stdout } = await execAsync(
-                `audiowaveform -i ${tempPath} --output-format json --pixels-per-second 10 --bits 8 -q`,
+                `audiowaveform -i ${tempPath} --output-format json --pixels-per-second 30 --bits 8 -q`,
                 { cwd: process.cwd() }
             );
             waveformJSON = stdout;
