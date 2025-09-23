@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Component } from "svelte";
 
-    let { name = null, label, checked = false, icon = null, onchange = null } = $props();
+    let { name = null, label, checked = false, icon = null, onchange = null, stretch = false } = $props();
     let IconComponent = icon as Component;
-    let active = $state(false);
+    let active = $state(checked);
     let onclick = (e: Event) => {
         active = !active;
     }
