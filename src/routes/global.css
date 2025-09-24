@@ -300,6 +300,7 @@ audio::-webkit-media-controls-panel {
 /* Recolorable flat icons */
 .flat-icon {
     color: var(--icon-color);
+    flex-shrink: 0;
 }
 
 /* Scroll bars */

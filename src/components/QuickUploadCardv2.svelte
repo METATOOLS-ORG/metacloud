@@ -10,12 +10,53 @@
 	import ToggleField from "./ToggleField.svelte";
 	import DiceIcon from "./icons/DiceIcon.svelte";
 	import ErrorMessage from "./ErrorMessage.svelte";
+	import WarningIcon from "./icons/WarningIcon.svelte";
+	import { invalidate } from "$app/navigation";
+	import api from "$lib/api";
+	import { getFormData } from "$lib/forms";
 
     const { user } = $props();
 
-    let newSong = $state(false);
+    let newSong = $state(true);
     let error = $state("");
     let songAsset: string | null = $state(null);
+
+    function onSubmit(e: SubmitEvent) {
+        const formData = getFormData(e);
+        /*
+        const data = await validate(req, {
+            coverAssetId: z.string(),
+            audioAssetId: z.string(),
+            title: z.string().trim().max(24),
+            desc: z.string().trim().max(4000),
+            genre: z.string().trim().max(24),
+            // @todo: validate "kebab case"
+            url: z.string().trim().max(24),
+            tagWip: z.boolean(),
+            tagFeedback: z.boolean(),
+            tagClip: z.boolean()
+        });
+        */
+        api.post('song', {
+            coverAssetId: formData.get('coverAssetId'),
+            audioAssetId: songAsset,
+            title: formData.get('title'),
+            desc: formData.get('desc'),
+            genre: formData.get('tags'),
+            url: formData.get('link'),
+            tagPin: formData.get('pin') === 'on',
+            tagWip: formData.get('wip') === 'on',
+            tagFeedback: formData.get('feedback') === 'on'
+        })
+        .then((resp) => {
+            invalidate('/api/song');
+            // resetUpload();
+            // location.href = "/@" + resp.username;
+        })
+        .catch((err) => {
+            error = err.message;
+        });
+    }
 </script>
 
 <section class="upload">
@@ -36,7 +77,10 @@
    {#if newSong && !songAsset}
         <ErrorMessage {error} />
         <div class="upload-songfile">
-            <h1>Upload an audio file</h1>
+            <div class="upload-songfile-head">
+                <DiskIcon/>
+                <h1>Upload an audio file</h1>
+            </div>
             <span class="info">Max 30 MB - Supported: mp3, wav, flac, ogg</span>
             <AssetUploader
                 height="64px"
@@ -50,13 +94,16 @@
                     error = err;
                 }}
             />
-            <span class="upload-songfile-warning info">WARNING: Metacloud is for posting your own music, not for reuploads. Do not upload other people's copyrighted music, or your account will be banned. Remixes and flips are generally fine.</span>
+            <div class="upload-songfile-warning">
+                <WarningIcon/>
+                <span class="info">Metacloud is for posting your own music, not for reuploads. Do not upload other people's copyrighted music, or your account will be banned. Remixes and flips are generally fine.</span>
+            </div>
         </div>
    {/if}
 
    <!-- New song metadata -->
    {#if newSong && songAsset}
-        <div class="upload-metadata upload-split">
+        <form class="upload-metadata upload-split" onsubmit={onSubmit}>
             <div class="upload-left">
                 <AssetUploader
                     width="122px"
@@ -101,10 +148,10 @@
             <div class="upload-right">
                 <div class="upload-right-top">
                     <div class="upload-right-toggles">
-                        <CheckboxField name="test" label="Pin as latest release" checked/>
-                        <CheckboxField name="test" label="Work in progress" checked/>
-                        <CheckboxField name="test" label="Feedback wanted" checked/>
-                        <CheckboxField name="test" label="Allow downloads" checked/>
+                        <CheckboxField name="pin" label="Pin as latest release" checked/>
+                        <CheckboxField name="wip" label="Work in progress" checked/>
+                        <CheckboxField name="feedback" label="Feedback wanted" checked/>
+                        <CheckboxField name="downloads" label="Allow downloads" checked/>
                     </div>
                     <div class="upload-field">
                         <span class="title">Randomizer</span>
@@ -116,10 +163,10 @@
                 </div>
                 <div class="upload-right-bottom">
                     <button>Cancel</button>
-                    <button class="accent">Publish</button>
+                    <input type="submit" class="accent" value="Publish"/>
                 </div>
             </div>
-        </div>
+        </form>
    {/if}
 </section>
 
@@ -128,6 +175,7 @@
         display: flex;
         flex-direction: column;
         background: rgba(0, 0, 0, 0.15);
+        border-bottom: var(--border);
     }
     .upload-songfile, .upload-metadata {
         padding: 16px;
@@ -144,6 +192,8 @@
     }
     .upload-split {
         display: flex;
+        flex-direction: row;
+        align-items: stretch;
         gap: 16px;
         justify-content: space-between;
     }
@@ -164,7 +214,6 @@
         gap: 8px;
         justify-content: space-between;
     }
-
     .upload-right-top {
         display: flex;
         flex-direction: column;
@@ -219,10 +268,22 @@
     .upload-songfile {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
     }
     .upload-songfile-warning {
+        display: flex;
+        gap: 8px;
+    }
+    :global(.upload-songfile-warning .flat-icon) {
+        margin-top: 3px;
+    }
+    .upload-songfile-warning span{
         /* @todo: set this on all spans but without breaking stuff */
         line-height: 16px;
+    }
+    .upload-songfile-head {
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 </style>
