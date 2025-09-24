@@ -40,6 +40,7 @@
         position: sticky;
         top: 32px;
         z-index: 8;
+        border-bottom: var(--border);
     }
 
     .head.sidebar-head {

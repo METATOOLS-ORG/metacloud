@@ -11,7 +11,7 @@
 <div class="form-field">
     <label>
             <input type="checkbox" {required} {name} {checked}/>
-            <span>{label}</span>
+            <span class="text">{label}</span>
             {#if required}
                 <span class="label-required-star"> *</span>
             {/if}
@@ -35,6 +35,7 @@
         align-items: center;
         gap: 6px;
     }
+
 	.form-field-desc {
 		color: var(--text-color-info);
 	}

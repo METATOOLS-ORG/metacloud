@@ -101,7 +101,7 @@
     .globalplayer {
         display: flex;
         justify-content: space-between;
-        /* border-top: var(--border); */
+        border-top: var(--border);
         background: var(--globalplayer-background);
         position: fixed;
         bottom: 0;

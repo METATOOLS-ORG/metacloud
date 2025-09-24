@@ -131,13 +131,13 @@
     }
     .player-time, .player-duration {
         position: absolute;
-        background: rgba(5, 5, 5, 0.6);
+        background: #1c1d25;
         font-size: 10px;
-        padding: 2px;
+        padding: 3px;
         z-index: 4;
         pointer-events: none;
         user-select: none;
-        top: 22px;
+        top: 20px;
     }
     .player-time {
         left: 0px;
@@ -151,9 +151,16 @@
     }
     .player-play {
         padding: 7px;
+        border-top: none;
+        border-right: none;
     }
     .player-comment-input {
         flex: 1;
+        border-top: none;
+    }
+    .player-comment-submit {
+        border-left: none;
+        border-top: none;
     }
 </style>
 

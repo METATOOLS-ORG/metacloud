@@ -23,7 +23,7 @@
     --button-down-background: #ffffff23;
     --accent-text-color: black;
     --accent-icon-color: hsl(0, 0%, 12%);
-    --accent-border-color: #0000002b;
+    --accent-border-color: rgba(0, 0, 0, 0.1);
     --input-background: rgba(0, 0, 0, .25);
     --footer-background: hsl(235, 12%, 20%);
     --sidebar-background: hsl(235, 11%, 23%);
@@ -33,17 +33,17 @@
     --file-background: var(--input-background);
     --file-hover-background: hsl(240, 12%, 13%);
     /* --border-color: rgba(255, 255, 255, .15); */
-    --border-color: #4b4b55;
-    --input-border-color: #404146;
+    --border-color: rgba(255, 255, 255, 0.05);
+    --input-border-color: rgba(255, 255, 255, 0.1);
     --border: 1px solid var(--border-color);
-    /* --page-border: 1px solid rgba(255, 255, 255, .12); */
+    --page-border: 1px solid hsl(240, 7%, 21%);
     --required-star-color: var(--accent-color);
 }
 
 .toggle-button.checked, button.accent, input[type="submit"].accent {
     background: var(--accent-color);
     color: var(--accent-text-color);
-    /* border: 1px solid var(--accent-border-color); */
+    border: 1px solid var(--accent-border-color);
 }
 
 .toggle-button.checked .flat-icon, button.accent .flat-icon {
@@ -55,8 +55,6 @@ html {
     color: var(--text-color);
     accent-color: var(--accent-color);
 }
-
-
 
 ::selection {
     background: var(--accent-color);
@@ -133,8 +131,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     background: var(--page-background);
-    /* border-left: var(--page-border);
-    border-right: var(--page-border); */
+    border-left: var(--page-border);
+    border-right: var(--page-border);
     image-rendering: auto;
 }
 
@@ -200,8 +198,7 @@ p label {
 
 input[type="text"], input[type="password"], input[type="email"], textarea {
     background: var(--input-background);
-    /* border: 1px solid var(--input-border-color); */
-    border: none;
+    border: 1px solid var(--input-border-color);
     padding: 5px 9px;
     color: var(--text-color);
 }
@@ -232,9 +229,8 @@ button, input[type="submit"], a.button {
     display: flex;
     gap: 6px;
     align-items: center;
-    padding: 5px 8px;
-    /* border: var(--border); */
-    border: none;
+    padding: 4px 7px;
+    border: var(--border);
     background: var(--button-background);
     color: var(--button-text-color);
     cursor: default;
@@ -283,7 +279,7 @@ audio::-webkit-media-controls-panel {
 
 /* Sidebar */
 .sidebar {
-    /* border-left: var(--border); */
+    border-left: var(--border);
     background: var(--sidebar-background);
     display: flex;
     flex-direction: column;

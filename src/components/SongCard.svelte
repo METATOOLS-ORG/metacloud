@@ -90,6 +90,10 @@
                     <span aria-label="Like count">3</span>
                     <HeartIcon/>
                 </div> -->
+                <div class="songcard-play-count">
+                    <PlayIcon/>
+                    32
+                </div>
                 <span class="songcard-genre-tag">
                     #{song.genre}
                 </span>
@@ -190,10 +194,11 @@
     }
 
     .songcard-genre-tag {
-        padding: 6px 8px;
+        padding: 5px 7px;
         color: var(--text-color-info);
         /* @todo: css variable? will be weird on light themes */
         background: rgba(255, 255, 255, 0.08);
+        border: var(--border);
     }
 
     /* @todo: move to global and make a nolink class? */
@@ -201,4 +206,12 @@
         display: contents;
         color: var(--text-color);
     }
+
+    .songcard-play-count {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--text-color-info);
+    }
+
 </style>

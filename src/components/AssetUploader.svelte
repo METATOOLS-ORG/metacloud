@@ -207,8 +207,8 @@
         display: flex;
         flex-direction: column;
         background: var(--file-background);
-        /*border: var(--border);
-        border-style: dashed;*/
+        border: 1px solid var(--input-border-color);
+        border-style: dashed;
         user-select: none;
         cursor: pointer;
     }
@@ -228,7 +228,7 @@
         pointer-events: none;
         flex: 1;
         padding: 16px;
-        gap: 8px;
+        gap: 14px;
     }
 
     .file-uploader-prompt.vertical {
