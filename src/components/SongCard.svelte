@@ -185,7 +185,9 @@
         align-items: center;
         gap: 6px;
         justify-content: center;
-        padding: 4px 7px;
+        padding: 5px 8px;
+        min-width: 43px;
+        border: none;
     }
     .songcard-bottom-right {
         display: flex;
@@ -194,11 +196,11 @@
     }
 
     .songcard-genre-tag {
-        padding: 5px 7px;
+        padding: 6px 8px;
         color: var(--text-color-info);
         /* @todo: css variable? will be weird on light themes */
         background: rgba(255, 255, 255, 0.08);
-        border: var(--border);
+
     }
 
     /* @todo: move to global and make a nolink class? */
@@ -212,6 +214,12 @@
         align-items: center;
         gap: 6px;
         color: var(--text-color-info);
+    }
+
+    :global(.songcard-play-count > .flat-icon) {
+        margin-top: 1px;
+        color: var(--text-color-info);
+        opacity: 0.6;
     }
 
 </style>
