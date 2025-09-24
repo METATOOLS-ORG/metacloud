@@ -19,7 +19,7 @@
 
     let newSong = $state(true);
     let error = $state("");
-    let songAsset: string | null = $state(null);
+    let songAsset: string | null = $state();
 
     function onSubmit(e: SubmitEvent) {
         const formData = getFormData(e);
@@ -264,6 +264,9 @@
     .upload-field-toggle-group {
         display: flex;
         flex-direction: column;
+    }
+    :global(.upload-field-toggle-group button:first-of-type) {
+        border-bottom: none;
     }
     .upload-songfile {
         display: flex;
