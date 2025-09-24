@@ -32,7 +32,7 @@
 
         wavesurfer = WaveSurfer.create({
             container: '.wavesurfer-' + uid,
-            waveColor: '#939398',
+            waveColor: '#76777d',
             progressColor: '#df8fbd',
             barAlign: "bottom",
             dragToSeek: true,
@@ -96,7 +96,7 @@
 </script>
 
 <div class="player" >
-    <div class="wavesurfer wavesurfer-{uid}" role="button" tabindex="0">
+    <div class="wavesurfer wavesurfer-{uid}" style="min-height: 36px" role="button" tabindex="0">
         <div class="player-time">{isPlaying ? formatSongTime(globalAudioState.currentTime) : "0:00"}</div>
         <div class="player-duration">{formatSongTime(song.duration)}</div>
 
@@ -142,7 +142,6 @@
     .player-time {
         left: 0px;
     }
-
     .player-duration {
         right: 0px;
     }
@@ -151,16 +150,14 @@
     }
     .player-play {
         padding: 7px;
-        border-top: none;
-        border-right: none;
+        border: none;
     }
     .player-comment-input {
         flex: 1;
-        border-top: none;
+        border: none;
     }
     .player-comment-submit {
-        border-left: none;
-        border-top: none;
+        border: none;
     }
 </style>
 
