@@ -84,8 +84,15 @@ export const POST: RequestHandler = async (req) => {
 
         // Precalculate audio duration using ffprobe
         // @todo: custom ffprobe path in config and docs
-        duration = await getAudioDurationInSeconds(tempPath);
-
+        try {
+            duration = await getAudioDurationInSeconds(tempPath);
+        } catch (err) {
+            console.trace(err);
+                error(500, {
+                message: "Failed to calculate audio duration for file (unsupported or corrupted audio file?)",
+                code: "FFPROBE_FAILED"
+            });
+        }
         // Pregenerate audio waveform using audiowaveform
         // @todo: is using process.cwd() going to cause problems?
         // @todo: add documentation about setting up audiowaveform in path or a config to point to it
