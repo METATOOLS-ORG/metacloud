@@ -88,7 +88,7 @@ export const POST: RequestHandler = async (req) => {
             duration = await getAudioDurationInSeconds(tempPath);
         } catch (err) {
             console.trace(err);
-                error(500, {
+            error(500, {
                 message: "Failed to calculate audio duration for file (unsupported or corrupted audio file?)",
                 code: "FFPROBE_FAILED"
             });
