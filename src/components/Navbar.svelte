@@ -76,7 +76,6 @@
         display: flex;
         flex-shrink: 0;
         height: 32px;
-        border-bottom: var(--border);
         background: var(--navbar-background);
         /* pwa */
         -webkit-app-region: drag;

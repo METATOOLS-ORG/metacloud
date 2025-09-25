@@ -36,10 +36,11 @@
 <div class="page-split">
     <section class="content">
         <PageHead text="Recent songs" icon={SearchIcon}/>
+        {#if data.user}
+            <QuickUploadCardv2 user={data?.user}/>
+        {/if}
         <section class="songs">
-            {#if data.user}
-                <QuickUploadCardv2 user={data?.user}/>
-            {/if}
+
             {#each data.songs as song}
                 <SongCard {song} user={data.user}/>
             {/each}
@@ -87,6 +88,7 @@
     .songs {
         overflow-y: auto;
         scrollbar-width: thin;
+        border-top: var(--border);
     }
 
     .sidebar-content {

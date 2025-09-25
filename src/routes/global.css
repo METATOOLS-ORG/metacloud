@@ -33,17 +33,18 @@
     --file-background: var(--input-background);
     --file-hover-background: hsl(240, 12%, 13%);
     /* --border-color: rgba(255, 255, 255, .15); */
-    --border-color: rgba(255, 255, 255, 0.05);
-    --input-border-color: rgba(255, 255, 255, 0.1);
+    --border-color: rgba(255, 255, 255, 0.04);
+    --sidebar-border-color: #393a45;
+    --input-border-color: rgba(255, 255, 255, 0.07);
     --border: 1px solid var(--border-color);
-    --page-border: 1px solid hsl(240, 7%, 21%);
+    --page-border: 1px solid hsl(240, 7%, 18%);
     --required-star-color: var(--accent-color);
 }
 
 .toggle-button.checked, button.accent, input[type="submit"].accent {
     background: var(--accent-color);
     color: var(--accent-text-color);
-    border: 1px solid var(--accent-border-color);
+
 }
 
 .toggle-button.checked .flat-icon, button.accent .flat-icon {
@@ -229,8 +230,8 @@ button, input[type="submit"], a.button {
     display: flex;
     gap: 6px;
     align-items: center;
-    padding: 4px 7px;
-    border: var(--border);
+    padding: 5px 8px;
+    border: none;
     background: var(--button-background);
     color: var(--button-text-color);
     cursor: default;
@@ -279,7 +280,6 @@ audio::-webkit-media-controls-panel {
 
 /* Sidebar */
 .sidebar {
-    border-left: var(--border);
     background: var(--sidebar-background);
     display: flex;
     flex-direction: column;
