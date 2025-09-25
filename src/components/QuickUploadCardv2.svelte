@@ -17,7 +17,7 @@
 
     const { user } = $props();
 
-    let newSong = $state(true);
+    let newSong = $state(false);
     let error = $state("");
     let songAsset: string | null = $state();
 
@@ -78,8 +78,11 @@
         <ErrorMessage {error} />
         <div class="upload-songfile">
             <div class="upload-songfile-head">
-                <DiskIcon/>
-                <h1>Upload an audio file</h1>
+                <div class="upload-songfile-head-text">
+                    <DiskIcon/>
+                    <h1>Upload an audio file <a class="noblue" href="#a" onclick={songAsset = "1"}>or skip</a></h1>
+                </div>
+                <!-- <button onclick={newSong = false}>Back</button> -->
             </div>
             <span class="info">Max 30 MB - Supported: mp3, wav, flac, ogg</span>
             <AssetUploader
@@ -156,8 +159,8 @@
                     <div class="upload-field">
                         <span class="title">Randomizer</span>
                         <div class="upload-field-toggle-group">
-                            <button><DiceIcon/><span>Random cover</span></button>
-                            <button><DiceIcon/><span>Random title</span></button>
+                            <button type="button"><DiceIcon/><span>Random cover</span></button>
+                            <button type="button"><DiceIcon/><span>Random title</span></button>
                         </div>
                     </div>
                 </div>
@@ -175,7 +178,6 @@
         display: flex;
         flex-direction: column;
         background: rgba(0, 0, 0, 0.15);
-        border-bottom: var(--border);
     }
     .upload-songfile, .upload-metadata {
         padding: 16px;
@@ -255,11 +257,14 @@
     }
     .upload-field-input-group input {
         min-width: 0;
+        border-left: none;
     }
     .upload-field-input-prefix {
         background: rgba(255, 255, 255, 0.08); /* @todo: css variable */
         color: var(--text-color-info);
-        padding: 6px 8px;
+        padding: 7px 8px;
+        border: 1px solid var(--input-border-color);
+
     }
     .upload-field-toggle-group {
         display: flex;
@@ -285,6 +290,11 @@
         line-height: 16px;
     }
     .upload-songfile-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .upload-songfile-head-text {
         display: flex;
         align-items: center;
         gap: 8px;
