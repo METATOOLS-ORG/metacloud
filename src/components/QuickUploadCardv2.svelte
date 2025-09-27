@@ -19,7 +19,7 @@
 
     let newSong = $state(false);
     let error = $state("");
-    let songAsset: string | null = $state();
+    let songAsset: string | null = $state(null);
 
     function onSubmit(e: SubmitEvent) {
         const formData = getFormData(e);
@@ -50,6 +50,10 @@
         })
         .then((resp) => {
             invalidate('/api/song');
+            // @todo: this is supposed to refresh the song sidebar but it doesn't
+            // probably because that pulls from pagedata user instead, no idea how to fix that
+            // invalidate('/api/user/self');
+            resetComponent();
             // resetUpload();
             // location.href = "/@" + resp.username;
         })
@@ -57,8 +61,28 @@
             error = err.message;
         });
     }
+
+    let songTitle = $state("");
+    async function randomizerTitle() {
+        try {
+            let resp = await api.get("randomizer/title")
+            songTitle = resp.title;
+        } catch (err) {
+            console.error("Failed to fetch randomizer title:", err);
+        }
+    }
+
+    // Changing unique resets the component
+    let unique = $state({});
+    let resetComponent = () => {
+        newSong = false;
+        songAsset = null;
+        songTitle = "";
+        unique = {};
+    };
 </script>
 
+{#key unique}
 <section class="upload">
     <!-- Post type selector (pre-click) -->
     {#if !newSong}
@@ -68,7 +92,7 @@
                 <button onclick={()=>{newSong = true}}><DiskIcon/>New release</button>
                 <button><TextIcon/>New post</button>
             </div>
-            <SketchGuideVector/>
+            <!-- <SketchGuideVector/> -->
        </div>
 
    {/if}
@@ -80,7 +104,7 @@
             <div class="upload-songfile-head">
                 <div class="upload-songfile-head-text">
                     <DiskIcon/>
-                    <h1>Upload an audio file <a class="noblue" href="#a" onclick={songAsset = "1"}>or skip</a></h1>
+                    <h1>Upload an audio file <!-- <a class="noblue" href="#a" onclick={()=>{songAsset = "1"}}>or debug skip</a></h1> -->
                 </div>
                 <!-- <button onclick={newSong = false}>Back</button> -->
             </div>
@@ -89,12 +113,18 @@
                 height="64px"
                 icon="speaker"
                 caption="Click or drag audio to upload"
+                onFileDragged={(file: File) => {
+                    console.log("on file dragged", file.name);
+                    // Prefill song title and remove file extension using regex
+                    songTitle = file?.name.replace(/\.[^/.]+$/, "");
+                }}
                 onAssetUploaded={(id: string) => {
                     songAsset = id;
                 }}
                 name="audioAssetId"
                 onError={(err: string) => {
                     error = err;
+                    // songTitle = "";
                 }}
             />
             <div class="upload-songfile-warning">
@@ -127,24 +157,24 @@
             <div class="upload-middle">
                 <div class="upload-field">
                     <span class="title">Song title</span>
-                    <input type="text" name="title" placeholder="My new song" />
+                    <input type="text" name="title" autocomplete="one-time-code" bind:value={songTitle} placeholder="My new song" />
                 </div>
                 <div class="upload-field">
                     <span class="title">Description</span>
-                    <textarea name="desc" placeholder="Any links or details (optional)" rows=2></textarea>
+                    <textarea name="desc" autocomplete="one-time-code" placeholder="Any links or details (optional)" rows=2></textarea>
                 </div>
                 <div class="upload-field">
                     <div class="upload-field-title">
                         <span class="title">Tags</span>
                         <CheckboxField name="test" label="first tag is genre" checked/>
                     </div>
-                    <input type="text" name="tags" placeholder="electronic, comma, seperated" />
+                    <input type="text" name="tags" autocomplete="one-time-code" placeholder="electronic, comma, seperated" />
                 </div>
                 <div class="upload-field">
                     <span class="title">Link</span>
                     <div class="upload-field-input-group">
                         <span class="upload-field-input-prefix">/@litevex/</span>
-                        <input type="text" name="link" placeholder="songname" style:flex={1}/>
+                        <input type="text" name="link" autocomplete="one-time-code" placeholder="songname" style:flex={1}/>
                     </div>
                 </div>
             </div>
@@ -159,19 +189,20 @@
                     <div class="upload-field">
                         <span class="title">Randomizer</span>
                         <div class="upload-field-toggle-group">
+                            <button type="button" onclick={randomizerTitle}><DiceIcon/><span>Random title</span></button>
                             <button type="button"><DiceIcon/><span>Random cover</span></button>
-                            <button type="button"><DiceIcon/><span>Random title</span></button>
                         </div>
                     </div>
                 </div>
                 <div class="upload-right-bottom">
-                    <button>Cancel</button>
+                    <button type="button" onclick={resetComponent}>Cancel</button>
                     <input type="submit" class="accent" value="Publish"/>
                 </div>
             </div>
         </form>
    {/if}
 </section>
+{/key}
 
 <style>
     .upload {
@@ -260,7 +291,8 @@
         border-left: none;
     }
     .upload-field-input-prefix {
-        background: rgba(255, 255, 255, 0.08); /* @todo: css variable */
+        /*background: rgba(255, 255, 255, 0.08); */ /* @todo: css variable */
+        background: var(--input-background);
         color: var(--text-color-info);
         padding: 7px 8px;
         border: 1px solid var(--input-border-color);
@@ -269,6 +301,9 @@
     .upload-field-toggle-group {
         display: flex;
         flex-direction: column;
+    }
+    :global(.upload-field-toggle-group button) {
+        border: var(--border);
     }
     :global(.upload-field-toggle-group button:first-of-type) {
         border-bottom: none;
