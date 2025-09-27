@@ -3,6 +3,7 @@
     import type { AssetUploadRespDTO } from '$lib/dto';
 	import HeartIcon from './icons/HeartIcon.svelte';
 	import AddIcon from './icons/AddIcon.svelte';
+	import DiskIcon from './icons/DiskIcon.svelte';
     let {
         width = null,
         height = null,
@@ -177,6 +178,7 @@
             <div class="file-uploader-preview">
                 <!-- @todo: get correct icon from file metatype -->
                 <!-- <IconSmall icon="speaker" /> -->
+                <DiskIcon/>
                 <div class="file-uploader-preview-text">
                     <span class="bold">{file?.name}</span>
                     <span class="info">{prettyBytes(file?.size)}</span>
