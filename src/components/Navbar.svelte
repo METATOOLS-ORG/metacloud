@@ -75,13 +75,15 @@
     .navbar {
         display: flex;
         flex-shrink: 0;
-        height: 32px;
+        height: var(--navbar-height);
         background: var(--navbar-background);
         /* pwa */
         -webkit-app-region: drag;
         position: sticky;
         top: 0;
         z-index: 10;
+        position: fixed;
+        width: var(--page-width);
     }
 
     .navbar-logo {

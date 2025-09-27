@@ -216,7 +216,7 @@
     .upload-intro {
         display: flex;
         flex-direction: column;
-        padding: 10px;
+        padding: 12px;
     }
     .upload-intro-buttons {
         display: flex;

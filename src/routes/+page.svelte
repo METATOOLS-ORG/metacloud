@@ -100,8 +100,8 @@
     .sidebar-songs {
         display: flex;
         flex-direction: column;
-        padding: 10px;
-        gap: 16px;
+        padding: 13px;
+        gap: 17px;
     }
 
     .sidebar-song {

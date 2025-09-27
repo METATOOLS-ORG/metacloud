@@ -105,7 +105,7 @@
         background: var(--globalplayer-background);
         position: fixed;
         bottom: 0;
-        width: 790px;
+        width: var(--page-width);
         z-index: 7;
     }
     .globalplayer-left {

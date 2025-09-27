@@ -39,6 +39,10 @@
     --border: 1px solid var(--border-color);
     --page-border: 1px solid hsl(240, 7%, 18%);
     --required-star-color: var(--accent-color);
+
+    /* Layout */
+    --page-width: 790px;
+    --navbar-height: 32px;
 }
 
 .toggle-button.checked, button.accent, input[type="submit"].accent {
@@ -124,7 +128,7 @@ body {
 
 .main {
     width: 100%;
-    max-width: 790px;
+    max-width: var(--page-width);
     height: 100vh;
     /*overflow-y: auto; */
     display: flex;
@@ -135,6 +139,9 @@ body {
     border-left: var(--page-border);
     border-right: var(--page-border);
     image-rendering: auto;
+
+    /* Offset because the navbar uses "position: fixed" */
+    margin-top: var(--navbar-height);
 }
 
 .main-top {
