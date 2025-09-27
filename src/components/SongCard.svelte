@@ -2,10 +2,12 @@
 	import api from "$lib/api";
 	import { getAvatarAssetUrl, getCoverAssetUrl } from "$lib/assets";
 	import { globalAudioState } from "$lib/state/audioState.svelte";
+	import CommentIcon from "./icons/CommentIcon.svelte";
 	import HeartIcon from "./icons/HeartIcon.svelte";
 	import PlayIcon from "./icons/PlayIcon.svelte";
 	import RepostIcon from "./icons/RepostIcon.svelte";
 	import VerifiedIcon from "./icons/VerifiedIcon.svelte";
+	import WipIcon from "./icons/WIPIcon.svelte";
 	import MiniGlobalPlayer from "./MiniGlobalPlayer.svelte";
 	import WavesurferPlayer from "./WavesurferPlayer.svelte";
     let playing = $state(false);
@@ -60,12 +62,13 @@
                 <h1>{song.title}</h1>
                 {#if song.tagWip}
                     <span class="songcard-title-tag wip">
-                        wip
+                        <WipIcon/>
                     </span>
                 {/if}
                 {#if song.tagFeedback}
                     <span class="songcard-title-tag feedback">
-                        feedback
+                        <!-- feedback -->
+                        <CommentIcon/>
                     </span>
                 {/if}
             </div>
@@ -153,7 +156,7 @@
         min-height: 20px;
     }
     .songcard-title-tag {
-        padding: 4px 6px;
+        padding: 4px 5px;
         /* @todo: css variable? will be weird on light themes */
         background: rgba(255, 255, 255, 0.08);
     }
