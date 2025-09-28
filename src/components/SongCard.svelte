@@ -148,6 +148,7 @@
     }
     .songcard-time {
         color: var(--text-color-info);
+         margin-bottom: 1px;
     }
     .songcard-author {
         display: flex;
