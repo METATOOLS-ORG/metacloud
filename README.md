@@ -62,5 +62,7 @@ if asked to name the migration, type in what you changed (like "added assets fie
 pnpm run migrate
 ```
 
+after that, restart your code editor or lsp server to make sure it's using the newly generated prisma client package
+
 ## license
 there is no license yet but there will be soon, keep in mind if you contribute at the moment you accept your code being relicensed later on once a license has been chosen
