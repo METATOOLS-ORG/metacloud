@@ -91,7 +91,7 @@
         align-items: center;
         gap: 8px;
         padding: 0px 14px 0px 16px;
-        /* border-right: var(--border); */
+        border-right: var(--border);
     }
 
     .navbar-left,

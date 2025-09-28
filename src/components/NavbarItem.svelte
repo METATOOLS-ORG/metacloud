@@ -34,13 +34,13 @@
         align-items: center;
     }
 
-    /*.navbar-item:not(.left-border) {
+    .navbar-item:not(.left-border) {
         border-right: var(--border);
     }
 
     .navbar-item.left-border {
         border-left: var(--border);
-    }*/
+    }
 
     a {
         display: flex;
