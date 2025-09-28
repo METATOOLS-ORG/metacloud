@@ -51,7 +51,7 @@ export const POST: RequestHandler = async (req) => {
     const file = data.get("asset") as File;
 
     if (!file) error(422, {message: "No asset file given", code: "NO_ASSET_FIELD_IN_FORMDATA"});
-    if (file.size > MbToBytes(30)) error(413, {message: "File is too big, max 30 MB", code: "FILE_ABOVE_SIZE_LIMIT"})
+    if (file.size > MbToBytes(60)) error(413, {message: "File is too big, max 60 MB", code: "FILE_ABOVE_SIZE_LIMIT"})
 
     const fileData = new Uint8Array(await file.arrayBuffer());
 

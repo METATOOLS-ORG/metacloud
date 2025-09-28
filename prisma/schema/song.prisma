@@ -20,6 +20,7 @@ model Song {
     tagFeedback     Boolean
 
     likes           SongLike[] @relation("SongLikes")
+    comments        SongComment[] @relation("SongComments")
 }
 
 model SongLike {
@@ -28,6 +29,21 @@ model SongLike {
     user            User    @relation("UserLikes", fields: [userId], references: [id])
     userId          String
 
+    // todo: rename field to "song"
     post            Song    @relation("SongLikes", fields: [postId], references: [id])
     postId          String
+}
+
+model SongComment {
+    id              String @id @default(ulid())
+    date            DateTime @default(now())
+
+    user            User    @relation("UserSongComments", fields: [userId], references: [id])
+    userId          String
+
+    song            Song    @relation("SongComments", fields: [songId], references: [id])
+    songId          String
+
+    songTime        Float
+    content         String
 }

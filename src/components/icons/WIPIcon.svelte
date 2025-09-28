@@ -1,18 +1,3 @@
 <svg class="flat-icon wip" width="12" height="12" viewBox="0 0 128 128" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <rect x="71.7781" y="-113.483" width="16" height="262" transform="rotate(45 71.7781 -113.483)" fill="currentColor"/>
-    <rect x="117.033" y="-68.2285" width="16" height="262" transform="rotate(45 117.033 -68.2285)" fill="currentColor"/>
-    <rect x="94.4055" y="-90.856" width="16" height="262" transform="rotate(45 94.4055 -90.856)" fill="currentColor"/>
-    <rect x="139.66" y="-45.6011" width="16" height="262" transform="rotate(45 139.66 -45.6011)" fill="currentColor"/>
-    <rect x="71.7781" y="-113.483" width="16" height="262" transform="rotate(45 71.7781 -113.483)" fill="currentColor"/>
-    <rect x="117.033" y="-68.2285" width="16" height="262" transform="rotate(45 117.033 -68.2285)" fill="currentColor"/>
-    <rect x="94.4055" y="-90.856" width="16" height="262" transform="rotate(45 94.4055 -90.856)" fill="currentColor"/>
-    <rect x="139.66" y="-45.6011" width="16" height="262" transform="rotate(45 139.66 -45.6011)" fill="currentColor"/>
-    <rect x="162.288" y="-22.9736" width="16" height="262" transform="rotate(45 162.288 -22.9736)" fill="currentColor"/>
-    <rect x="207.543" y="22.2812" width="16" height="262" transform="rotate(45 207.543 22.2812)" fill="currentColor"/>
-    <rect x="184.915" y="-0.346191" width="16" height="262" transform="rotate(45 184.915 -0.346191)" fill="currentColor"/>
-    <rect x="230.17" y="44.9087" width="16" height="262" transform="rotate(45 230.17 44.9087)" fill="currentColor"/>
-    <rect x="162.288" y="-22.9736" width="16" height="262" transform="rotate(45 162.288 -22.9736)" fill="currentColor"/>
-    <rect x="207.543" y="22.2812" width="16" height="262" transform="rotate(45 207.543 22.2812)" fill="currentColor"/>
-    <rect x="184.915" y="-0.346191" width="16" height="262" transform="rotate(45 184.915 -0.346191)" fill="currentColor"/>
-    <rect x="230.17" y="44.9087" width="16" height="262" transform="rotate(45 230.17 44.9087)" fill="currentColor"/>
+    <path d="M121.379 9.00013C117.724 9.00013 114.758 8.99979 114.758 8.99979V26.1466H13.2415V8.99954C13.2415 8.99954 10.2758 8.99986 6.6206 8.99986C2.96536 9.00013 0 8.99979 0 8.99979V120C0 120 2.96536 120 6.6206 120C10.2756 120 13.2415 120 13.2415 120V75.0638H114.759V120C114.759 120 117.724 120 121.379 120C125.034 120 128 120 128 120V8.99951C128 8.99951 125.034 9.00013 121.379 9.00013ZM13.5172 66.3383V50.3502L21.2541 34.8722H40.9479L25.2153 66.3383H13.5172ZM45.2457 66.3383L60.9783 34.8722H80.672L64.9395 66.3383H45.2457ZM113.379 48.9107L104.663 66.3383H84.9696L100.702 34.8722H113.379V48.9107Z" fill="currentColor"/>
 </svg>

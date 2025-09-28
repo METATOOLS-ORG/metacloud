@@ -10,6 +10,55 @@ function CreateLikesDTO(likes: LikesDTO_Payload[]) : String[] {
 }
 
 // -----------------------
+// SongCommentDTO
+// -----------------------
+export interface SongCommentDTO {
+    id: string,
+    date: Date,
+    /* @todo: we're using this twice so make it a dto */
+    user: {
+        id: string,
+        displayName: string,
+        username: string,
+        avatarAssetId?: string | null,
+    },
+    songTime: number,
+    content: string
+}
+
+export const SongCommentDTO_Includes: Prisma.SongCommentInclude = {
+    user: {
+        select: {
+            id: true,
+            displayName: true,
+            username: true,
+            avatarAssetId: true
+        }
+    }
+}
+
+type SongCommentDTO_Payload = Prisma.SongCommentGetPayload<{ include: typeof SongCommentDTO_Includes }>
+
+export function CreateSongCommentDTO(comment: SongCommentDTO_Payload): SongCommentDTO {
+    return {
+        id: comment.id,
+        date: comment.date,
+        user: {
+            id: comment.user.id,
+            displayName: comment.user.displayName,
+            username: comment.user.username,
+            avatarAssetId: comment.user.avatarAssetId,
+        },
+        songTime: comment.songTime,
+        content: comment.content
+    }
+}
+
+export function CreateSongCommentsDTO(comments: SongCommentDTO_Payload[]) {
+    return comments.map((comment: SongCommentDTO_Payload) => CreateSongCommentDTO(comment));
+}
+
+// -----------------------
 // SongDTO
 // -----------------------
 // @todo: do we need the ? if we do | null
@@ -31,7 +80,8 @@ export interface SongDTO {
         username: string,
         avatarAssetId?: string | null,
     },
-    likes: String[]
+    likes: String[],
+    comments: SongCommentDTO[]
 }
 
 export const SongDTO_Includes: Prisma.SongInclude = {
@@ -53,6 +103,9 @@ export const SongDTO_Includes: Prisma.SongInclude = {
         select: {
             userId: true
         }
+    },
+    comments: {
+        include: SongCommentDTO_Includes
     }
 }
 
@@ -77,7 +130,10 @@ export function CreateSongDTO(song: SongDTO_Payload): SongDTO {
             username: song.author.username,
             avatarAssetId: song.author.avatarAssetId,
         },
-        likes: CreateLikesDTO(song.likes)
+        likes: CreateLikesDTO(song.likes),
+        comments: song.comments.map((comment) => {
+            return CreateSongCommentDTO(comment as SongCommentDTO_Payload)
+        })
     }
 }
 

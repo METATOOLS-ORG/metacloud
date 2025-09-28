@@ -6,6 +6,7 @@
 	import HeartIcon from "./icons/HeartIcon.svelte";
 	import PlayIcon from "./icons/PlayIcon.svelte";
 	import RepostIcon from "./icons/RepostIcon.svelte";
+	import SketchIcon from "./icons/SketchIcon.svelte";
 	import VerifiedIcon from "./icons/VerifiedIcon.svelte";
 	import WipIcon from "./icons/WIPIcon.svelte";
 	import MiniGlobalPlayer from "./MiniGlobalPlayer.svelte";
@@ -59,18 +60,26 @@
                 <span class="songcard-time">3 hours ago</span>
             </div>
             <div class="songcard-title">
-                <h1>{song.title}</h1>
-                {#if song.tagWip}
-                    <span class="songcard-title-tag wip">
-                        <WipIcon/>
+                <div class="songcard-title-left">
+                    <h1>{song.title}</h1>
+                    {#if song.tagWip}
+                        <span class="songcard-title-tag wip">
+                            wip
+                            <!-- <WipIcon/> -->
+                        </span>
+                    {/if}
+                </div>
+                <div class="songcard-title-right">
+                    {#if song.tagFeedback}
+                        <span class="songcard-title-tag feedback">
+                            <!-- feedback -->
+                            <CommentIcon/>
+                        </span>
+                    {/if}
+                    <span class="songcard-title-tag sketch">
+                        <SketchIcon/>
                     </span>
-                {/if}
-                {#if song.tagFeedback}
-                    <span class="songcard-title-tag feedback">
-                        <!-- feedback -->
-                        <CommentIcon/>
-                    </span>
-                {/if}
+                </div>
             </div>
         </div>
         <div class="songcard-player">
@@ -120,7 +129,7 @@
     .songcard-split {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 9px;
         flex: 1;
     }
     /* .songcard-cover {
@@ -154,12 +163,21 @@
         display: flex;
         gap: 6px;
         align-items: center;
+        min-height: 23px;
+        justify-content: space-between;
+    }
+    .songcard-title-left, .songcard-title-right {
+        display: flex;
+        gap: 6px;
+        align-items: center;
         min-height: 20px;
     }
     .songcard-title-tag {
         padding: 4px 5px;
         /* @todo: css variable? will be weird on light themes */
         background: rgba(255, 255, 255, 0.08);
+        color: var(--accent-color);
+        font-weight: 500;
     }
     .songcard-player {
         display: flex;
@@ -222,6 +240,11 @@
 
     :global(.songcard-play-count > .flat-icon) {
         margin-top: 1px;
+        color: var(--text-color-info);
+        opacity: 0.6;
+    }
+
+    :global(.songcard-title-tag > .flat-icon) {
         color: var(--text-color-info);
         opacity: 0.6;
     }
