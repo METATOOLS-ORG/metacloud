@@ -13,11 +13,11 @@ export const POST: RequestHandler = async (req) => {
     const data = await validate(req, {
         coverAssetId: z.string().nullish(),
         audioAssetId: z.string(),
-        title: z.string().trim().max(24),
+        title: z.string().trim().max(48),
         desc: z.string().trim().max(4000),
         genre: z.string().trim().max(24),
         // @todo: validate "kebab case"
-        url: z.string().trim().max(24), 
+        url: z.string().trim().max(48),
         tagPin: z.boolean(),
         tagWip: z.boolean(),
         tagFeedback: z.boolean()
