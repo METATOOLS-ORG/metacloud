@@ -6,7 +6,7 @@
     --text-color-info: rgba(255, 255, 255, .76);
     --text-color-highlight: white; /* @todo: ??? */
     --accent-color: #df8fbd;
-    --background: url("/assets/background.png");
+    --background: #1b1b22;/*url("/assets/background.png");*/
     --page-background: var(--primary-background);
     --banner-background: linear-gradient(178deg, #ff86fa, #ffc6a8); /* @todo */
     --primary-background: hsl(235, 12%, 17%);
@@ -25,6 +25,7 @@
     --accent-icon-color: hsl(0, 0%, 12%);
     --accent-border-color: rgba(0, 0, 0, 0.1);
     --input-background: rgba(0, 0, 0, .25);
+    --input-focus-background: hsl(231, 13%, 8%);
     --footer-background: hsl(235, 12%, 20%);
     --sidebar-background: hsl(235, 11%, 23%);
     --progress-bar-background: #B2B2B2;
@@ -37,12 +38,13 @@
     --sidebar-border-color: #393a45;
     --input-border-color: rgba(255, 255, 255, 0.07);
     --border: 1px solid var(--border-color);
-    --page-border: 1px solid hsl(240, 7%, 18%);
+    --page-border: 1px solid rgba(255, 255, 255, 0.03);
     --required-star-color: var(--accent-color);
 
     /* Layout */
-    --page-width: 790px;
+    --page-width: 800px;
     --navbar-height: 32px;
+    --sidebar-width: 240px;
 }
 
 .toggle-button.checked, button.accent, input[type="submit"].accent {
@@ -136,12 +138,13 @@ body {
     flex-direction: column;
     justify-content: space-between;
     background: var(--page-background);
-    border-left: var(--page-border);
-    border-right: var(--page-border);
+    /* border-left: var(--page-border);
+    border-right: var(--page-border); */
+    box-shadow: -1px 0px 0px rgba(255, 255, 255, 0.08), 1px 0px 0px rgba(255, 255, 255, 0.13);
     image-rendering: auto;
 
     /* Offset because the navbar uses "position: fixed" */
-    margin-top: var(--navbar-height);
+    padding-top: var(--navbar-height);
 }
 
 .main-top {
@@ -213,6 +216,12 @@ input[type="text"], input[type="password"], input[type="email"], textarea {
 
 textarea {
     padding: 6px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus {
+    outline: none;
+    box-shadow: inset 0px -1px var(--accent-color);
+    background: var(--input-focus-background);
 }
 
 .label-required-star {
@@ -292,7 +301,7 @@ audio::-webkit-media-controls-panel {
     flex-direction: column;
     /* overflow-y: auto; */
     flex: 1;
-    max-width: 235px;
+    max-width: var(--sidebar-width);
 }
 
 .page-split {
