@@ -121,7 +121,7 @@
     }
     .songcard {
         /* border-bottom: var(--border); */
-        padding: 17px;
+        padding: 16px;
         display: flex;
         gap: 17px;
         background: var(--primary-background);
@@ -239,15 +239,12 @@
         color: var(--text-color-info);
     }
 
-    :global(.songcard-play-count > .flat-icon) {
+    /* :global(.songcard-play-count > .flat-icon) {
         margin-top: 1px;
         color: var(--text-color-info);
         opacity: 0.6;
-    }
+    } */
 
-    :global(.songcard-title-tag > .flat-icon) {
-        color: var(--text-color-info);
-        opacity: 0.6;
-    }
+
 
 </style>
