@@ -175,7 +175,7 @@
                 class="player-comment"
                 aria-label="song comment"
                 style:left={(Math.round((comment.songTime / song.duration) * 100)) + "%"}
-                class:closest={comment.id == closestCommentId}
+                class:closest={comment.id == closestCommentId && isPlaying}
             >
                 <img class="player-comment-avatar" alt="avatar" width="16px" src={getAvatarAssetUrl(comment.user.avatarAssetId)}/>
                 <div class="player-comment-inner">
