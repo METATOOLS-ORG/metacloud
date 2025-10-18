@@ -90,8 +90,8 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 0px 14px 0px 16px;
-        border-right: var(--border);
+        padding: 0px 16px 0px 18px;
+        /* border-right: var(--border); */
     }
 
     .navbar-left,

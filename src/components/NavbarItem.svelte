@@ -34,13 +34,13 @@
         align-items: center;
     }
 
-    .navbar-item:not(.left-border) {
+    /*.navbar-item:not(.left-border) {
         border-right: var(--border);
     }
 
     .navbar-item.left-border {
         border-left: var(--border);
-    }
+    }*/
 
     a {
         display: flex;
@@ -51,7 +51,7 @@
     }
 
     .navbar-item.active {
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.4);
         box-shadow: inset 0px -2px 0px var(--accent-color);
     }
 

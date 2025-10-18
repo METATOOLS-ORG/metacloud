@@ -216,7 +216,7 @@
     .upload-intro {
         display: flex;
         flex-direction: column;
-        padding: 12px;
+        padding: 14px;
     }
     .upload-intro-buttons {
         display: flex;
@@ -288,26 +288,26 @@
     }
     .upload-field-input-group input {
         min-width: 0;
-        border-left: none;
+        /* border-left: none; */
     }
     .upload-field-input-prefix {
         /*background: rgba(255, 255, 255, 0.08); */ /* @todo: css variable */
         background: var(--input-background);
         color: var(--text-color-info);
         padding: 7px 8px;
-        border: 1px solid var(--input-border-color);
+        /* border: 1px solid var(--input-border-color); */
 
     }
     .upload-field-toggle-group {
         display: flex;
         flex-direction: column;
     }
-    :global(.upload-field-toggle-group button) {
+    /*:global(.upload-field-toggle-group button) {
         border: var(--border);
     }
     :global(.upload-field-toggle-group button:first-of-type) {
         border-bottom: none;
-    }
+    }*/
     .upload-songfile {
         display: flex;
         flex-direction: column;

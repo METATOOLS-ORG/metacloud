@@ -88,7 +88,7 @@
     .songs {
         overflow-y: auto;
         scrollbar-width: thin;
-        border-top: var(--border);
+        /* border-top: var(--border); */
     }
 
     .sidebar-content {

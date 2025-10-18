@@ -209,8 +209,8 @@
         display: flex;
         flex-direction: column;
         background: var(--file-background);
-        border: 1px solid var(--input-border-color);
-        border-style: dashed;
+        /* border: 1px solid var(--input-border-color);
+        border-style: dashed; */
         user-select: none;
         cursor: pointer;
     }

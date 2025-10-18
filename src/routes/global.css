@@ -37,7 +37,8 @@
     --progress-bar-background: #B2B2B2;
     /*--button-text-color: #d5d5d5; */
     --button-text-color: var(--text-color);
-    --file-hover-background: hsl(240, 12%, 13%);
+    --file-background: rgba(0, 0, 0, 0.3);
+    --file-hover-background: rgba(0, 0, 0, 0.4);
     /* --border-color: rgba(255, 255, 255, .15); */
     --border-color: rgba(255, 255, 255, 0.04);
     --sidebar-border-color: #393a45;
@@ -147,7 +148,7 @@ body {
     background: var(--page-background);
     /* border-left: var(--page-border);
     border-right: var(--page-border); */
-    box-shadow: -1px 0px 0px rgba(255, 255, 255, 0.08), 1px 0px 0px rgba(255, 255, 255, 0.13);
+    /* box-shadow: -1px 0px 0px rgba(255, 255, 255, 0.08), 1px 0px 0px rgba(255, 255, 255, 0.13); */
     image-rendering: auto;
 
     /* Offset because the navbar uses "position: fixed" */
@@ -216,8 +217,9 @@ p label {
 
 input[type="text"], input[type="password"], input[type="email"], textarea {
     background: var(--input-background);
-    border: 1px solid var(--input-border-color);
-    padding: 5px 9px;
+    /* border: 1px solid var(--input-border-color); */
+    border: none;
+    padding: 6px 10px;
     color: var(--text-color);
 }
 

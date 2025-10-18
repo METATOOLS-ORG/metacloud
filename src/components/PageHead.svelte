@@ -40,8 +40,8 @@
         position: sticky;
         top: 32px;
         z-index: 8;
-        border-top: var(--border);
-        border-bottom: var(--border);
+        /* border-top: var(--border);
+        border-bottom: var(--border); */
     }
 
     .head.sidebar-head {
@@ -49,7 +49,7 @@
     }
 
     .head-left {
-        padding: 0px 14px;
+        padding: 0px 18px;
         display: flex;
         align-items: center;
         gap: 10px;
