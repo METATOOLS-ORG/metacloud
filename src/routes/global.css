@@ -4,21 +4,27 @@
     --font-size: 9pt;
     --text-color: #fdfdfd;
     --text-color-info: rgba(255, 255, 255, .76);
-    --text-color-highlight: white; /* @todo: ??? */
-    --accent-color: #df8fbd;
-    --background: #1b1b22;/*url("/assets/background.png");*/
+    --text-color-highlight: white;
+    /* @todo: ??? */
+    --accent-color: #db76b0; /* #dd85b7; */ /* #df8fbd */
+    --accent-tinted-tag: hsl(277, 13%, 21%);
+    --test: hsl(240, 9%, 9%);
+    --background: url("/assets/pattern.svg");/*hsl(233, 13%, 9%);*/
+    /*url("/assets/background.png");*/
     --page-background: var(--primary-background);
-    --banner-background: linear-gradient(178deg, #ff86fa, #ffc6a8); /* @todo */
-    --primary-background: hsl(235, 12%, 17%);
-    --page-head-background: #33343d;
-    --sidebar-head-background: #40414c;
-    --globalplayer-background: hsl(235, 14%, 20%);
+    --banner-background: linear-gradient(178deg, #ff86fa, #ffc6a8);
+    /* @todo */
+    --primary-background: hsl(247, 12%, 14%);
+    --page-head-background: hsl(247, 9%, 19%);
+    --sidebar-head-background: hsl(254, 9%, 22%);
+    --globalplayer-background: hsl(247, 14%, 17%);
     --scrollbar-color: #2f303c;
     --scrollbar-background: #202027;
     --icon-color: var(--accent-color);
-    --player-background: hsl(228, 12%, 17%);
-    --navbar-background: hsl(239, 12%, 16%);
-    --error-background: var(--accent-color); /* @todo: unfitting color? */
+    --player-background: hsl(247, 12%, 17%);
+    --navbar-background: hsl(247, 11%, 12%);
+    --error-background: var(--accent-color);
+    /* @todo: unfitting color? */
     --button-background: #ffffff17;
     --button-down-background: #ffffff23;
     --accent-text-color: black;
@@ -27,11 +33,10 @@
     --input-background: rgba(0, 0, 0, .25);
     --input-focus-background: hsl(231, 13%, 8%);
     --footer-background: hsl(235, 12%, 20%);
-    --sidebar-background: hsl(235, 11%, 23%);
+    --sidebar-background: hsl(247, 12%, 17%); /*idea5: hsl(259, 11%, 19%);*/
     --progress-bar-background: #B2B2B2;
     /*--button-text-color: #d5d5d5; */
     --button-text-color: var(--text-color);
-    --file-background: var(--input-background);
     --file-hover-background: hsl(240, 12%, 13%);
     /* --border-color: rgba(255, 255, 255, .15); */
     --border-color: rgba(255, 255, 255, 0.04);
@@ -126,6 +131,8 @@ body {
     justify-content: center;
     background: var(--background);
     image-rendering: pixelated;
+    background-repeat: repeat;
+    background-size: 256px;
 }
 
 .main {

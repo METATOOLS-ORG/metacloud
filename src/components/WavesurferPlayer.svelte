@@ -37,7 +37,7 @@
         wavesurfer = WaveSurfer.create({
             container: '.wavesurfer-' + uid,
             waveColor: '#76777d',
-            progressColor: '#df8fbd',
+            progressColor: '#db76b0',
             barAlign: "bottom",
             dragToSeek: true,
             barWidth: 1,
@@ -51,7 +51,7 @@
                   lineColor: '#ffffff',
                   lineWidth: 2,
                   labelBackground: '#000000',
-                  labelColor: '#df8fbd',
+                  labelColor: '#db76b0',
                   labelSize: '11px',
                   labelPreferLeft: false,
                 }),

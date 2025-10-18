@@ -33,6 +33,7 @@
 <PageHead icon={AddIcon} text="Create an account"/>
 <ErrorMessage {error} />
 <section class="page-content">
+    <h1>IMPORTANT NOTE: As we are early in development, metacloud is currently invite only, which means an existing user needs to give you a code before you can sign up. Please understand.</h1>
     <form onsubmit={onSubmit}>
         <TextField
             name="email"
@@ -64,3 +65,14 @@
         <input type="submit" value="Sign up" />
     </form>
 </section>
+
+<style>
+    .page-content {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    h1 {
+        line-height: 20px;
+    }
+</style>

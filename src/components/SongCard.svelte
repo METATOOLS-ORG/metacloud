@@ -176,7 +176,7 @@
     .songcard-title-tag {
         padding: 4px 5px;
         /* @todo: css variable? will be weird on light themes */
-        background: rgba(255, 255, 255, 0.08);
+        background: var(--accent-tinted-tag);
         color: var(--accent-color);
         font-weight: 500;
     }
@@ -239,11 +239,11 @@
         color: var(--text-color-info);
     }
 
-    /* :global(.songcard-play-count > .flat-icon) {
+    :global(.songcard-play-count > .flat-icon) {
         margin-top: 1px;
         color: var(--text-color-info);
         opacity: 0.6;
-    } */
+    }
 
 
 
