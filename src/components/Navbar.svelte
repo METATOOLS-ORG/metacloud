@@ -14,7 +14,7 @@
     }
     const navbarPages: NavbarPage[] = [
         { title: "Explore", url: "/", icon: SearchIcon },
-        { title: "Tests", url: "/tests", icon: HeartIcon }
+        { title: "Search", url: "/tests", icon: SearchIcon }
     ];
 
 </script>
@@ -46,6 +46,12 @@
                     IconComponent={HeartIcon}
                     leftBorder={true}
                 /> -->
+                <NavbarItem
+                    title="Post"
+                    path="/upload"
+                    IconComponent={AddIcon}
+                    leftBorder={true}
+                />
                 <NavbarItem
                     title={user.displayName}
                     path="/@{user.username}"

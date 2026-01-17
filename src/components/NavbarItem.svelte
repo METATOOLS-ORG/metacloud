@@ -31,7 +31,9 @@
 <style>
     .navbar-item {
         display: flex;
-        align-items: center;
+        align-items: stretch;
+        user-select: none;
+
     }
 
     /*.navbar-item:not(.left-border) {
