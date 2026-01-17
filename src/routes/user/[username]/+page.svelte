@@ -59,8 +59,9 @@
         </section>
     </div>
     <aside class="sidebar">
-        <PageHead>
+        <PageHead sidebar>
             {#if isOwnProfile }
+                <a class="noblue" href="/logout" data-sveltekit-preload-data="off">Log out</a>
                 <!-- @todo: component this icon link button -->
                 <!--<a class="button" href="/logout">
                     <HeartIcon/>

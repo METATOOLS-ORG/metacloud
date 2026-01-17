@@ -58,6 +58,6 @@
         display: flex;
         align-items: center;
         gap: 5px;
-        padding: 5px;
+        padding: 5px 8px;
     }
 </style>

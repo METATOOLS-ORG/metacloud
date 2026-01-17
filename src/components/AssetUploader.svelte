@@ -242,8 +242,7 @@
         display: flex;
         flex-direction: column;
         background: var(--file-background);
-        border: 2px solid var(--file-border);
-        border-style: dashed;
+        border: 2px dashed var(--file-border);
         user-select: none;
         cursor: pointer;
     }
