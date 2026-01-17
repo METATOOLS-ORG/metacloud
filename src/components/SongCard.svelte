@@ -67,6 +67,9 @@
                             wip
                             <!-- <WipIcon/> -->
                         </span>
+                    <span class="songcard-title-tag sketch">
+                        <SketchIcon/>
+                    </span>
                     {/if}
                 </div>
                 <div class="songcard-title-right">
@@ -76,9 +79,7 @@
                             <CommentIcon/>
                         </span>
                     {/if}
-                    <span class="songcard-title-tag sketch">
-                        <SketchIcon/>
-                    </span>
+
                 </div>
             </div>
         </div>
@@ -108,8 +109,7 @@
                     32
                 </div>
                 <span class="songcard-genre-tag">
-                    <HashtagIcon/>
-                    {song.genre}
+                    #{song.genre}
                 </span>
             </div>
         </div>
@@ -178,6 +178,7 @@
         gap: 5px;
     }
     .songcard-title-tag {
+        height: 12px;
         padding: 4px 5px;
         /* @todo: css variable? will be weird on light themes */
         background: var(--accent-tinted-tag);
