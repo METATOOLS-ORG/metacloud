@@ -31,6 +31,24 @@
         <TextField name="username" label="Username" />
         <TextField name="password" label="Password" type="password" />
         <a href="/signup">I don't have an account yet</a>
-        <input type="submit" value="Login" />
+        <div class="signup-actions">
+            <input type="submit" value="Login" />
+        </div>
     </form>
 </section>
+
+<style>
+    .page-content {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        padding-top: 48px;
+    }
+    .signup-actions {
+        align-self: stretch;
+        display: flex;
+    }
+    .signup-actions input[type="submit"] {
+        flex: 1;
+    }
+</style>
