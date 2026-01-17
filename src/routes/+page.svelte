@@ -83,8 +83,6 @@
     .sidebar-songs {
         display: flex;
         flex-direction: column;
-        padding: 13px;
-        gap: 17px;
     }
 
     :global(.sidebar-songs .flat-icon) {

@@ -2,8 +2,8 @@
     /* Global css variables */
     --font: "Segoe UI", sans-serif;
     --font-size: 9pt;
-    --text-color: #fdfdfd;
-    --text-color-info: rgba(255, 255, 255, .76);
+    --text-color: hsl(0, 0%, 97%);
+    --text-color-info: rgba(255, 255, 255, .65);
     --text-color-highlight: white;
     /* @todo: ??? */
     --accent-color: #db76b0; /* #dd85b7; */ /* #df8fbd */

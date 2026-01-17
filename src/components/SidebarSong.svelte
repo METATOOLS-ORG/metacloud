@@ -28,7 +28,8 @@
 <style>
     .sidebar-song {
         display: flex;
-        gap: 10px;
+        gap: 12px;
+        padding: 9px 14px;
     }
 
     .sidebar-song a {
