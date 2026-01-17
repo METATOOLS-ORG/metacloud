@@ -8,12 +8,11 @@
 
 <h1 class="head" style:height={height} style:width={width} class:sidebar-head={sidebar}>
     <div class="head-left">
-    {#if icon}
-    		<!-- <IconSmall {icon} /> -->
+        {#if icon}
             <IconComponent/>
-    	{/if}
+        {/if}
         {#if text}
-    	<span>{text}</span>
+    	   <span>{text}</span>
         {/if}
     </div>
     {#if children}

@@ -110,6 +110,7 @@
             </div>
             <span class="info">Max 30 MB - Supported: mp3, wav, flac, ogg</span>
             <AssetUploader
+                audioOnly
                 height="64px"
                 icon="speaker"
                 caption="Click or drag audio to upload"

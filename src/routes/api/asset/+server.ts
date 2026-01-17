@@ -109,7 +109,7 @@ export const POST: RequestHandler = async (req) => {
         } catch (err) {
             console.trace(err);
             error(500, {
-                message: "Failed to generate audio waveform for file (unsupported audio file type?)",
+                message: "Failed to generate audio waveform for file (unsupported or corrupted audio file?)",
                 code: "WAVEFORM_GENERATION_FAILED"
             });
         }

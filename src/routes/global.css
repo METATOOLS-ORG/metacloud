@@ -40,6 +40,7 @@
     --button-text-color: var(--text-color);
     --file-background: rgba(0, 0, 0, .26);
     --file-hover-background: rgba(0, 0, 0, .61);
+    --file-border: rgba(255, 255, 255, 0.15);
     /* --border-color: rgba(255, 255, 255, .15); */
     --border-color: rgba(255, 255, 255, 0.04);
     --sidebar-border-color: #393a45;

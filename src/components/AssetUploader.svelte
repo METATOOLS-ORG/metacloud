@@ -4,11 +4,30 @@
 	import HeartIcon from './icons/HeartIcon.svelte';
 	import AddIcon from './icons/AddIcon.svelte';
 	import DiskIcon from './icons/DiskIcon.svelte';
+    type Props = {
+        width?: string | null,
+        height?: string | null,
+        imageMode?: boolean,
+        miniMode?: boolean,
+        verticalPrompt?: boolean,
+        icon?: string | null,
+        caption?: string | null,
+        name?: string | null,
+        stretch?: boolean,
+        hidden?: boolean,
+        center?: boolean,
+        presetFile?: File | null,
+        presetAssetId?: string | null,
+        onFileDragged?: ((file: File) => void) | null;
+        onAssetUploaded?: ((assetId: string) => void) | null;
+        onError?: ((error: string) => void) | null;
+        audioOnly?: boolean
+    };
     let {
         width = null,
         height = null,
         imageMode = false,
-    miniMode = true,
+        miniMode = true,
         verticalPrompt = imageMode,
         icon = null,
         caption = null,
@@ -18,17 +37,19 @@
         center = imageMode,
         presetFile = null,
         presetAssetId = null,
-        // @todo: give these types
         onFileDragged = null,
         onAssetUploaded = null,
-        onError = null
-    } = $props();
+        onError = null,
+        audioOnly = false
+    } : Props = $props();
 
     if (!caption) caption = imageMode ? 'Drag to upload image' : 'Drag to upload file';
     if (!icon) icon = imageMode ? 'paint' : 'drag';
 
     let files = $state<FileList | File[] | null>(presetFile ? [presetFile] : null);
     let inputRef: HTMLInputElement;
+
+    let supportedAudioMimetypes = ["audio/wav", "audio/x-wav", "audio/mpeg", "audio/flac", "audio/ogg", "audio/opus"];
 
     let file = $derived(files?.[0]);
     let fileObjectURL = $derived.by(() => {
@@ -55,6 +76,18 @@
     $effect(() => {
         if (file) {
             // @todo: do checks here to see if the file is eligible to be uploaded
+            if (file.size > (60 * 1024 * 1024)) {
+                files = null;
+                if (onError) onError("File is too big, max 60 MB")
+                return;
+            }
+            if (audioOnly || file.type.startsWith("audio/")) {
+                if (!supportedAudioMimetypes.includes(file.type)) {
+                    files = null;
+                    if (onError) onError("Unsupported audio format (allowed: wav, mp3, flac, ogg, opus)");
+                    return;
+                }
+            }
 
             const xhr = new XMLHttpRequest();
 
@@ -209,8 +242,7 @@
         display: flex;
         flex-direction: column;
         background: var(--file-background);
-        /* @todo: css variable */
-        border: 2px solid rgba(255, 255, 255, 0.15);
+        border: 2px solid var(--file-border);
         border-style: dashed;
         user-select: none;
         cursor: pointer;
