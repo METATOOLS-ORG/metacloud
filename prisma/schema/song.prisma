@@ -4,7 +4,7 @@ model Song {
     title           String
     url             String
     desc            String
-    genre           String
+    genre           String?
 
     audioAsset      Asset   @relation("AudioAsset", fields: [audioAssetId], references: [id])
     audioAssetId    String
