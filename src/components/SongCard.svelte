@@ -64,12 +64,10 @@
                     <h1>{song.title}</h1>
                     {#if song.tagWip}
                         <span class="songcard-title-tag wip">
+                            <SketchIcon/>
                             wip
                             <!-- <WipIcon/> -->
                         </span>
-                    <span class="songcard-title-tag sketch">
-                        <SketchIcon/>
-                    </span>
                     {/if}
                 </div>
                 <div class="songcard-title-right">
@@ -79,7 +77,6 @@
                             <CommentIcon/>
                         </span>
                     {/if}
-
                 </div>
             </div>
         </div>
@@ -149,7 +146,7 @@
     }
     .songcard-time {
         color: var(--text-color-info);
-         margin-bottom: 1px;
+        margin-bottom: 1px;
     }
     .songcard-author {
         display: flex;
@@ -178,8 +175,10 @@
         gap: 5px;
     }
     .songcard-title-tag {
+        display: flex;
+        gap: 4px;
         height: 12px;
-        padding: 4px 5px;
+        padding: 4px 6px;
         /* @todo: css variable? will be weird on light themes */
         background: var(--accent-tinted-tag);
         color: var(--accent-color);
