@@ -37,8 +37,8 @@
     --progress-bar-background: #B2B2B2;
     /*--button-text-color: #d5d5d5; */
     --button-text-color: var(--text-color);
-    --file-background: rgba(0, 0, 0, 0.3);
-    --file-hover-background: rgba(0, 0, 0, 0.4);
+    --file-background: rgba(0, 0, 0, .26);
+    --file-hover-background: rgba(0, 0, 0, .61);
     /* --border-color: rgba(255, 255, 255, .15); */
     --border-color: rgba(255, 255, 255, 0.04);
     --sidebar-border-color: #393a45;
@@ -48,7 +48,7 @@
     --required-star-color: var(--accent-color);
 
     /* Layout */
-    --page-width: 800px;
+    --page-width: 802px;
     --navbar-height: 32px;
     --sidebar-width: 240px;
 }
@@ -139,8 +139,7 @@ body {
 .main {
     width: 100%;
     max-width: var(--page-width);
-    height: 100vh;
-    /*overflow-y: auto; */
+    /* overflow-y: auto; */
     display: flex;
     flex-grow: 0;
     flex-direction: column;

@@ -104,7 +104,7 @@
             <div class="upload-songfile-head">
                 <div class="upload-songfile-head-text">
                     <DiskIcon/>
-                    <h1>Upload an audio file <!-- <a class="noblue" href="#a" onclick={()=>{songAsset = "1"}}>or debug skip</a></h1> -->
+                    <h1>Upload an audio file <a class="noblue" href="#a" onclick={()=>{songAsset = "1"}}>or debug skip</a></h1>
                 </div>
                 <!-- <button onclick={newSong = false}>Back</button> -->
             </div>
@@ -208,6 +208,7 @@
     .upload {
         display: flex;
         flex-direction: column;
+        /* @todo: css variable */
         background: rgba(0, 0, 0, 0.15);
     }
     .upload-songfile, .upload-metadata {
@@ -302,6 +303,7 @@
         display: flex;
         flex-direction: column;
     }
+
     /*:global(.upload-field-toggle-group button) {
         border: var(--border);
     }

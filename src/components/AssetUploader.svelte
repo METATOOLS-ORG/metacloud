@@ -209,15 +209,16 @@
         display: flex;
         flex-direction: column;
         background: var(--file-background);
-        /* border: 1px solid var(--input-border-color);
-        border-style: dashed; */
+        /* @todo: css variable */
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        border-style: dashed;
         user-select: none;
         cursor: pointer;
     }
     .file-uploader.hidden {
         display: none;
     }
-    .file-uploader:hover, .file-uploader.dragging {
+    .file-uploader.dragging {
         background: var(--file-hover-background);
     }
 

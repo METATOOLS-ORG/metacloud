@@ -17,7 +17,7 @@
 <Meta title="{username} (@{username})" />
 <div class="page-split">
     <div class="content">
-        <PageHead icon={HeartIcon} text="@{username}'s profile" height="36px"/>
+        <PageHead icon={HeartIcon} text="@{username}'s profile"/>
         <section class="profile-main">
                 <div class="profile-banner"></div>
                 <div class="profile-content">
@@ -59,17 +59,17 @@
         </section>
     </div>
     <aside class="sidebar">
-        <PageHead height="36px">
+        <PageHead>
             {#if isOwnProfile }
                 <!-- @todo: component this icon link button -->
-                <a class="button" href="/logout">
+                <!--<a class="button" href="/logout">
                     <HeartIcon/>
                     <span>Logout</span>
                 </a>
                 <a class="button" href="/edit-profile">
                     <AddIcon/>
                     <span>Edit Profile</span>
-                </a>
+                </a> -->
             {/if}
         </PageHead>
         <SidebarFooter/>
@@ -80,8 +80,9 @@
     .profile-main {
         display: flex;
         flex-direction: column;
-        background: #67496E;
         position: relative;
+        background-image: url("/assets/testbanner.png");
+        background-size: cover;
     }
     .profile-main :global(.flat-icon) {
         color: #F4F4F4;
@@ -107,6 +108,7 @@
         justify-content: flex-end;
     }
     .profile-content {
+        background: #67496E;
         display: flex;
         flex-direction: column;
         gap: 11px;
@@ -115,7 +117,7 @@
     }
     .profile-avatar {
         position: absolute;
-        top: 86px;
+        top: -16px;
     }
     .profile-follow-data {
         display: flex;
