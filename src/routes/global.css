@@ -15,9 +15,9 @@
     --banner-background: linear-gradient(178deg, #ff86fa, #ffc6a8);
     /* @todo */
     --primary-background: hsl(247, 12%, 14%);
-    --page-head-background: hsl(247, 9%, 19%);
+    --page-head-background: hsla(247, 9%, 19%, .9);
     --sidebar-head-background: hsl(254, 9%, 22%);
-    --globalplayer-background: hsl(247, 14%, 17%);
+    --globalplayer-background: hsl(247, 14%, 17%, .8);
     --scrollbar-color: #2f303c;
     --scrollbar-background: #202027;
     --icon-color: var(--accent-color);

@@ -34,6 +34,7 @@
         gap: 8px;
         font-weight: normal;
         background: var(--page-head-background);
+        backdrop-filter: blur(8px);
         height: 34px;
         flex-shrink: 0;
         position: sticky;

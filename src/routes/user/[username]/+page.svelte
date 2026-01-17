@@ -108,7 +108,8 @@
         justify-content: flex-end;
     }
     .profile-content {
-        background: #67496E;
+        background: #67496ebd;
+        backdrop-filter: blur(8px);
         display: flex;
         flex-direction: column;
         gap: 11px;
