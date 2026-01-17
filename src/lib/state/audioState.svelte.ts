@@ -3,6 +3,7 @@ import type { SongDTO, UserSelfDTO } from "$lib/dto";
 import { browser } from '$app/environment';
 
 interface GlobalAudioState {
+
     playingSong: boolean,
     song?: SongDTO,
     audio?: HTMLAudioElement,
@@ -12,6 +13,7 @@ interface GlobalAudioState {
     seeking: boolean,
     playSong: (song: SongDTO) => void,
     togglePlayback: () => void
+    playUnpublishedAudioAsset: (songAssetId: number, user: any) => void;
 }
 
 export const globalAudioUpdate = () => {

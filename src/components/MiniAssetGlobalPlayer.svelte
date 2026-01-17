@@ -62,10 +62,8 @@
                 <input
                     type="range"
                     class="miniplayer-slider"
-                    min="0"
-                    max="10"
-                    value="0"
-                    step="0.25"
+                    min="0" max="10"
+                    value="0" step="0.25"
                 />
             {/if}
         </div>

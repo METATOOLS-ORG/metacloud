@@ -8,15 +8,15 @@
 	import QuickUploadCard from "$components/QuickUploadCard.svelte";
 	import QuickUploadCardv2 from "$components/QuickUploadCardv2.svelte";
 	import SidebarFooter from "$components/SidebarFooter.svelte";
+	import SidebarSong from "$components/SidebarSong.svelte";
     import SongCard from "$components/SongCard.svelte";
-    import SongPostCard from "$components/SongPostCard.svelte";
 	import { PUBLIC_WEBSITE_NAME } from "$env/static/public";
 	import { getAssetUrl, getCoverAssetUrl } from "$lib/assets";
 
     const { data } = $props();
 </script>
 <svelte:head>
-    <!-- manually set the title so that it's not "metacloud - metacloud" -->
+    <!-- manually set the title so that it's not "name - name" -->
 	<title>{PUBLIC_WEBSITE_NAME}</title>
 </svelte:head>
 
@@ -40,7 +40,6 @@
             <QuickUploadCardv2 user={data?.user}/>
         {/if}
         <section class="songs">
-
             {#each data.songs as song}
                 <SongCard {song} user={data.user}/>
             {/each}
@@ -52,24 +51,7 @@
             {#if data.user}
                 <section class="sidebar-songs">
                     {#each data.user.songs as song}
-                        <section class="sidebar-song">
-                            <img width="36px" height="36px" alt="song cover" src={getCoverAssetUrl(song.coverAssetId)}/>
-                            <div class="sidebar-song-split">
-                                <a class="noblue" href="#todo">
-                                    <span>{song.title}</span>
-                                    <div class="sidebar-song-stats">
-                                        <div class="sidebar-song-stat">
-                                            <HeartIcon/>
-                                            <span>{song.likes.length}</span>
-                                        </div>
-                                        <div class="sidebar-song-stat">
-                                            <RepostIcon/>
-                                            <span>12</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </section>
+                        <SidebarSong {song}/>
                     {/each}
                 </section>
             {/if}
@@ -97,6 +79,7 @@
         position: sticky;
         top: 64px;
     }
+
     .sidebar-songs {
         display: flex;
         flex-direction: column;
@@ -104,36 +87,9 @@
         gap: 17px;
     }
 
-    .sidebar-song {
-        display: flex;
-        gap: 10px;
-    }
-
-    .sidebar-song a {
-        display: contents;
-    }
-
     :global(.sidebar-songs .flat-icon) {
         color: var(--text-color-info);
         opacity: 0.6; /* @todo: temp? opacity bad? */
         margin-top: 2px;
-    }
-
-    .sidebar-song-split {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    .sidebar-song-stats {
-        display: flex;
-        gap: 10px;
-    }
-
-    .sidebar-song-stat {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        color: var(--text-color-info);
     }
 </style>

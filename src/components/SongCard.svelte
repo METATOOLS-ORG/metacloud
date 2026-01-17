@@ -3,13 +3,13 @@
 	import { getAvatarAssetUrl, getCoverAssetUrl } from "$lib/assets";
 	import { globalAudioState } from "$lib/state/audioState.svelte";
 	import CommentIcon from "./icons/CommentIcon.svelte";
+	import HashtagIcon from "./icons/HashtagIcon.svelte";
 	import HeartIcon from "./icons/HeartIcon.svelte";
 	import PlayIcon from "./icons/PlayIcon.svelte";
 	import RepostIcon from "./icons/RepostIcon.svelte";
 	import SketchIcon from "./icons/SketchIcon.svelte";
 	import VerifiedIcon from "./icons/VerifiedIcon.svelte";
 	import WipIcon from "./icons/WIPIcon.svelte";
-	import MiniGlobalPlayer from "./MiniGlobalPlayer.svelte";
 	import WavesurferPlayer from "./WavesurferPlayer.svelte";
     let playing = $state(false);
     const { song, user } = $props();
@@ -49,7 +49,7 @@
             <div class="songcard-head">
                 <div class="songcard-author">
                     <a class="songcard-author-link" href="/@{song.author.username}">
-                        <img src={getAvatarAssetUrl(song.author.avatarAssetId)} height="20px" alt="author avatar"/>
+                        <img class="avatar" src={getAvatarAssetUrl(song.author.avatarAssetId)} height="20px" alt="author avatar"/>
                         <span>{song.author.displayName}</span>
                     </a>
                     <!-- @todo: user database verified field -->
@@ -108,7 +108,8 @@
                     32
                 </div>
                 <span class="songcard-genre-tag">
-                    #{song.genre}
+                    <HashtagIcon/>
+                    {song.genre}
                 </span>
             </div>
         </div>
@@ -121,7 +122,7 @@
     }
     .songcard {
         /* border-bottom: var(--border); */
-        padding: 16px;
+        padding: 16px 18px;
         display: flex;
         gap: 17px;
         background: var(--primary-background);
@@ -173,6 +174,9 @@
         align-items: center;
         min-height: 20px;
     }
+    .songcard-title-right {
+        gap: 5px;
+    }
     .songcard-title-tag {
         padding: 4px 5px;
         /* @todo: css variable? will be weird on light themes */
@@ -219,13 +223,20 @@
     }
 
     .songcard-genre-tag {
+        display: flex;
+        gap: 4px;
         padding: 6px 8px;
+        justify-content: center;
         color: var(--text-color-info);
         /* @todo: css variable? will be weird on light themes */
         background: rgba(255, 255, 255, 0.08);
-
     }
 
+    :global(.songcard-genre-tag > .flat-icon) {
+
+        color: var(--text-color-info);
+
+    }
     /* @todo: move to global and make a nolink class? */
     a {
         display: contents;
@@ -244,7 +255,4 @@
         color: var(--text-color-info);
         opacity: 0.6;
     }
-
-
-
 </style>
