@@ -14,6 +14,7 @@
 	import { invalidate } from "$app/navigation";
 	import api from "$lib/api";
 	import { getFormData } from "$lib/forms";
+	import { PUBLIC_WEBSITE_NAME_CAPS } from "$env/static/public";
 
     const { user } = $props();
 
@@ -130,7 +131,7 @@
             />
             <div class="upload-songfile-warning">
                 <WarningIcon/>
-                <span class="info">Metacloud is for posting your own music, not for reuploads. Do not upload other people's copyrighted music, or your account will be banned. Remixes and flips are generally fine.</span>
+                <span class="info">{PUBLIC_WEBSITE_NAME_CAPS} is for posting your own music, not for reuploads. Do not upload other people's copyrighted music, or your account will be banned. Remixes and flips are generally fine.</span>
             </div>
         </div>
    {/if}
@@ -210,10 +211,11 @@
         display: flex;
         flex-direction: column;
         /* @todo: css variable */
-        background: rgba(0, 0, 0, 0.15);
+        background: var(--upload-card-background);
     }
     .upload-songfile, .upload-metadata {
         padding: 16px;
+        max-width: 570px;
     }
     .upload-intro {
         display: flex;

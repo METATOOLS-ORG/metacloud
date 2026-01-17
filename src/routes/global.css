@@ -36,6 +36,7 @@
     --footer-background: hsl(235, 12%, 20%);
     --sidebar-background: hsl(247, 12%, 17%); /*idea5: hsl(259, 11%, 19%);*/
     --progress-bar-background: #B2B2B2;
+    --upload-card-background: #1b1a22;
     /*--button-text-color: #d5d5d5; */
     --button-text-color: var(--text-color);
     --file-background: rgba(0, 0, 0, .26);
