@@ -6,7 +6,6 @@
 	import SearchIcon from "$components/icons/SearchIcon.svelte";
 	import PageHead from "$components/PageHead.svelte";
 	import QuickUploadCard from "$components/QuickUploadCard.svelte";
-	import QuickUploadCardv2 from "$components/QuickUploadCardv2.svelte";
 	import SidebarFooter from "$components/SidebarFooter.svelte";
 	import SidebarSong from "$components/SidebarSong.svelte";
     import SongCard from "$components/SongCard.svelte";
@@ -37,7 +36,7 @@
     <section class="content">
         <PageHead text="Recent songs" icon={SearchIcon}/>
         {#if data.user}
-            <QuickUploadCardv2 user={data?.user}/>
+            <QuickUploadCard user={data?.user}/>
         {/if}
         <section class="songs">
             {#each data.songs as song}

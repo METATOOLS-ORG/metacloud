@@ -1,47 +1,25 @@
 <script lang="ts">
-    import { getAssetUrl, getAvatarAssetUrl } from '$lib/assets';
-    import MiniAssetGlobalPlayer from './MiniAssetGlobalPlayer.svelte';
+	import AddIcon from "./icons/AddIcon.svelte";
+	import DiskIcon from "./icons/DiskIcon.svelte";
+	import SketchIcon from "./icons/SketchIcon.svelte";
+	import TextIcon from "./icons/TextIcon.svelte";
+	import SketchGuideVector from "./SketchGuideVector.svelte";
     import AssetUploader from './AssetUploader.svelte';
     import CheckboxField from './CheckboxField.svelte';
-    import TextField from './TextField.svelte';
-    import { getFormData } from '$lib/forms';
-    import ErrorMessage from './ErrorMessage.svelte';
-	import DiceIcon from './icons/DiceIcon.svelte';
-	import ExportIcon from './icons/ExportIcon.svelte';
-	import HeartIcon from './icons/HeartIcon.svelte';
-	import { invalidate } from '$app/navigation';
-	import AddIcon from './icons/AddIcon.svelte';
-	import ToggleField from './ToggleField.svelte';
-	import api from '$lib/api';
+	import TextField from "./TextField.svelte";
+	import ToggleField from "./ToggleField.svelte";
+	import DiceIcon from "./icons/DiceIcon.svelte";
+	import ErrorMessage from "./ErrorMessage.svelte";
+	import WarningIcon from "./icons/WarningIcon.svelte";
+	import { invalidate } from "$app/navigation";
+	import api from "$lib/api";
+	import { getFormData } from "$lib/forms";
 
-    let fileUploaded = $state(false);
-    let file = $state<File | null>(null);
-    let songAssetId = $state<string | null>(null);
-    let songTitle = $state('');
-    let assetUploader: AssetUploader | null = $state() as AssetUploader | null;
-    let forceShowUploader = $state(false);
     const { user } = $props();
 
-    // changing unique resets the component
-    let unique = $state({});
-    let resetUpload = () => {
-        fileUploaded = false;
-        file = null;
-        songAssetId = null;
-        unique = {};
-    };
-
-    let suggestedGenres = [
-        'electronic',
-        'edm',
-        'rave',
-        'trap',
-        'complextro',
-        'experimental',
-        'ambient'
-    ];
-
-    let error = $state('');
+    let newSong = $state(false);
+    let error = $state("");
+    let songAsset: string | null = $state(null);
 
     function onSubmit(e: SubmitEvent) {
         const formData = getFormData(e);
@@ -61,18 +39,22 @@
         */
         api.post('song', {
             coverAssetId: formData.get('coverAssetId'),
-            audioAssetId: formData.get('audioAssetId'),
+            audioAssetId: songAsset,
             title: formData.get('title'),
             desc: formData.get('desc'),
-            genre: formData.get('genre'),
-            url: formData.get('url'),
-            tagPin: formData.get('tag-pin') === 'on',
-            tagWip: formData.get('tag-wip') === 'on',
-            tagFeedback: formData.get('tag-feedback') === 'on'
+            genre: formData.get('tags'),
+            url: formData.get('link'),
+            tagPin: formData.get('pin') === 'on',
+            tagWip: formData.get('wip') === 'on',
+            tagFeedback: formData.get('feedback') === 'on'
         })
         .then((resp) => {
             invalidate('/api/song');
-            resetUpload();
+            // @todo: this is supposed to refresh the song sidebar but it doesn't
+            // probably because that pulls from pagedata user instead, no idea how to fix that
+            // invalidate('/api/user/self');
+            resetComponent();
+            // resetUpload();
             // location.href = "/@" + resp.username;
         })
         .catch((err) => {
@@ -80,204 +62,278 @@
         });
     }
 
-    let replaceAudio = () => {
-        assetUploader?.click();
+    let songTitle = $state("");
+    async function randomizerTitle() {
+        try {
+            let resp = await api.get("randomizer/title")
+            songTitle = resp.title;
+        } catch (err) {
+            console.error("Failed to fetch randomizer title:", err);
+        }
+    }
+
+    // Changing unique resets the component
+    let unique = $state({});
+    let resetComponent = () => {
+        newSong = false;
+        songAsset = null;
+        songTitle = "";
+        unique = {};
     };
 </script>
 
 {#key unique}
-    <form onsubmit={onSubmit} class="quickupload-card">
+<section class="upload">
+    <!-- Post type selector (pre-click) -->
+    {#if !newSong}
+        <div class="upload-intro">
+            <div class="upload-intro-buttons">
+                <button onclick={()=>{newSong = true}}><SketchIcon/>New sketch</button>
+                <button onclick={()=>{newSong = true}}><DiskIcon/>New release</button>
+                <button><TextIcon/>New post</button>
+            </div>
+            <!-- <SketchGuideVector/> -->
+       </div>
+
+   {/if}
+
+   <!-- New song file upload -->
+   {#if newSong && !songAsset}
         <ErrorMessage {error} />
-        <AssetUploader
-            height="48px"
-            icon="speaker"
-            caption="Click or drag audio to upload"
-            onFileDragged={(newFile: File) => {
-                file = newFile;
-                forceShowUploader = true;
-            }}
-            onAssetUploaded={(id: string) => {
-                songAssetId = id;
-                fileUploaded = true;
-                forceShowUploader = false;
-            }}
-            hidden={fileUploaded && !forceShowUploader}
-            bind:this={assetUploader}
-            name="audioAssetId"
-            onError={(err: string) => {
-                error = err;
-            }}
-        />
-        {#if fileUploaded}
-            <section class="quickupload-split">
+        <div class="upload-songfile">
+            <div class="upload-songfile-head">
+                <div class="upload-songfile-head-text">
+                    <DiskIcon/>
+                    <h1>Upload an audio file <a class="noblue" href="#a" onclick={()=>{songAsset = "1"}}>or debug skip</a></h1>
+                </div>
+                <!-- <button onclick={newSong = false}>Back</button> -->
+            </div>
+            <span class="info">Max 30 MB - Supported: mp3, wav, flac, ogg</span>
+            <AssetUploader
+                height="64px"
+                icon="speaker"
+                caption="Click or drag audio to upload"
+                onFileDragged={(file: File) => {
+                    console.log("on file dragged", file.name);
+                    // Prefill song title and remove file extension using regex
+                    songTitle = file?.name.replace(/\.[^/.]+$/, "");
+                }}
+                onAssetUploaded={(id: string) => {
+                    songAsset = id;
+                }}
+                name="audioAssetId"
+                onError={(err: string) => {
+                    error = err;
+                    // songTitle = "";
+                }}
+            />
+            <div class="upload-songfile-warning">
+                <WarningIcon/>
+                <span class="info">Metacloud is for posting your own music, not for reuploads. Do not upload other people's copyrighted music, or your account will be banned. Remixes and flips are generally fine.</span>
+            </div>
+        </div>
+   {/if}
+
+   <!-- New song metadata -->
+   {#if newSong && songAsset}
+        <form class="upload-metadata upload-split" onsubmit={onSubmit}>
+            <div class="upload-left">
                 <AssetUploader
-                    width="121px"
-                    height="121px"
+                    width="122px"
+                    height="122px"
                     imageMode
                     center
                     caption="Drag cover"
                     name="coverAssetId"
                 />
-                <div class="quickupload-right">
-                    <div class="quickupload-author">
-                        {#if user}
-                            <img
-                                src={getAvatarAssetUrl(user.avatarAssetId)}
-                                height="18px"
-                                alt="author avatar"
-                            />
-                            <span>{user.displayName}</span>
-                        {/if}
+                <div class="upload-field">
+                    <span class="title">Type</span>
+                    <div class="upload-field-toggle-group">
+                        <ToggleField name="sketch" icon={SketchIcon} label="Sketch" checked/>
+                        <ToggleField name="release" icon={DiskIcon} label="Release"/>
                     </div>
-                    <div class="quickupload-top">
-                        <input
-                            type="text"
-                            class="quickupload-title"
-                            name="title"
-                            placeholder="Song title"
-                            bind:value={songTitle}
-                        />
-                        <button type="button"><DiceIcon/>Title</button>
-                        <button type="button"><DiceIcon/>Cover</button>
+                </div>
+            </div>
+            <div class="upload-middle">
+                <div class="upload-field">
+                    <span class="title">Song title</span>
+                    <input type="text" name="title" autocomplete="one-time-code" bind:value={songTitle} placeholder="My new song" />
+                </div>
+                <div class="upload-field">
+                    <span class="title">Description</span>
+                    <textarea name="desc" autocomplete="one-time-code" placeholder="Any links or details (optional)" rows=2></textarea>
+                </div>
+                <div class="upload-field">
+                    <div class="upload-field-title">
+                        <span class="title">Tags</span>
+                        <CheckboxField name="test" label="first tag is genre" checked/>
                     </div>
-                    <div class="quickupload-middle">
-                        <!-- @todo: rename songassetid to audioassetid -->
-                        <MiniAssetGlobalPlayer {songAssetId} {user} />
-                        <button type="button" class="replace-audio" onclick={replaceAudio}><ExportIcon/></button>
+                    <input type="text" name="tags" autocomplete="one-time-code" placeholder="electronic, comma, seperated" />
+                </div>
+                <div class="upload-field">
+                    <span class="title">Link</span>
+                    <div class="upload-field-input-group">
+                        <span class="upload-field-input-prefix">/@litevex/</span>
+                        <input type="text" name="link" autocomplete="one-time-code" placeholder="songname" style:flex={1}/>
                     </div>
-                    <div class="quickupload-bottom">
-                        <div class="quickupload-tags">
-                            <ToggleField name="tag-pin" icon={AddIcon} label="Pin" />
-                            <ToggleField name="tag-wip" icon={AddIcon} label="WIP" />
-                            <ToggleField name="tag-feedback" icon={AddIcon} label="Feedback" />
+                </div>
+            </div>
+            <div class="upload-right">
+                <div class="upload-right-top">
+                    <div class="upload-right-toggles">
+                        <CheckboxField name="pin" label="Pin as latest release" checked/>
+                        <CheckboxField name="wip" label="Work in progress" checked/>
+                        <CheckboxField name="feedback" label="Feedback wanted" checked/>
+                        <CheckboxField name="downloads" label="Allow downloads" checked/>
+                    </div>
+                    <div class="upload-field">
+                        <span class="title">Randomizer</span>
+                        <div class="upload-field-toggle-group">
+                            <button type="button" onclick={randomizerTitle}><DiceIcon/><span>Random title</span></button>
+                            <button type="button"><DiceIcon/><span>Random cover</span></button>
                         </div>
-                        <div class="quickupload-actions">
-                            <button type="button" onclick={resetUpload}>Cancel</button>
-                            <input class="accent" type="submit" value="Publish"/>
-                        </div>
                     </div>
                 </div>
-            </section>
-            <section class="quickupload-extra">
-                <div class="quickupload-extra-left">
-                    <datalist id="genre-list">
-                        {#each suggestedGenres as genre}
-                            <option value={genre}></option>
-                        {/each}
-                    </datalist>
-                    <TextField
-                        name="genre"
-                        label="Genre"
-                        placeholder="electronic (optional)"
-                        oneline
-                        required={false}
-                        datalistId="genre-list"
-                        stretch={true}
-                        minLabelWidth="40px"
-                    />
-                    <TextField
-                        name="url"
-                        label="Link"
-                        oneline
-                        showRequired={false}
-                        prefix="/@{user?.username}/"
-                        placeholder="my-song"
-                        minLabelWidth="40px"
-                    />
+                <div class="upload-right-bottom">
+                    <button type="button" onclick={resetComponent}>Cancel</button>
+                    <input type="submit" class="accent" value="Publish"/>
                 </div>
-                <div class="quickupload-extra-right">
-                    <label class="quickupload-desc">
-                        <!-- <span>Description:</span> -->
-                        <textarea
-                            name="desc"
-                            aria-label="Song description"
-                            placeholder="Write a description here! (optional)"
-                            rows="5"
-                        ></textarea>
-                    </label>
-                </div>
-            </section>
-        {/if}
-    </form>
+            </div>
+        </form>
+   {/if}
+</section>
 {/key}
 
 <style>
-    .quickupload-card {
+    .upload {
         display: flex;
         flex-direction: column;
-        /* border-bottom: var(--border); */
-        /* @todo: kinda dumb that i had to override this, maybe remove
-                  default form styling in global.css instead */
-        align-items: stretch;
-        gap: 0;
+        /* @todo: css variable */
+        background: rgba(0, 0, 0, 0.15);
     }
-    .quickupload-card > :global(.file-uploader) {
-        border: none;
-    }
-    .quickupload-split {
+    .upload-songfile, .upload-metadata {
         padding: 16px;
+    }
+    .upload-intro {
+        display: flex;
+        flex-direction: column;
+        padding: 14px;
+    }
+    .upload-intro-buttons {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+    .upload-split {
         display: flex;
         flex-direction: row;
-        flex: 1;
+        align-items: stretch;
         gap: 16px;
-        /* border-bottom: var(--border); */
+        justify-content: space-between;
     }
-    .quickupload-right {
+    .upload-left {
         display: flex;
-        gap: 9px;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .upload-middle {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
         flex: 1;
+    }
+    .upload-right {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        justify-content: space-between;
+    }
+    .upload-right-top {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .upload-right-toggles {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .upload-right-bottom {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+    .upload-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .upload-field-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .upload-field .title {
+        display: flex;
+        align-items: center;
+        /* This creates consistency with the tags title which is
+           taller than the others due to having a checkbox inside */
+        min-height: 19px;
+    }
+    :global(.upload-field-title .form-field) {
+        color: var(--text-color-info);
+    }
+    .upload-field-input-group {
+        display: flex;
+        align-items: center;
+    }
+    .upload-field-input-group input {
+        min-width: 0;
+        /* border-left: none; */
+    }
+    .upload-field-input-prefix {
+        /*background: rgba(255, 255, 255, 0.08); */ /* @todo: css variable */
+        background: var(--input-background);
+        color: var(--text-color-info);
+        padding: 7px 8px;
+        /* border: 1px solid var(--input-border-color); */
+
+    }
+    .upload-field-toggle-group {
+        display: flex;
         flex-direction: column;
     }
-    .quickupload-top {
-        display: flex;
-        gap: 6px;
+
+    /*:global(.upload-field-toggle-group button) {
+        border: var(--border);
     }
-    .quickupload-bottom {
+    :global(.upload-field-toggle-group button:first-of-type) {
+        border-bottom: none;
+    }*/
+    .upload-songfile {
         display: flex;
-        gap: 6px;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .upload-songfile-warning {
+        display: flex;
+        gap: 8px;
+    }
+    :global(.upload-songfile-warning .flat-icon) {
+        margin-top: 3px;
+    }
+    .upload-songfile-warning span{
+        /* @todo: set this on all spans but without breaking stuff */
+        line-height: 16px;
+    }
+    .upload-songfile-head {
+        display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    .quickupload-middle {
-        display: flex;
-        gap: 6px;
-        align-items: center;
-    }
-    .quickupload-tags,
-    .quickupload-actions {
-        display: flex;
-        gap: 6px;
-    }
-    .quickupload-title {
-        flex: 1;
-    }
-    .quickupload-author {
+    .upload-songfile-head-text {
         display: flex;
         align-items: center;
-        gap: 6px;
-    }
-    .quickupload-extra {
-        background: hsl(235, 12%, 21%); /* @todo: css variable */
-        display: flex;
-        flex-direction: row;
-        padding: 16px;
-        gap: 10px;
-    }
-    .quickupload-extra-left {
-        display: flex;
-        flex-direction: column;
-        gap: 9px;
-    }
-    .quickupload-extra-right {
-        flex: 1;
-    }
-    .quickupload-desc {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        flex: 1;
-    }
-    button.replace-audio {
-        padding: 6px;
+        gap: 8px;
     }
 </style>
