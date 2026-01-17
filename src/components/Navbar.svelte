@@ -12,11 +12,11 @@
     interface NavbarPage {
         title: string, url: string, icon: Component
     }
+
     const navbarPages: NavbarPage[] = [
         { title: "Explore", url: "/", icon: SearchIcon },
         { title: "Search", url: "/tests", icon: SearchIcon }
     ];
-
 </script>
 
 <header class="navbar">

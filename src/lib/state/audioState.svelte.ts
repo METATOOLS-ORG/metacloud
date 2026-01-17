@@ -13,7 +13,7 @@ interface GlobalAudioState {
     seeking: boolean,
     playSong: (song: SongDTO) => void,
     togglePlayback: () => void
-    playUnpublishedAudioAsset: (songAssetId: number, user: any) => void;
+    playUnpublishedAudioAsset: (audioAssetId: string, user: any) => void;
 }
 
 export const globalAudioUpdate = () => {
