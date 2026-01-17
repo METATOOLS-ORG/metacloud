@@ -210,9 +210,9 @@
     .songcard-action {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 7px;
         justify-content: center;
-        padding: 5px 8px;
+        padding: 4px 8px;
         min-width: 43px;
         border: none;
     }
