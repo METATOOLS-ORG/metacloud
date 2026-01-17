@@ -103,6 +103,7 @@
         justify-content: space-between;
         border-top: var(--border);
         background: var(--globalplayer-background);
+        backdrop-filter: blur(24px);
         position: fixed;
         bottom: 0;
         width: var(--page-width);
