@@ -32,6 +32,7 @@
     --accent-border-color: rgba(0, 0, 0, 0.1);
     --input-background: rgba(0, 0, 0, .25);
     --input-focus-background: hsl(231, 13%, 8%);
+    --input-prefix-background: rgba(0, 0, 0, .5);
     --footer-background: hsl(235, 12%, 20%);
     --sidebar-background: hsl(247, 12%, 17%); /*idea5: hsl(259, 11%, 19%);*/
     --progress-bar-background: #B2B2B2;

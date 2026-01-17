@@ -293,9 +293,9 @@
     }
     .upload-field-input-prefix {
         /*background: rgba(255, 255, 255, 0.08); */ /* @todo: css variable */
-        background: var(--input-background);
+        background: var(--input-prefix-background);
         color: var(--text-color-info);
-        padding: 7px 8px;
+        padding: 8px 8px;
         /* border: 1px solid var(--input-border-color); */
 
     }
