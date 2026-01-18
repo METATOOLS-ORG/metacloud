@@ -7,6 +7,7 @@ import { getUserByTag, prisma } from '$lib/server/database';
 import { checkAuth, generateToken } from '$lib/server/auth';
 import type { UserProfileDTO } from '$lib/dto';
 import 'dotenv/config'
+import { PUBLIC_WEBSITE_NAME } from '$env/static/public';
 
 /** Create a new user (sign up) */
 export const POST: RequestHandler = async (req) => {
@@ -40,7 +41,8 @@ export const POST: RequestHandler = async (req) => {
             username: data.username,
             displayName: data.displayName,
             email: data.email,
-            passwordHash: data.password
+            passwordHash: data.password,
+			bio: `I'm new to ${PUBLIC_WEBSITE_NAME}!`
         }
     });
     let token = generateToken(user.id);
