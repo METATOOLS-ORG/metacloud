@@ -1,7 +1,7 @@
 import { error, json } from "@sveltejs/kit";
 import type { RequestHandler } from './$types';
 import { getAuthedUser } from "$lib/server/auth";
-import { writeFile } from 'fs/promises';
+import fs, { writeFile } from 'fs/promises';
 import { ulid } from "ulid";
 import path from "path";
 import { prisma } from "$lib/server/database";
@@ -11,6 +11,8 @@ import type { AssetUploadRespDTO } from "$lib/dto";
 import { exec } from "child_process";
 import { promisify } from "util";
 import { getAudioDurationInSeconds } from "get-audio-duration";
+import { PUBLIC_STORAGE_MODE } from '$env/static/public';
+import { PutObjectCommand } from '@aws-sdk/client-s3';
 
 const execAsync = promisify(exec);
 
@@ -44,6 +46,31 @@ export const GET: RequestHandler = async ({ request, cookies, locals }) => {
 function MbToBytes(mb: number) {
     return Math.round(mb * 1024 * 1024);
 }
+
+// @todo: is this ok?
+const UPLOAD_DIR = path.join(process.cwd(), 'static', 'ugc_uploads');
+
+interface FileUploadResponse {
+	url: string;
+	key: string;
+}
+
+async function uploadFileLocally(
+	data: Uint8Array | Buffer,
+	key: string,
+	mimetype: string
+): Promise<FileUploadResponse> {
+	const filePath = path.join(UPLOAD_DIR, key);
+	const fileDir = path.dirname(filePath);
+
+	await fs.writeFile(filePath, data);
+
+	return {
+		url: `/static/ugc_uploads/${key}`,
+		key: key
+	}
+}
+
 
 export const POST: RequestHandler = async (req) => {
     const user = await getAuthedUser(req);
@@ -116,16 +143,21 @@ export const POST: RequestHandler = async (req) => {
     }
 
 
-    // Upload the file to S3
-    let uploadResult;
+
+    // Upload the file either locally or thru S3
+    let uploadResult: FileUploadResponse;
     try {
-        uploadResult = await s3.uploadFile(fileData, assetId, file.type);
-    } catch (err) {
+		if (PUBLIC_STORAGE_MODE === "S3") {
+			uploadResult = await s3.uploadFile(fileData, assetId, file.type);
+		} else if (PUBLIC_STORAGE_MODE === "LOCAL") {
+			uploadResult = await uploadFileLocally(fileData, assetId, file.type);
+		}
+	} catch (err) {
         console.trace(err);
         error(500, {message: "Failed to write file to server", code: "FILE_WRITE_FAILED"});
     }
+	console.log("!!!! UPLOAD RESULT !!!!", uploadResult!);
 
-    
     await prisma.asset.create({
         data: {
             id: assetId,
@@ -143,5 +175,5 @@ export const POST: RequestHandler = async (req) => {
         }
     });
     // todo: get rid of url because it is always undefined
-    return json({id: assetId, url: uploadResult.url} satisfies AssetUploadRespDTO);
+    return json({id: assetId, url: uploadResult!.url} satisfies AssetUploadRespDTO);
 }
