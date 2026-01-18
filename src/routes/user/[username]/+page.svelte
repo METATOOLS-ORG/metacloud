@@ -9,9 +9,20 @@
 	import SongCard from '$components/SongCard.svelte';
 	import VerifiedIcon from '$components/icons/VerifiedIcon.svelte';
 	import SidebarFooter from '$components/SidebarFooter.svelte';
+    import DiskIcon from '$components/icons/DiskIcon.svelte';
+    import SketchIcon from '$components/icons/SketchIcon.svelte';
     const { data } = $props();
 	const username = page.params.username;
     let isOwnProfile = $derived(page.params.username == data.user?.username);
+
+    // @todo: placeholder: using latest song instead of actual pinned song from db
+    let pinnedSong = data.profile.songs[0];
+    let releases = data.profile.songs.filter(song => {
+        return song.release && song.id !== pinnedSong.id;
+    })
+    let sketches = data.profile.songs.filter(song => {
+        return song.sketch && song.id !== pinnedSong.id;
+    })
 </script>
 
 <Meta title="{username} (@{username})" />
@@ -53,9 +64,19 @@
         </section>
 
         <section class="songs">
-            {#each data.profile.songs as song}
-                <SongCard {song} user={data.user}/>
-            {/each}
+            <SongCard song={pinnedSong} user={data.user}/>
+            <PageHead icon={DiskIcon} text="Releases"/>
+            {#if releases.length !== 0}
+                {#each releases as song}
+                    <SongCard {song} user={data.user}/>
+                {/each}
+            {/if}
+            {#if sketches.length !== 0}
+                <PageHead icon={SketchIcon} text="Sketches"/>
+                {#each sketches as song}
+                    <SongCard {song} user={data.user}/>
+                {/each}
+            {/if}
         </section>
     </div>
     <aside class="sidebar">

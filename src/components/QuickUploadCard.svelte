@@ -110,7 +110,7 @@
                 </div>
                 <!-- <button onclick={newSong = false}>Back</button> -->
             </div>
-            <span class="info">Max 30 MB - Supported: mp3, wav, flac, ogg</span>
+            <span class="info">Max 60 MB - Supported: mp3, wav, flac, ogg</span>
             <AssetUploader
                 audioOnly
                 height="64px"
@@ -132,7 +132,10 @@
             />
             <div class="upload-songfile-warning">
                 <WarningIcon/>
-                <span class="info">{PUBLIC_WEBSITE_NAME_CAPS} is for posting your own music, not for reuploads or AI generated "music". Do not upload other people's copyrighted music, or your account will be banned. Remixes and flips are generally fine.</span>
+                <span class="info">
+                    {PUBLIC_WEBSITE_NAME_CAPS} is for posting your own music, not for reuploads or AI generated "music". Do not upload other people's copyrighted music, or your account may be banned. Remixes and flips are generally fine. <a href="#">Learn more</a>
+                </span>
+
             </div>
         </div>
    {/if}
@@ -150,6 +153,7 @@
                     caption="Drag cover"
                     name="coverAssetId"
                 />
+                <CheckboxField name="coverNsfw" label="Cover is 18+"/>
                 <div class="upload-field">
                     <span class="title">Type</span>
                     <div class="upload-field-toggle-group">
@@ -185,9 +189,9 @@
             <div class="upload-right">
                 <div class="upload-right-top">
                     <div class="upload-right-toggles">
-                        <CheckboxField name="pin" label="Pin as latest release" checked/>
-                        <CheckboxField name="wip" label="Work in progress" checked/>
-                        <CheckboxField name="feedback" label="Feedback wanted" checked/>
+                        <CheckboxField name="pin" label="Pin as latest release"/>
+                        <CheckboxField name="wip" label="Work in progress"/>
+                        <CheckboxField name="feedback" label="Feedback wanted"/>
                         <CheckboxField name="downloads" label="Allow downloads" checked/>
                     </div>
                     <div class="upload-field">
