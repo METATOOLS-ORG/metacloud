@@ -45,7 +45,9 @@
         </section>
     </section>
     <aside class="sidebar">
-        <div class="sidebar-spacer"></div>
+        {#if data.user && data.user.songs.length > 0}
+            <div class="sidebar-spacer"></div>
+        {/if}
         <div class="sidebar-content-wrapper">
             <PageHead sidebar text="My songs" icon={DiskIcon}/>
             <div class="sidebar-content">
