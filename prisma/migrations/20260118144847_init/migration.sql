@@ -26,9 +26,11 @@ CREATE TABLE "Song" (
     "audioAssetId" TEXT NOT NULL,
     "coverAssetId" TEXT,
     "authorId" TEXT NOT NULL,
-    "tagPin" BOOLEAN NOT NULL,
     "tagWip" BOOLEAN NOT NULL,
     "tagFeedback" BOOLEAN NOT NULL,
+    "sketch" BOOLEAN NOT NULL DEFAULT false,
+    "release" BOOLEAN NOT NULL DEFAULT false,
+    "pinned" BOOLEAN NOT NULL DEFAULT false,
     CONSTRAINT "Song_audioAssetId_fkey" FOREIGN KEY ("audioAssetId") REFERENCES "Asset" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "Song_coverAssetId_fkey" FOREIGN KEY ("coverAssetId") REFERENCES "Asset" ("id") ON DELETE SET NULL ON UPDATE CASCADE,
     CONSTRAINT "Song_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE

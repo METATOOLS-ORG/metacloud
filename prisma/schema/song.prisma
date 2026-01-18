@@ -20,6 +20,7 @@ model Song {
 
     sketch  Boolean @default(false)
     release Boolean @default(false)
+    pinned  Boolean @default(false)
 
     likes    SongLike[]    @relation("SongLikes")
     comments SongComment[] @relation("SongComments")

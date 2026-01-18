@@ -74,6 +74,7 @@ export interface SongDTO {
     tagFeedback: boolean,
 	sketch: boolean,
 	release: boolean,
+	pinned: boolean,
     duration?: number | null,
     author: {
         id: string,
@@ -127,6 +128,7 @@ export function CreateSongDTO(song: SongDTO_Payload): SongDTO {
         tagFeedback: song.tagFeedback,
 		sketch: song.sketch,
 		release: song.release,
+		pinned: song.pinned,
         author: {
             id: song.author.id,
             displayName: song.author.displayName,
