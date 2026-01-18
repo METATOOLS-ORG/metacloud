@@ -45,16 +45,19 @@
         </section>
     </section>
     <aside class="sidebar">
-        <PageHead sidebar text="My songs" icon={DiskIcon}/>
-        <div class="sidebar-content">
-            {#if data.user}
-                <section class="sidebar-songs">
-                    {#each data.user.songs as song}
-                        <SidebarSong {song}/>
-                    {/each}
-                </section>
-            {/if}
-            <SidebarFooter/>
+        <div class="sidebar-spacer"></div>
+        <div class="sidebar-content-wrapper">
+            <PageHead sidebar text="My songs" icon={DiskIcon}/>
+            <div class="sidebar-content">
+                {#if data.user}
+                    <section class="sidebar-songs">
+                        {#each data.user.songs as song}
+                            <SidebarSong {song}/>
+                        {/each}
+                    </section>
+                {/if}
+                <SidebarFooter/>
+            </div>
         </div>
     </aside>
 </div>
@@ -72,11 +75,23 @@
         /* border-top: var(--border); */
     }
 
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+    }
+    .sidebar-content-wrapper {
+        position: sticky;
+        bottom: 0;
+    }
+
     .sidebar-content {
         display: flex;
         flex-direction: column;
-        position: sticky;
-        top: 64px;
+    }
+
+    .sidebar-spacer {
+        flex: 1;
+        min-height: 50vh;
     }
 
     .sidebar-songs {

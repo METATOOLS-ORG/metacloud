@@ -189,15 +189,6 @@
         flex-direction: column;
         gap: 3px;
     }
-    .songcard-player audio {
-        width: 100%;
-    }
-    .songcard-player-comment {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 2px;
-    }
     .songcard-bottom {
         display: flex;
         justify-content: space-between;
