@@ -45,7 +45,8 @@
         </section>
     </section>
     <aside class="sidebar">
-        {#if data.user && data.user.songs.length > 0}
+        <!-- @todo: workaround, breaks on screen sizes etc -->
+        {#if data.user && data.user.songs.length > 8}
             <div class="sidebar-spacer"></div>
         {/if}
         <div class="sidebar-content-wrapper">

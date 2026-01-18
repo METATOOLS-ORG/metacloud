@@ -7,6 +7,7 @@
     import NavbarItem from './NavbarItem.svelte';
 	import AddIcon from './icons/AddIcon.svelte';
 	import HeartIcon from './icons/HeartIcon.svelte';
+    import DiskIcon from '$components/icons/DiskIcon.svelte';
     let { user, authLoaded } = $props();
 
     interface NavbarPage {
@@ -14,7 +15,7 @@
     }
 
     const navbarPages: NavbarPage[] = [
-        { title: "Explore", url: "/", icon: SearchIcon },
+        { title: "Explore", url: "/", icon:  DiskIcon},
         { title: "Search", url: "/tests", icon: SearchIcon }
     ];
 </script>
