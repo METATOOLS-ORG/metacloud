@@ -1,13 +1,6 @@
-import { AssetType, AssetPurpose, PrismaClient } from "@prisma/client";
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
-import fs from 'fs/promises';
-import 'dotenv/config'
+import 'dotenv/config';
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const DEFAULT_UPLOAD_PATH = join(__dirname, "..", "uploads_default");
-const UPLOAD_PATH = join(__dirname, "..", "uploads");
 
 // Create default fields in database
 async function main() {
@@ -17,7 +10,7 @@ async function main() {
     if (process.env.ADMIN_PASSWORD == "CHANGE_ME")
         throw new Error("ADMIN_PASSWORD in .env is still set to the default value CHANGE_ME, please change it");
 
-    prisma.user.create({
+    await prisma.user.create({
         data: {
             username: "admin",
             email: "none", // @todo?
@@ -26,6 +19,5 @@ async function main() {
             bio: "Website administrator",
     }});
 }
-
 
 main();
