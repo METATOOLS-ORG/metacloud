@@ -9,7 +9,7 @@
     --accent-color: #db76b0; /* #dd85b7; */ /* #df8fbd */
     --accent-tinted-tag: hsl(277, 13%, 21%);
     --test: hsl(240, 9%, 9%);
-    --background: url("/assets/pattern.svg");/*hsl(233, 13%, 9%);*/
+    --background: url("/assets/pattern_px.png");/*hsl(233, 13%, 9%);*/
     /*url("/assets/background.png");*/
     --page-background: var(--primary-background);
     --banner-background: linear-gradient(178deg, #ff86fa, #ffc6a8);
