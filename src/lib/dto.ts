@@ -61,18 +61,19 @@ export function CreateSongCommentsDTO(comments: SongCommentDTO_Payload[]) {
 // -----------------------
 // SongDTO
 // -----------------------
-// @todo: do we need the ? if we do | null
 export interface SongDTO {
     id: string,
     date: Date,
     title: string,
     url: string,
-    genre: string,
+    genre?: string | null,
     audioAssetId: string,
     coverAssetId?: string | null,
     waveformJSON?: string | null,
     tagWip: boolean,
     tagFeedback: boolean,
+	sketch: boolean,
+	release: boolean,
     duration?: number | null,
     author: {
         id: string,
@@ -124,6 +125,8 @@ export function CreateSongDTO(song: SongDTO_Payload): SongDTO {
         duration: song.audioAsset.duration,
         tagWip: song.tagWip,
         tagFeedback: song.tagFeedback,
+		sketch: song.sketch,
+		release: song.release,
         author: {
             id: song.author.id,
             displayName: song.author.displayName,

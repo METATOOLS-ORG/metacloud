@@ -62,13 +62,18 @@
             <div class="songcard-title">
                 <div class="songcard-title-left">
                     <h1>{song.title}</h1>
-                    {#if song.tagWip}
+                    {#if song.sketch || song.tagWip}
                         <span class="songcard-title-tag wip">
-                            <SketchIcon/>
-                            wip
+                            {#if song.sketch}
+                                <SketchIcon/>
+                            {/if}
+                            {#if song.tagWip}
+                                <span>wip</span>
+                            {/if}
                             <!-- <WipIcon/> -->
                         </span>
                     {/if}
+
                 </div>
                 <div class="songcard-title-right">
                     {#if song.tagFeedback}

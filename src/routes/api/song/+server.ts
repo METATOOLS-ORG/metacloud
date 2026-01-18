@@ -18,9 +18,10 @@ export const POST: RequestHandler = async (req) => {
         genre: z.string().trim().max(24),
         // @todo: validate "kebab case"
         url: z.string().trim().max(48),
-        tagPin: z.boolean(),
         tagWip: z.boolean(),
-        tagFeedback: z.boolean()
+        tagFeedback: z.boolean(),
+		sketch: z.boolean(),
+		release: z.boolean(),
     });
 
     // @todo: implement asset validation (and add a purpose field too)
@@ -37,9 +38,10 @@ export const POST: RequestHandler = async (req) => {
             desc: data.desc,
             genre: data.genre,
             url: data.url,
-            tagPin: data.tagPin,
             tagWip: data.tagWip,
             tagFeedback: data.tagFeedback,
+			sketch: data.sketch,
+			release: data.release
         }
     });
 

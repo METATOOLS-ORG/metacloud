@@ -45,9 +45,10 @@
             desc: formData.get('desc'),
             genre: formData.get('tags'),
             url: formData.get('link'),
-            tagPin: formData.get('pin') === 'on',
             tagWip: formData.get('wip') === 'on',
-            tagFeedback: formData.get('feedback') === 'on'
+            tagFeedback: formData.get('feedback') === 'on',
+            sketch: formData.get('sketch') === 'on',
+            release: formData.get('release') === 'on',
         })
         .then((resp) => {
             invalidate('/api/song');
@@ -131,13 +132,14 @@
             />
             <div class="upload-songfile-warning">
                 <WarningIcon/>
-                <span class="info">{PUBLIC_WEBSITE_NAME_CAPS} is for posting your own music, not for reuploads. Do not upload other people's copyrighted music, or your account will be banned. Remixes and flips are generally fine.</span>
+                <span class="info">{PUBLIC_WEBSITE_NAME_CAPS} is for posting your own music, not for reuploads or AI generated "music". Do not upload other people's copyrighted music, or your account will be banned. Remixes and flips are generally fine.</span>
             </div>
         </div>
    {/if}
 
    <!-- New song metadata -->
    {#if newSong && songAsset}
+       <ErrorMessage {error} />
         <form class="upload-metadata upload-split" onsubmit={onSubmit}>
             <div class="upload-left">
                 <AssetUploader
@@ -220,7 +222,7 @@
     .upload-intro {
         display: flex;
         flex-direction: column;
-        padding: 14px;
+        padding: 14px 17px;
     }
     .upload-intro-buttons {
         display: flex;
