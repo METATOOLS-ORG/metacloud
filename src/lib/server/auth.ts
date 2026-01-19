@@ -1,5 +1,4 @@
-import type { Prisma, User } from "@prisma/client";
-import type { GetPayloadResult } from "@prisma/client/runtime/library";
+import type { Prisma } from '../../../prisma/generated/prisma/client';
 import { error, type Cookies, type RequestEvent } from "@sveltejs/kit";
 import { createHmac } from "node:crypto";
 import { getUserById, prisma } from "./database";

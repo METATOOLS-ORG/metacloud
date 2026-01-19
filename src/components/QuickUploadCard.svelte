@@ -24,20 +24,6 @@
 
     function onSubmit(e: SubmitEvent) {
         const formData = getFormData(e);
-        /*
-        const data = await validate(req, {
-            coverAssetId: z.string(),
-            audioAssetId: z.string(),
-            title: z.string().trim().max(24),
-            desc: z.string().trim().max(4000),
-            genre: z.string().trim().max(24),
-            // @todo: validate "kebab case"
-            url: z.string().trim().max(24),
-            tagWip: z.boolean(),
-            tagFeedback: z.boolean(),
-            tagClip: z.boolean()
-        });
-        */
         api.post('song', {
             coverAssetId: formData.get('coverAssetId'),
             audioAssetId: songAsset,
@@ -49,6 +35,7 @@
             tagFeedback: formData.get('feedback') === 'on',
             sketch: formData.get('sketch') === 'on',
             release: formData.get('release') === 'on',
+            pin: formData.get('pin') === 'on'
         })
         .then((resp) => {
             invalidate('/api/song');

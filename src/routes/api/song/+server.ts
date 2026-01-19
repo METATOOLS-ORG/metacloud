@@ -22,6 +22,7 @@ export const POST: RequestHandler = async (req) => {
         tagFeedback: z.boolean(),
 		sketch: z.boolean(),
 		release: z.boolean(),
+		pin: z.boolean(),
     });
 
     // @todo: implement asset validation (and add a purpose field too)
@@ -41,7 +42,8 @@ export const POST: RequestHandler = async (req) => {
             tagWip: data.tagWip,
             tagFeedback: data.tagFeedback,
 			sketch: data.sketch,
-			release: data.release
+			release: data.release,
+			pinned: data.pin
         }
     });
 

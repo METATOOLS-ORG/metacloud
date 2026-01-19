@@ -2,7 +2,6 @@ import { z } from 'zod';
 import type { RequestHandler } from './$types';
 import { error, json, type RequestEvent } from '@sveltejs/kit';
 import { validate, AlphanumericDotsOnly } from '$lib/server/validation';
-import { AssetType, AssetPurpose, PrismaClient } from '@prisma/client';
 import { getUserByTag, prisma } from '$lib/server/database';
 import { checkAuth, generateToken } from '$lib/server/auth';
 import type { UserProfileDTO } from '$lib/dto';

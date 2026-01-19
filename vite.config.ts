@@ -6,5 +6,10 @@ export default defineConfig({
 	plugins: [
         sveltekit(),
         devtoolsJson()
-    ]
+    ],
+	server: {
+		host: '0.0.0.0',
+		port: 80,
+		allowedHosts: ["metanoise.co", ".metanoise.co"]
+	}
 });

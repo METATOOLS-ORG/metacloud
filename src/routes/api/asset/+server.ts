@@ -5,7 +5,7 @@ import fs, { writeFile } from 'fs/promises';
 import { ulid } from "ulid";
 import path from "path";
 import { prisma } from "$lib/server/database";
-import { AssetPurpose, AssetType } from "@prisma/client";
+import { AssetPurpose, AssetType } from '../../../../prisma/generated/prisma/client';
 import * as s3 from "$lib/server/s3";
 import type { AssetUploadRespDTO } from "$lib/dto";
 import { exec } from "child_process";
