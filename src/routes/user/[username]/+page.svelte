@@ -65,8 +65,8 @@
 
         <section class="songs">
             <SongCard song={pinnedSong} user={data.user}/>
-            <PageHead icon={DiskIcon} text="Releases"/>
             {#if releases.length !== 0}
+                <PageHead icon={DiskIcon} text="Releases"/>
                 {#each releases as song}
                     <SongCard {song} user={data.user}/>
                 {/each}
