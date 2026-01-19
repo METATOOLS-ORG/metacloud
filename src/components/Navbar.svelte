@@ -121,6 +121,5 @@
 
     .navbar-logo-text {
         image-rendering: pixelated;
-        height: 17px;
     }
 </style>

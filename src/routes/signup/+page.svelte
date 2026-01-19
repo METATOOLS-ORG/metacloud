@@ -1,7 +1,6 @@
 <script lang="ts">
     import { goto, invalidateAll } from '$app/navigation';
     import ErrorMessage from '$components/ErrorMessage.svelte';
-    import FancyBanner from '$components/FancyBanner.svelte';
     import AddIcon from '$components/icons/AddIcon.svelte';
     import Meta from '$components/Meta.svelte';
     import PageHead from '$components/PageHead.svelte';

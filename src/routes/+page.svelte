@@ -1,5 +1,4 @@
 <script lang="ts">
-    import FancyBanner from "$components/FancyBanner.svelte";
 	import DiskIcon from "$components/icons/DiskIcon.svelte";
 	import HeartIcon from "$components/icons/HeartIcon.svelte";
 	import RepostIcon from "$components/icons/RepostIcon.svelte";
